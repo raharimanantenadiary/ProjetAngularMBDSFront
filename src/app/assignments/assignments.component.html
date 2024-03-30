@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="btnAjout">
+    <a routerLink="/add">
+      <button mat-flat-button color="accent">Ajouter Assignment</button>
+    </a>
+  </div>
+
+  <h2>{{ titre }}</h2>
+  <p>Nb documents : {{totalDocs}}, nbPages : {{totalPages}}
+    <br>
+  Page courante : {{page}}, nb de docs par page : {{limit}}
+  <!-- add slider for adjusting the limit property, with angular 17 -->
+  <mat-slider
+    min="1"
+    max="10"
+    step="1"
+    thumbLabel
+  >
+  <input matSliderThumb [(ngModel)]="limit" (change)="getAssignmentsFromService()">
+</mat-slider>
+</p>
+  <div>
+    <button mat-raised-button color="primary"
+            [disabled]="!hasPrevPage"
+            [disabled]="!hasPrevPage"
+            (click)="premierePage()">Première
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary"
+            [disabled]="!hasPrevPage"
+            (click)="pagePrecedente()">Précédent
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary"
+            [disabled]="!hasNextPage"
+            (click)="pageSuivante()">Suivante
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="primary"
+            [disabled]="!hasNextPage"
+            (click)="dernierePage()">Dernière
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-list>
+    @for(a of assignments; track a.nom) {
+    <mat-list-item >
+      <nav>
+        <a routerLink="/assignment/{{a._id}}">
+          <div>
+            <h3 matListItemTitle [ngStyle]="{ color: a.rendu ? 'green' : 'red' }" >{{ a.nom }}</h3>
+            <p matListItemLine>{{ a.dateDeRendu | date }}</p>
+          </div>
+        </a>
+      </nav>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    }
+  </mat-list>
+</div>
+
+<!--
+<p>Avec Angular supérieur à la version 17</p>
+<table>
+  <tbody>
+    @for (a of assignments; track a.nom) {
+      <div [ngStyle]="{'color':getColor(a)}">
+      @if(a.rendu) {
+        <tr>
+          <td>{{ a.nom }}</td>
+          <td>{{ a.dateDeRendu|date }}</td>
+          <td>{{ a.rendu }}</td>
+        </tr>
+      } @else {
+        <tr>
+          <td>{{ a.nom }} NON RENDU !!!!</td>
+        </tr>
+      }
+    </div>
+    }
+  </tbody>
+</table>
+-->
