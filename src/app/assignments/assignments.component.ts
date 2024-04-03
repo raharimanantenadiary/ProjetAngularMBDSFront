@@ -10,6 +10,10 @@ import { AssignmentDetailComponent } from './assignment-detail/assignment-detail
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
 import { AssignmentsService } from '../shared/assignments.service';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
+import { Router} from '@angular/router';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 @Component({
   selector: 'app-assignments',
   standalone: true,
@@ -24,6 +28,7 @@ import { RouterLink } from '@angular/router';
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
+    MatSlideToggleModule
   ],
 })
 export class AssignmentsComponent implements OnInit {
@@ -42,7 +47,8 @@ export class AssignmentsComponent implements OnInit {
   assignments: Assignment[] = [];
 
   // ici on injecte le service
-  constructor(private assignmentsService: AssignmentsService) {}
+  constructor(private assignmentsService: AssignmentsService,private authService:AuthService,
+    private router:Router) {}
 
   getColor(a: any) {
     return a.rendu ? 'green' : 'red';
@@ -89,4 +95,32 @@ export class AssignmentsComponent implements OnInit {
     this.page = this.totalPages;
     this.getAssignmentsFromService();
   }
+  genererDonneesDeTest() {
+    // on utilise le service
+    /* VERSION NAIVE
+    this.assignmentsService.peuplerBD();
+    */
+
+    // VERSION AVEC Observable
+    this.assignmentsService.peuplerBDavecForkJoin()
+    .subscribe(() => {
+      console.log("Données générées, on rafraichit la page pour voir la liste à jour !");
+      window.location.reload();
+      // On devrait pouvoir le faire avec le router, jussqu'à la version 16 ça fonctionnait avec
+      // this.router.navigate(['/home'], {replaceUrl:true});
+    });
+  }
+
+  login() {
+    // on utilise le service d'autentification
+    // pour se connecter ou se déconnecter
+    if(!this.authService.loggedIn) {
+      this.authService.logIn();
+    } else {
+      this.authService.logOut();
+      // on navigue vers la page d'accueil
+      this.router.navigate(['/home']);
+    }
+  }
+
 }
