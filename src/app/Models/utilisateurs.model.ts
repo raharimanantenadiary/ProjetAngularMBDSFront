@@ -4,5 +4,5 @@ export class Utilisateurs {
     mail!: string;
     mdp!: string;
     photo!: string;
-    role!: number;
+    roles!: number;
 }
