@@ -6,8 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 
-import { Assignment } from '../assignment.model';
-import { AssignmentsService } from '../../shared/assignments.service';
+import { Assignment } from '../../Models/assignment.model';
+import { AssignmentsService } from '../../Services/assignments.service';
 import { Router } from '@angular/router';
 
 @Component({

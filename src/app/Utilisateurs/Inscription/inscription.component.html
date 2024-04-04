@@ -1,0 +1,65 @@
+<div class="centered-container">
+    <h1 class="titre">S'inscrire</h1>
+    <mat-card class="card-container">
+        <mat-card-header class="header-container">
+            <img src="./assets/img/edu.jpg" width="150" height="150" class="logo">
+        </mat-card-header>
+        <mat-card-content>
+            <form class="example-form">
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                    @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+                    <mat-error class="mat-error">
+                        Entrer un mail contenant un <strong>"&#64;"</strong>
+                    </mat-error>
+                    }
+                    @if (emailFormControl.hasError('required')) {
+                    <mat-error>
+                        Email <strong>obligatoire</strong>
+                    </mat-error>
+                    }         
+                    <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Nom</mat-label>
+                    <input matInput [formControl]="nomFormControl" placeholder="Votre nom">
+                    @if(nomFormControl.hasError('required')){
+                        <mat-error>
+                            Nom <strong>obligatoire</strong>
+                        </mat-error>
+                    }
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                    
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput [type]="isPasswordVisible ? 'text' : 'password'" [formControl]="motDePasseFormControl" placeholder="Placeholder">
+                    <mat-icon matSuffix [class.orange]="isPasswordNotEmpty()" (click)="togglePasswordVisibility()">vpn_key</mat-icon>
+                    @if(motDePasseFormControl.hasError('required')){
+                        <mat-error>
+                            Mot de passe <strong>obligatoire</strong>
+                        </mat-error>
+                    }                    
+                </mat-form-field>
+
+                <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Photo</mat-label>
+                    <input type="file" matInput>
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                    
+                </mat-form-field> -->
+                <div class="button-container">
+                    <button mat-flat-button color="primary" class="btn">
+                        S'inscrire
+                    </button>
+                </div>
+                
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+  
+

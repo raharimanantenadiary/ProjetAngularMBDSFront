@@ -5,10 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Assignment } from '../assignment.model';
-import { AssignmentsService } from '../../shared/assignments.service';
+import { Assignment } from '../../Models/assignment.model';
+import { AssignmentsService } from '../../Services/assignments.service';
 import  {RouterLink} from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
+import { AuthService } from '../../Shared/auth.service';
 @Component({
   selector: 'app-assignment-detail',
   standalone: true,

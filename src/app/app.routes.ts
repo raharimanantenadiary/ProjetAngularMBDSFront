@@ -3,8 +3,8 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
-import { authGuard } from './shared/auth.guard';
-import { AddUtilisateurComponent } from './utilisateurs/add-utilisateur/add-utilisateur.component';
+import { authGuard } from './Shared/auth.guard';
+import { InscriptionComponent } from './Utilisateurs/Inscription/inscription.component';
 import { TemplateComponent } from './template/template.component';
 
 export const routes: Routes = [
@@ -17,8 +17,8 @@ export const routes: Routes = [
         path: "assignment/:id/edit",
         component: EditAssignmentComponent,
         canActivate: [authGuard]
-      }
+      } 
     ]  
   },
-  { path: "Inscription", component: AddUtilisateurComponent }
+  { path: "Inscription", component: InscriptionComponent }
 ];

@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
-import { RenduDirective } from '../shared/rendu.directive';
-import { Assignment } from './assignment.model';
+import { RenduDirective } from '../Shared/rendu.directive';
+import { Assignment } from '../Models/assignment.model';
 import { AssignmentDetailComponent } from './assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
-import { AssignmentsService } from '../shared/assignments.service';
+import { AssignmentsService } from '../Services/assignments.service';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../Shared/auth.service';
 import { Router} from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
