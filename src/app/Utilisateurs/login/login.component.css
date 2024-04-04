@@ -1,0 +1,66 @@
+
+.example-full-width {
+    width: 100%;
+}
+
+.example-form {
+    padding-top: 15px;
+}
+
+.centered-container{
+    margin-top: -30px;
+    display: grid;
+    place-items: center;
+    height: 100vh; /* Utilise toute la hauteur de la fenêtre */
+}
+  
+.card-container {
+    width: 450px; /* Largeur du mat-card */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+  
+.header-icon {
+    width: 150px;
+    height: 150px;
+    font-size: 150px;
+    
+}
+
+.titre{
+    font-size: 45px;
+    margin-bottom: -40px;
+    text-align: center;
+}
+  
+.button-container {
+    margin-top: 10px; 
+    display: flex;
+    justify-content: flex-end; 
+    width: 100%;
+}
+  
+.btn {
+    font-size: 18px;
+    padding: 22px;
+    background-color: #6114E6 ;
+}
+
+.logo {
+    padding-top: 10px;
+}
+
+.orange {
+    color: orange; 
+}
+
+.mat-error {
+    padding-bottom: 5px; 
+}
