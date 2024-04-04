@@ -41,7 +41,7 @@ export class AddAssignmentComponent {
     // une base de données)
     nouvelAssignment.nom = this.nomAssignment;
     nouvelAssignment.dateDeRendu = this.dateDeRendu;
-    nouvelAssignment.rendu = false;
+    // nouvelAssignment.rendu = false;
 
     // on utilise le service pour directement ajouter
     // le nouvel assignment dans le tableau

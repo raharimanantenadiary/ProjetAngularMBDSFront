@@ -5,7 +5,7 @@
   </nav>
 </h1>
 <mat-slide-toggle (click)="login()" color="primary">Login</mat-slide-toggle>
-<button mat-button (click)="genererDonneesDeTest()">Peupler BD</button>
+<!-- <button mat-button (click)="genererDonneesDeTest()">Peupler BD</button> -->
 <div class="container">
   <div class="btnAjout">
     <a routerLink="/add">
@@ -56,7 +56,7 @@
       <nav>
         <a routerLink="/assignment/{{a._id}}">
           <div>
-            <h3 matListItemTitle [ngStyle]="{ color: a.rendu ? 'green' : 'red' }" >{{ a.nom }}</h3>
+            <!-- <h3 matListItemTitle [ngStyle]="{ color: a.rendu ? 'green' : 'red' }" >{{ a.nom }}</h3> -->
             <p matListItemLine>{{ a.dateDeRendu | date }}</p>
           </div>
         </a>

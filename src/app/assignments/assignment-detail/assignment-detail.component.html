@@ -9,9 +9,9 @@
       }}</mat-card-subtitle>
     </mat-card-content>
     <mat-card-actions class="container">
-      @if(!assignmentTransmis.rendu) {
+      <!-- @if(!assignmentTransmis.rendu) {
       <mat-checkbox (click)="onAssignmentRendu()">Rendu</mat-checkbox>
-      }
+      } -->
       <button mat-raised-button color="warn" (click)="onDelete()"
               [disabled]="!isAdmin()"
       >
