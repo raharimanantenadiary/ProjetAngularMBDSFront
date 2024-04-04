@@ -1,5 +1,5 @@
 <div class="centered-container">
-    <h1 class="titre">Se connecté</h1>
+    <h1 class="titre">Se connecter</h1>
     <mat-card class="card-container">
         <mat-card-header class="header-container">
             <img src="./assets/img/edu.jpg" width="150" height="150" class="logo">
@@ -32,20 +32,20 @@
                         </mat-error>
                     }                    
                 </mat-form-field>
-
-                <!-- <mat-form-field class="example-full-width">
-                    <mat-label>Photo</mat-label>
-                    <input type="file" matInput>
-                    <mat-icon matSuffix>perm_identity</mat-icon>
-                    
-                </mat-form-field> -->
                 <div class="button-container">
-                    <button mat-flat-button color="primary" class="btn">
-                        Se connecté
-                    </button>
-                </div>
-                
+  <button mat-flat-button color="primary" class="btn" (click)="seConnecter()" [disabled]="isLoading">
+    <span *ngIf="!isLoading">Se connecter</span>
+    <span *ngIf="isLoading">
+      <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+    </span>
+  </button>
+  <span class="divider"></span> <!-- Utilisez une classe divider pour l'espace entre les boutons -->
+  <a mat-button color="primary" (click)="seRedirigerVersInscription()" class="bottom-button">S'inscrire?</a>
+</div>
             </form>
+            <div *ngIf="errorMessage" class="resultat-message red-text">{{ errorMessage }}</div>
+    <!-- <div *ngIf="resultat" class="resultat-message red-text">{{ resultat }}</div> -->
+
         </mat-card-content>
     </mat-card>
 </div>
