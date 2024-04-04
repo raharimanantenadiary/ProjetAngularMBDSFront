@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
-import { RenduDirective } from '../Shared/rendu.directive';
+import { RenduDirective } from '../shared/rendu.directive';
 import { Assignment } from '../Models/assignment.model';
 import { AssignmentDetailComponent } from './assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
