@@ -1,1 +1,10 @@
-<p>Sidebar</p>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <p>Auto-resizing sidenav</p>
+      @if (showFiller) {
+        <p>Lorem, ipsum dolor sit amet consectetur.</p>
+      }
+      
+    </mat-drawer>
+  
+  </mat-drawer-container>

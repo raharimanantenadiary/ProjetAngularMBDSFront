@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button (click)="toggleDrawer()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <span>My App </span>
@@ -19,3 +19,5 @@
       <button mat-menu-item><mat-icon>power_settings_new</mat-icon>Déconnexion</button>
     </mat-menu>
 </mat-toolbar>
+
+<app-sidebar></app-sidebar>
