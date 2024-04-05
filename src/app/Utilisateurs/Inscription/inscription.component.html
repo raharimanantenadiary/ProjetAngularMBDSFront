@@ -9,63 +9,45 @@
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Email</mat-label>
                     <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
-                    @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-                    <mat-error class="mat-error">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                         Entrer un mail contenant un <strong>"&#64;"</strong>
                     </mat-error>
-                    }
-                    @if (emailFormControl.hasError('required')) {
-                    <mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
                         Email <strong>obligatoire</strong>
                     </mat-error>
-                    }         
                     <mat-icon matSuffix>email</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Nom</mat-label>
                     <input matInput [formControl]="nomFormControl" placeholder="Votre nom">
-                    @if(nomFormControl.hasError('required')){
-                        <mat-error>
-                            Nom <strong>obligatoire</strong>
-                        </mat-error>
-                    }
+                    <mat-error *ngIf="nomFormControl.hasError('required')">
+                        Nom <strong>obligatoire</strong>
+                    </mat-error>
                     <mat-icon matSuffix>perm_identity</mat-icon>
-                    
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label>Mot de passe</mat-label>
                     <input matInput [type]="isPasswordVisible ? 'text' : 'password'" [formControl]="motDePasseFormControl" placeholder="Placeholder">
                     <mat-icon matSuffix [class.orange]="isPasswordNotEmpty()" (click)="togglePasswordVisibility()">vpn_key</mat-icon>
-                    @if(motDePasseFormControl.hasError('required')){
-                        <mat-error>
-                            Mot de passe <strong>obligatoire</strong>
-                        </mat-error>
-                    }                    
+                    <mat-error *ngIf="motDePasseFormControl.hasError('required')">
+                        Mot de passe <strong>obligatoire</strong>
+                    </mat-error>
                 </mat-form-field>
 
-                <!-- <mat-form-field class="example-full-width">
-                    <mat-label>Photo</mat-label>
-                    <input type="file" matInput>
-                    <mat-icon matSuffix>perm_identity</mat-icon>
-                    
-                </mat-form-field> -->
                 <div class="button-container">
-  <button mat-flat-button color="primary" class="btn" (click)="inscrireUtilisateur()" [disabled]="isLoading">
-    <span *ngIf="!isLoading">S'inscrire</span>
-    <span *ngIf="isLoading">
-      <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
-    </span>
-  </button>
-  <span class="divider"></span>
-  <a mat-button color="primary" (click)="seRedirigerVersLogin()" class="bottom-button">Se connecter?</a>
-</div>
-                
+                    <button mat-flat-button color="primary" class="btn" (click)="inscrireUtilisateur()" [disabled]="isLoading">
+                        <span *ngIf="!isLoading">S'inscrire</span>
+                        <span *ngIf="isLoading">
+                            <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+                        </span>
+                    </button>
+                    <span class="divider"></span>
+                    <a mat-button color="primary" (click)="seRedirigerVersLogin()" class="bottom-button">Se connecter?</a>
+                </div>
             </form>
-             <div *ngIf="errorMessage" class="resultat-message red-text">{{ errorMessage }}</div>
+            <div *ngIf="errorMessage" class="resultat-message red-text">{{ errorMessage }}</div>
         </mat-card-content>
     </mat-card>
 </div>
-  
-
