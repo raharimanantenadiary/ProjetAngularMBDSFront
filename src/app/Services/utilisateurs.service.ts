@@ -21,8 +21,8 @@ private baseUrl = 'http://localhost:8010/api/utilisateur';
     return this.http.post<any>(`${this.baseUrl}/inscription`, { nom, email, motDePasse, photo, role });
   }
 
-  getUtilisateurById(id: string): Observable<Utilisateurs> {
-    return this.http.get<Utilisateurs>(this.baseUrl + "/" + id);
-  }
+  getUtilisateurById(id: string): Observable<any> {
+  return this.http.get<any>(`${this.baseUrl}/${id}`);
+}
 
 }
