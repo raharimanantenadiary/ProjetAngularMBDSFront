@@ -10,6 +10,7 @@ export class UtilisateursService {
 
 private baseUrl = 'http://localhost:8010/api/utilisateur';
 
+
   constructor(private http: HttpClient) { }
 
   seConnecter(email: string, motDePasse: string): Observable<any> {
@@ -19,4 +20,9 @@ private baseUrl = 'http://localhost:8010/api/utilisateur';
   sInscrire(nom: string, email: string, motDePasse: string, photo: string, role: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/inscription`, { nom, email, motDePasse, photo, role });
   }
+
+  getUtilisateurById(id: string): Observable<Utilisateurs> {
+    return this.http.get<Utilisateurs>(this.baseUrl + "/" + id);
+  }
+
 }

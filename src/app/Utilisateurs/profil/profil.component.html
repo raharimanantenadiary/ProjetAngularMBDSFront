@@ -1,1 +1,17 @@
 <p>profil works!</p>
+<div *ngIf="utilisateur">
+    <ng-container *ngIf="utilisateur.photo && utilisateur.photo.trim() !== ''; else noPhoto">
+        <img src="{{ URL_IMAGE }}/{{ utilisateur.photo }}">
+    </ng-container>
+    <ng-template #noPhoto>
+        <mat-icon class="identity">perm_identity</mat-icon>
+    </ng-template>
+    
+    <p>Nom: {{ utilisateur.nom }}</p>
+    <p>Mail: {{ utilisateur.mail }}</p>
+    <!-- <p>Photo: {{ utilisateur.photo }}</p> -->
+    <p>Rôle: {{ utilisateur.role }}</p>
+</div>
+<div *ngIf="!utilisateur">
+    <p>Aucun utilisateur trouvé</p>
+</div>

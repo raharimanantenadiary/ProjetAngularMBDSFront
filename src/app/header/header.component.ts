@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,17 +25,20 @@ export class HeaderComponent {
 
   utilisateur: Utilisateurs | null = null;
 
-  @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
+  @Output() toggleDrawer = new EventEmitter<void>();
 
-  toggleDrawer() {
-    this.sidebar.toggleDrawer();
+  onToggleDrawer(): void {
+    this.toggleDrawer.emit();
   }
-
 
   ngOnInit(): void {
     const utilisateurJSON = localStorage.getItem('utilisateur');
     if (utilisateurJSON) {
       this.utilisateur = JSON.parse(utilisateurJSON);
     }
+  }
+
+  versProfile() {
+    this.router.navigate(['/Profile']);
   }
 }

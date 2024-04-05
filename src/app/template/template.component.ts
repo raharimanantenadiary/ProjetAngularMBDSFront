@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -6,11 +6,13 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { AuthService } from '../Shared/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-template',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,HeaderComponent,FooterComponent,SidebarComponent],
+  imports: [CommonModule,RouterOutlet,HeaderComponent,FooterComponent,SidebarComponent,MatSidenavModule],
   templateUrl: './template.component.html',
   styleUrl: './template.component.css'
 })
@@ -28,4 +30,5 @@ export class TemplateComponent {
       this.router.navigate(['/login']);
     }
   }
+
 }

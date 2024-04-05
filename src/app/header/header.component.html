@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <button (click)="toggleDrawer()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button (click)="onToggleDrawer()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
     <span>My App </span>
@@ -9,15 +9,14 @@
     </button>
     <span>{{ utilisateur?.nom }}</span>
     <mat-menu #menu="matMenu">
+      <span *ngIf="utilisateur?.role !== 0" mat-menu-item>
+        <mat-icon>school</mat-icon> Élève
+      </span>
       <span *ngIf="utilisateur?.role === 0" mat-menu-item>
-    <mat-icon>school</mat-icon> Élève
-  </span>
-  <span *ngIf="utilisateur?.role !== 0" mat-menu-item>
-    <mat-icon>person</mat-icon> Professeur
-  </span>
-      <button mat-menu-item><mat-icon>perm_identity</mat-icon>Profil</button>
+        <mat-icon>person</mat-icon> Professeur
+      </span>
+      <a mat-menu-item (click)="versProfile()"><mat-icon>perm_identity</mat-icon>Profil</a>
       <button mat-menu-item><mat-icon>power_settings_new</mat-icon>Déconnexion</button>
     </mat-menu>
 </mat-toolbar>
 
-<app-sidebar></app-sidebar>

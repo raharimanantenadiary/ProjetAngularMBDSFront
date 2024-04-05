@@ -11,12 +11,11 @@ import { MatDrawer } from '@angular/material/sidenav';
   imports: [MatSidenavModule, MatButtonModule]
 })
 export class SidebarComponent {
+  
+  isDrawerOpen = true;
 
-  showFiller = false;
-  @ViewChild('drawer') drawer!: MatDrawer;
-
-  toggleDrawer() {
-    this.drawer.toggle();
+  toggleDrawer(): void {
+    this.isDrawerOpen = !this.isDrawerOpen;
   }
 
 }
