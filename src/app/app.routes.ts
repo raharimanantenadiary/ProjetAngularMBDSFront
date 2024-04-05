@@ -5,6 +5,7 @@ import { AssignmentDetailComponent } from './assignments/assignment-detail/assig
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { authGuard } from './Shared/auth.guard';
 import { InscriptionComponent } from './Utilisateurs/Inscription/inscription.component';
+import { LoginComponent } from './Utilisateurs/login/login.component';
 import { TemplateComponent } from './template/template.component';
 
 export const routes: Routes = [
@@ -20,5 +21,6 @@ export const routes: Routes = [
       } 
     ]  
   },
-  { path: "Inscription", component: InscriptionComponent }
+  { path: "Inscription", component: InscriptionComponent },
+  { path: "login", component: LoginComponent }
 ];

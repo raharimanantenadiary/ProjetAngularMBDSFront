@@ -7,8 +7,8 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatButtonModule} from '@angular/material/button';
 import { UtilisateursService } from '../../Services/utilisateurs.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 
 import {
   FormControl,
@@ -18,19 +18,22 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-inscription',
+  selector: 'app-login',
   standalone: true,
   imports: [MatProgressSpinnerModule,CommonModule,MatCardModule,MatFormFieldModule, MatInputModule,MatIconModule,FormsModule,ReactiveFormsModule,MatButtonModule],
-  templateUrl: './inscription.component.html',
-  styleUrl: './inscription.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class InscriptionComponent {
+export class LoginComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  nomFormControl = new FormControl('', [Validators.required]);
   motDePasseFormControl = new FormControl('', [Validators.required]);
   isPasswordVisible: boolean = false;
-  isLoading: boolean = false;
+  resultat = '';
   errorMessage = '';
+  token: string | null = null;
+  utilisateur: any = null;
+  isLoading: boolean = false;
+
 
   constructor(private utilisateursService: UtilisateursService,private router: Router) { }
 
@@ -43,24 +46,30 @@ export class InscriptionComponent {
     return typeof passwordValue === 'string' && passwordValue.length > 0;
   }
 
-  inscrireUtilisateur() {
-    this.isLoading = true;
-    const email = this.emailFormControl.value ?? '';
-    const motDePasse = this.motDePasseFormControl.value ?? '';
-    const nom = this.nomFormControl.value ?? '';
-    this.utilisateursService.sInscrire(nom, email, motDePasse, "","0").subscribe(
-      (response: any) => {
-        this.isLoading = false;
-        this.errorMessage = 'Utilisateur inscrit avec succès';
-      },
-      (error) => {
-        this.isLoading = false;
-        this.errorMessage = error.error.erreur;
-      }
-    );
-  }
+ seConnecter() {
+  this.isLoading = true;
+  const email = this.emailFormControl.value ?? '';
+  const motDePasse = this.motDePasseFormControl.value ?? '';
 
-  seRedirigerVersLogin() {
-  this.router.navigate(['/login']);
+  this.utilisateursService.seConnecter(email, motDePasse).subscribe(
+    (response: any) => {
+      this.errorMessage = ''; 
+      this.resultat = JSON.stringify(response); 
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('utilisateur', JSON.stringify(response.utilisateur));
+      this.isLoading = false;
+      this.router.navigate(['/']);
+    },
+    (error) => {
+      this.errorMessage = error.error.erreur;
+      this.resultat = '';
+      this.isLoading = false;
+      this.router.navigate(['/login']);
+    }
+  );
+}
+
+  seRedirigerVersInscription() {
+  this.router.navigate(['/Inscription']);
 }
 }

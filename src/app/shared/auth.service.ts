@@ -1,13 +1,50 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // propriété pour savoir si l'utilisateur est connecté
   loggedIn = false;
 
   constructor() { }
+
+isTokenExpired(): boolean {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    // Efface également l'utilisateur du localStorage s'il n'y a pas de token
+    localStorage.removeItem('utilisateur');
+    return true; // Le token n'est pas présent, donc considéré comme expiré
+  }
+
+  try {
+    const payload: any = jwtDecode(token);
+    const expiration = new Date(payload.exp * 1000);
+    const isExpired = expiration <= new Date();
+
+    if (isExpired) {
+      localStorage.removeItem('utilisateur');
+      localStorage.removeItem('token');
+    }
+
+    return isExpired;
+  } catch (error) {
+    console.error('Erreur lors du décodage du token :', error);
+    return true;
+  }
+}
+
+
+
+getTokenExpiration(): string {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const payload: any = jwtDecode(token);
+    const expiration = new Date(payload.exp * 1000);
+    return expiration.toLocaleString();
+  }
+  return '';
+}
 
   // méthode pour connecter l'utilisateur
   // Typiquement, il faudrait qu'elle accepte en paramètres
@@ -40,4 +77,7 @@ export class AuthService {
 
     return promesse;
   }
+
+
+ 
 }

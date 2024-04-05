@@ -65,6 +65,11 @@
     padding-bottom: 5px; 
 }
 
+.divider {
+  margin-left: 10px; /* Espace à gauche du séparateur */
+  margin-right: 10px; /* Espace à droite du séparateur */
+}
+
 .bottom-button {
   align-self: flex-end; /* Alignement en bas */
 }
