@@ -8,12 +8,15 @@ import { Utilisateurs } from '../Models/utilisateurs.model';
 })
 export class UtilisateursService {
 
-  private baseUrl = 'http://localhost:8010/api/utilisateur/login';
+private baseUrl = 'http://localhost:8010/api/utilisateur';
 
   constructor(private http: HttpClient) { }
 
   seConnecter(email: string, motDePasse: string): Observable<any> {
-    return this.http.post<Utilisateurs>(this.baseUrl, { email, motDePasse });
+    return this.http.post<any>(`${this.baseUrl}/login`, { email, motDePasse });
   }
 
+  sInscrire(nom: string, email: string, motDePasse: string, photo: string, role: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/inscription`, { nom, email, motDePasse, photo, role });
+  }
 }

@@ -64,3 +64,12 @@
 .mat-error {
     padding-bottom: 5px; 
 }
+
+.bottom-button {
+  align-self: flex-end; /* Alignement en bas */
+}
+
+.red-text {
+  margin-top: 10px;
+  color: red; /* Définit la couleur du texte en rouge */
+}

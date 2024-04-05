@@ -52,12 +52,18 @@
                     
                 </mat-form-field> -->
                 <div class="button-container">
-                    <button mat-flat-button color="primary" class="btn">
-                        S'inscrire
-                    </button>
-                </div>
+  <button mat-flat-button color="primary" class="btn" (click)="inscrireUtilisateur()" [disabled]="isLoading">
+    <span *ngIf="!isLoading">S'inscrire</span>
+    <span *ngIf="isLoading">
+      <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+    </span>
+  </button>
+  <span class="divider"></span>
+  <a mat-button color="primary" (click)="seRedirigerVersLogin()" class="bottom-button">Se connecter?</a>
+</div>
                 
             </form>
+             <div *ngIf="errorMessage" class="resultat-message red-text">{{ errorMessage }}</div>
         </mat-card-content>
     </mat-card>
 </div>
