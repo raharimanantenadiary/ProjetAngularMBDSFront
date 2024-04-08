@@ -22,7 +22,18 @@ private baseUrl = 'http://localhost:8010/api/utilisateur';
   }
 
   getUtilisateurById(id: string): Observable<any> {
-  return this.http.get<any>(`${this.baseUrl}/${id}`);
-}
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
+  updateUtilisateur(id: string, updateData: any, photo: File | null): Observable<any> {
+    const formData = new FormData();
+    Object.keys(updateData).forEach(key => {
+      formData.append(key, updateData[key]);
+    });
+    if (photo) {
+      formData.append('photo', photo, photo.name);
+    }
+    return this.http.put<any>(`${this.baseUrl}/modifierUtilisateur/${id}`, formData);
+  }
 
 }

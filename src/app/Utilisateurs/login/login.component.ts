@@ -35,7 +35,7 @@ export class LoginComponent {
   isLoading: boolean = false;
 
 
-  constructor(private utilisateursService: UtilisateursService,private router: Router) { }
+  constructor(private utilisateursService: UtilisateursService,private router: Router,) { }
 
   togglePasswordVisibility() {
       this.isPasswordVisible = !this.isPasswordVisible;
