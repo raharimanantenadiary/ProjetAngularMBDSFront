@@ -16,28 +16,42 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   FormControl,
   Validators,
-} from '@angular/forms';;
-
+} from '@angular/forms';
 
 @Component({
   selector: 'app-profil',
   standalone: true,
-  imports: [CommonModule,FormsModule,MatCardModule,MatFormFieldModule, MatInputModule,MatIconModule,FormsModule,ReactiveFormsModule,MatButtonModule],
+  imports: [CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.css'
 })
+
 export class ProfilComponent {
   id_utilisateur = '';
   utilisateur: Utilisateurs | null = null;
   URL_IMAGE: string = 'http://localhost:8010/api/uploads';
-  nouvellePhoto: File | null = null; 
   message: string = ''; 
   nomFormControl = new FormControl('');
   mailFormControl = new FormControl('');
+  nom: string = "";
+  mail: string = "";
+  photo: string = "";
 
   constructor(private utilisateursService: UtilisateursService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getUtilisateur();
+  }
+
+  getUtilisateur(){
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
@@ -49,8 +63,8 @@ export class ProfilComponent {
             this.utilisateur = response; 
             // Mettre à jour les valeurs des FormControl si l'utilisateur est défini
             if (this.utilisateur) {
-              this.nomFormControl.setValue(this.utilisateur.nom);
-              this.mailFormControl.setValue(this.utilisateur.mail);
+              this.nom = this.utilisateur.nom;
+              this.mail = this.utilisateur.mail;
             }
           },
           (error) => {
@@ -61,32 +75,35 @@ export class ProfilComponent {
     }
   }
 
-  // Fonction pour mettre à jour les informations de l'utilisateur
-  modifierUtilisateurInformation(): void {
-    if (this.utilisateur) {
-      // Préparer les données de mise à jour de l'utilisateur
-      const updateData = {
-        nom: this.utilisateur.nom,
-        email: this.utilisateur.mail,
-        // Ajoutez d'autres champs que vous souhaitez mettre à jour
-      };
-
-      // Appeler la méthode updateUtilisateur du service UtilisateursService pour mettre à jour l'utilisateur
-      this.utilisateursService.updateUtilisateur(this.id_utilisateur, updateData, this.nouvellePhoto).subscribe(
-        (response) => {
-          console.log('Utilisateur mis à jour avec succès !', response);
-          // Mettre à jour le message avec un message de succès
-          this.message = 'Les informations de l\'utilisateur ont été mises à jour avec succès.';
-        },
-        (error) => {
-          console.error('Erreur lors de la mise à jour de l\'utilisateur :', error);
-          // Mettre à jour le message avec un message d'erreur
-          this.message = 'Une erreur s\'est produite lors de la mise à jour des informations de l\'utilisateur.';
-        }
-      );
-    } else {
-      console.warn('Aucun utilisateur à mettre à jour.');
+  OnSubmit(){
+    const formData = new FormData();
+    formData.append('_id', this.id_utilisateur);
+    formData.append('nom', this.nom);
+    formData.append('mail', this.mail); 
+    if (this.photo) {
+      formData.append('photo', this.photo);
+    }else if (!this.photo && this.utilisateur && this.utilisateur.photo) {
+      formData.append('photo', this.utilisateur.photo);
     }
+    this.updateUtilisateur(formData);
+    console.log('nom:' + this.nom);
+    console.log('mail:' + this.mail);
+    console.log('id:' + this.id_utilisateur);
+    console.log('photo:' + this.utilisateur?.photo);
+  }
+
+  updateUtilisateur(formData: FormData){
+    this.utilisateursService.updateUtilisateur(formData).subscribe(
+      (reponse) => {
+        console.log(reponse.message);
+        this.getUtilisateur();
+      }
+    )
+  }
+
+  handleFileInput(event: any) {
+    this.photo = event.target.files[0];
+    console.log('this.utilisateur.photo', this.photo)
   }
 
  

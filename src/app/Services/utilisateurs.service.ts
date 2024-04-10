@@ -25,15 +25,8 @@ private baseUrl = 'http://localhost:8010/api/utilisateurs';
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
-  updateUtilisateur(id: string, updateData: any, photo: File | null): Observable<any> {
-    const formData = new FormData();
-    Object.keys(updateData).forEach(key => {
-      formData.append(key, updateData[key]);
-    });
-    if (photo) {
-      formData.append('photo', photo, photo.name);
-    }
-    return this.http.put<any>(`${this.baseUrl}/modifierUtilisateur/${id}`, formData);
+  updateUtilisateur(utilisateur: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/modifierUtilisateur`, utilisateur);
   }
 
 }

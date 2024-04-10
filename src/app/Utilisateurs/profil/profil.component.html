@@ -31,13 +31,14 @@
     <form class="user-form">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Nom</mat-label>
-        <input matInput [formControl]="nomFormControl"  placeholder="Modifier le nom">
+        <input matInput [(ngModel)]="nom" name="nom" placeholder="Modifier le nom">
       </mat-form-field>
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>E-mail</mat-label>
-        <input matInput [formControl]="mailFormControl"  placeholder="Modifier l'e-mail">
+        <input matInput [(ngModel)]="mail" name="mail" placeholder="Modifier l'e-mail">
       </mat-form-field>
-      <button mat-flat-button color="primary" class="btn" (click)="modifierUtilisateurInformation()">
+      <input type="file" (change)="handleFileInput($event)" name="photo">
+      <button mat-flat-button color="primary" class="btn" (click)="OnSubmit()">
         Modifier
       </button>
     </form>
