@@ -55,13 +55,12 @@ export class ProfilComponent {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
-      if (utilisateur && utilisateur._id) { // Vérifiez si utilisateur et _id sont définis
+      if (utilisateur && utilisateur._id) { 
         this.id_utilisateur = utilisateur._id;
         
         this.utilisateursService.getUtilisateurById(this.id_utilisateur).subscribe(
           (response: Utilisateurs) => {
             this.utilisateur = response; 
-            // Mettre à jour les valeurs des FormControl si l'utilisateur est défini
             if (this.utilisateur) {
               this.nom = this.utilisateur.nom;
               this.mail = this.utilisateur.mail;
