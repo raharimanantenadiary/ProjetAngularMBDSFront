@@ -1,24 +1,3 @@
-<!-- <div *ngIf="utilisateur">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ utilisateur.nom }}</mat-card-title>
-      <mat-card-subtitle>{{ utilisateur.mail }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="URL_IMAGE + '/' + utilisateur.photo" alt="Photo de l'utilisateur" width="100" height="150">
-    <mat-card-content>
-      <p>Rôle: {{ utilisateur.role }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="primary" (click)="modifierUtilisateurInformation()">Modifier</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div *ngIf="!utilisateur">
-  <p>Aucun utilisateur trouvé</p>
-</div> -->
-
 <div *ngIf="utilisateur">
   <mat-card class="user-card">
     <div class="user-info">
@@ -37,14 +16,22 @@
         <mat-label>E-mail</mat-label>
         <input matInput [(ngModel)]="mail" name="mail" placeholder="Modifier l'e-mail">
       </mat-form-field>
-      <input type="file" (change)="handleFileInput($event)" name="photo">
+       <div class="file-upload">
+  <label for="photo-input" class="file-label">
+    <span>Choisir une photo</span>
+    <input id="photo-input" type="file" (change)="handleFileInput($event)" name="photo" class="file-input">
+  </label>
+  <span id="file-name"></span>
+</div>
       <button mat-flat-button color="primary" class="btn" (click)="OnSubmit()">
         Modifier
       </button>
     </form>
   </mat-card>
+  
 </div>
 <div *ngIf="!utilisateur">
   <p>Aucun utilisateur trouvé</p>
 </div>
+
 

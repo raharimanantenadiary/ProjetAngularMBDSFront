@@ -12,6 +12,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 import {
   FormControl,
@@ -43,13 +44,16 @@ export class ProfilComponent {
   mailFormControl = new FormControl('');
   nom: string = "";
   mail: string = "";
-  photo: string = "";
+  photo: File | null = null;
+  durationInSeconds = 3;
 
-  constructor(private utilisateursService: UtilisateursService, private router: Router) { }
+  constructor(private utilisateursService: UtilisateursService, private router: Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getUtilisateur();
   }
+
+  
 
   getUtilisateur(){
     const utilisateurData = localStorage.getItem('utilisateur');
@@ -74,22 +78,33 @@ export class ProfilComponent {
     }
   }
 
-  OnSubmit(){
-    const formData = new FormData();
-    formData.append('_id', this.id_utilisateur);
-    formData.append('nom', this.nom);
-    formData.append('mail', this.mail); 
-    if (this.photo) {
-      formData.append('photo', this.photo);
-    }else if (!this.photo && this.utilisateur && this.utilisateur.photo) {
-      formData.append('photo', this.utilisateur.photo);
-    }
-    this.updateUtilisateur(formData);
-    console.log('nom:' + this.nom);
-    console.log('mail:' + this.mail);
-    console.log('id:' + this.id_utilisateur);
-    console.log('photo:' + this.utilisateur?.photo);
+OnSubmit() {
+  const formData = new FormData();
+  formData.append('_id', this.id_utilisateur);
+  formData.append('nom', this.nom);
+  formData.append('mail', this.mail); 
+
+  if (this.photo) {
+    formData.append('photo', this.photo);
+  } else if (this.photo== "" && this.utilisateur && this.utilisateur.photo) {
+    formData.append('photo', this.utilisateur.photo);
   }
+  this.utilisateursService.updateUtilisateur(formData).subscribe(
+    (reponse) => {
+      this._snackBar.open('Mise à jour réussie', 'Fermer', {
+        duration: this.durationInSeconds * 1000,
+        panelClass: ['toast-success']
+      });
+      this.getUtilisateur();
+    },
+    (error) => {
+      this._snackBar.open('Une erreur est survenue lors de la mise à jour', 'Fermer', {
+        duration: this.durationInSeconds * 1000,
+        panelClass: ['toast-error'] 
+      });
+    }
+  );
+}
 
   updateUtilisateur(formData: FormData){
     this.utilisateursService.updateUtilisateur(formData).subscribe(
@@ -100,10 +115,26 @@ export class ProfilComponent {
     )
   }
 
-  handleFileInput(event: any) {
-    this.photo = event.target.files[0];
-    console.log('this.utilisateur.photo', this.photo)
+handleFileInput(event: any) {
+  const fileInput = event.target;
+  if (fileInput.files && fileInput.files[0]) {
+    const fileList: FileList = fileInput.files;
+    if (fileList.length > 0) {
+      const selectedFile: File = fileList[0];
+      this.photo = selectedFile;
+      const fileNameSpan = document.getElementById('file-name');
+      if (fileNameSpan) {
+        fileNameSpan.textContent = selectedFile.name || "Aucun fichier sélectionné";
+      }
+    }
   }
+}
+
+
+
+
+
+
 
  
 }

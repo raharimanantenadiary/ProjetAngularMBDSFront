@@ -41,4 +41,9 @@ export class HeaderComponent {
   versProfile() {
     this.router.navigate(['/Profile']);
   }
+
+  deconnexion(){
+    this.authService.deconnexion();
+    this.router.navigate(['/login']);
+  }
 }

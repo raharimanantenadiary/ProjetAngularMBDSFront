@@ -34,6 +34,11 @@ isTokenExpired(): boolean {
   }
 }
 
+deconnexion() {
+  localStorage.removeItem('token'); 
+  localStorage.removeItem('utilisateur'); 
+}
+
 
 
 getTokenExpiration(): string {

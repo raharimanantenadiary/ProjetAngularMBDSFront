@@ -16,6 +16,9 @@
         <mat-icon>person</mat-icon> Professeur
       </span>
       <a mat-menu-item (click)="versProfile()"><mat-icon>perm_identity</mat-icon>Profil</a>
-      <button mat-menu-item><mat-icon>power_settings_new</mat-icon>Déconnexion</button>
+      <button mat-menu-item (click)="deconnexion()">
+  <mat-icon>power_settings_new</mat-icon>Déconnexion
+</button>
+
     </mat-menu>
 </mat-toolbar>
