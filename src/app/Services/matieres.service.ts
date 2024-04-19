@@ -10,6 +10,8 @@ export class MatieresService {
 
   constructor(private http: HttpClient) { }
 
+  private baseUrl = 'http://localhost:8010/api/matieres';
+
   getMatiereById(id: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
