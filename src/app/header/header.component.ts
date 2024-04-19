@@ -45,5 +45,9 @@ export class HeaderComponent {
     this.router.navigate(['/Profile']);
   }
 
-  
+  deconnexion(){
+    this.authService.deconnexion();
+    this.router.navigate(['/login']);
+  }
+
 }

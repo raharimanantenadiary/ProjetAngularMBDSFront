@@ -3,3 +3,86 @@
     height: 50px;
     font-size: 50px;
 }
+
+
+.user-card {
+  width: 500px; /* ajuste la largeur de la carte selon tes besoins */
+  margin: 30px auto; /* centre la carte horizontalement avec un espacement en haut et en bas */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin: 15px; /* ajoute un espacement autour de la zone utilisateur */
+}
+
+.user-photo {
+  width: 150px; /* ajuste la largeur de la photo selon tes besoins */
+  height: 150px; /* ajuste la hauteur de la photo selon tes besoins */
+  border-radius: 50%; /* arrondit les coins pour créer un effet de cercle */
+  margin-right: 20px; /* ajoute un espacement à droite de la photo */
+}
+
+.user-details {
+  flex: 1; /* permet au contenu de prendre autant d'espace que possible */
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  margin: 15px; /* ajoute un espacement autour du formulaire */
+}
+
+.form-field {
+  width: 100%; /* prend toute la largeur disponible */
+  margin-bottom: 15px; /* espace entre les champs */
+}
+
+.btn {
+  align-self: center; /* aligne le bouton au centre horizontalement */
+  margin-top: 20px; /* ajoute un espacement en haut du bouton */
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+/* Style du toast de succès */
+.toast-success {
+  background-color: #4caf50; /* Couleur de fond verte */
+  color: white; /* Couleur du texte en blanc */
+}
+
+/* Style du toast d'erreur */
+.toast-error {
+  background-color: #f44336; /* Couleur de fond rouge */
+  color: white; /* Couleur du texte en blanc */
+}
+
+.file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input {
+  position: absolute;
+  font-size: 100px;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-label {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
+.file-label:hover {
+  background-color: #0056b3;
+}

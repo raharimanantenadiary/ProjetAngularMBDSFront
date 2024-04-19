@@ -1,5 +1,4 @@
 
-
 <div *ngIf="utilisateur">
   <mat-card class="user-card">
     <div class="user-info">
@@ -18,14 +17,22 @@
         <mat-label>E-mail</mat-label>
         <input matInput [(ngModel)]="mail" name="mail" placeholder="Modifier l'e-mail">
       </mat-form-field>
-      <input type="file" (change)="handleFileInput($event)" name="photo">
+       <div class="file-upload">
+  <label for="photo-input" class="file-label">
+    <span>Choisir une photo</span>
+    <input id="photo-input" type="file" (change)="handleFileInput($event)" name="photo" class="file-input">
+  </label>
+  <span id="file-name"></span>
+</div>
       <button mat-flat-button color="primary" class="btn" (click)="OnSubmit()">
         Modifier
       </button>
     </form>
   </mat-card>
+  
 </div>
 <div *ngIf="!utilisateur">
   <p>Aucun utilisateur trouvé</p>
 </div>
+
 

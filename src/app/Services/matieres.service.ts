@@ -10,10 +10,16 @@ export class MatieresService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'http://localhost:8010/api/matieres';
+  getMatiereById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
 
-  getMatiereByProf(id: string): Observable<any> {
-    return this.http.get<any>(this.baseUrl+ "/byProf/" +id);
+  postMatiere(matiere: Matieres): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/ajouter`, matiere);
+  }
+
+  updateMatiere(matiere: Matieres): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/modifier/${matiere._id}`, matiere);
   }
 
 }
