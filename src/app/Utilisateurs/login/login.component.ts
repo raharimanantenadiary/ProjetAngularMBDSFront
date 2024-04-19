@@ -48,9 +48,8 @@ export class LoginComponent {
 
  seConnecter() {
   this.isLoading = true;
-  const email = this.emailFormControl.value ?? '';
-  const motDePasse = this.motDePasseFormControl.value ?? '';
-
+  const email = this.emailFormControl.value || ''; 
+  const motDePasse = this.motDePasseFormControl.value || ''; 
   this.utilisateursService.seConnecter(email, motDePasse).subscribe(
     (response: any) => {
       this.errorMessage = ''; 
@@ -58,7 +57,14 @@ export class LoginComponent {
       localStorage.setItem('token', response.token);
       localStorage.setItem('utilisateur', JSON.stringify(response.utilisateur));
       this.isLoading = false;
-      this.router.navigate(['/']);
+      const roleUtilisateur = response.utilisateur.role;
+      if (roleUtilisateur === 0) {
+        this.router.navigate(['/Ma-matiere']);
+      } else if (roleUtilisateur === 1) {
+        this.router.navigate(['/']);
+      } else {
+        console.error('Rôle utilisateur invalide :', roleUtilisateur);
+      }
     },
     (error) => {
       this.errorMessage = error.error.erreur;
@@ -68,6 +74,7 @@ export class LoginComponent {
     }
   );
 }
+
 
   seRedirigerVersInscription() {
   this.router.navigate(['/Inscription']);
