@@ -106,6 +106,41 @@ OnSubmit() {
     }
   );
 }
+
+// OnSubmit() {
+//   const formData = new FormData();
+//   formData.append('_id', this.id_utilisateur);
+//   formData.append('nom', this.nom);
+//   formData.append('mail', this.mail); 
+
+//   if (this.photo !== null) {
+//     // Assigner le nom du fichier à la propriété 'photo' dans l'objet FormData
+//     formData.append('photo', this.photo); // Utilisation de this.photo.name pour obtenir le nom du fichier
+//   } else if (this.utilisateur && this.utilisateur.photo) {
+//     formData.append('photo', this.utilisateur.photo);
+//   }
+
+//   // Afficher les données de FormData dans la console
+//   formData.forEach((value, key) => {
+//     console.log(key, value);
+//   });
+
+//   this.utilisateursService.updateUtilisateur(formData).subscribe(
+//     (reponse) => {
+//       this._snackBar.open('Mise à jour réussie', 'Fermer', {
+//         duration: this.durationInSeconds * 1000,
+//         panelClass: ['toast-success']
+//       });
+//       this.getUtilisateur();
+//     },
+//     (error) => {
+//       this._snackBar.open('Une erreur est survenue lors de la mise à jour', 'Fermer', {
+//         duration: this.durationInSeconds * 1000,
+//         panelClass: ['toast-error'] 
+//       });
+//     }
+//   );
+// }
  
 
 handleFileInput(event: any) {
