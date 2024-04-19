@@ -1,29 +1,25 @@
 .example-container {
-    width: 100%;
-
-  }
-  
-.example-sidenav-content {
+  width: 100%;
+  min-height: 100vh; /* Utilise au moins 100% de la hauteur de la fenêtre */
   display: flex;
-  height: 100%;
+}
+
+.example-sidenav-content {
+  flex-grow: 1; /* Fait en sorte que le contenu occupe tout l'espace vertical disponible */
+  display: flex;
+  flex-direction: column; /* Dispose les éléments en colonne */
   margin-left: 20px;
   margin-top: 20px;
 }
 
 .example-sidenav {
-    padding: 20px;
-    width: 200px;
-    height: 100%;
-    background-color: white;
+  padding: 20px;
+  width: 200px;
+  height: 100%;
+  background-color: white;
 }
-  
+
 .mat-button-spacing {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
-
-
-
-
-  
