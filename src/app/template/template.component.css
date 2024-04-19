@@ -1,13 +1,13 @@
 .example-container {
   width: 100%;
-  min-height: 100vh; /* Utilise au moins 100% de la hauteur de la fenêtre */
+  min-height: 100vh; 
   display: flex;
 }
 
 .example-sidenav-content {
-  flex-grow: 1; /* Fait en sorte que le contenu occupe tout l'espace vertical disponible */
+  flex-grow: 1; 
   display: flex;
-  flex-direction: column; /* Dispose les éléments en colonne */
+  flex-direction: column; 
   margin-left: 20px;
   margin-top: 20px;
 }
