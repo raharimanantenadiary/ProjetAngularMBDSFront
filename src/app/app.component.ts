@@ -8,7 +8,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @Component({
@@ -16,7 +15,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   standalone: true,
   imports: [RouterOutlet, RouterLink, MatButtonModule, MatDividerModule,
             MatIconModule, MatSlideToggleModule,
-            MatToolbarModule,MatMenuModule,MatSidenavModule,SidebarComponent],
+            MatToolbarModule,MatMenuModule,MatSidenavModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

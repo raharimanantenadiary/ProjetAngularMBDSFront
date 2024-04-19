@@ -65,6 +65,7 @@ export class ProfilComponent {
             if (this.utilisateur) {
               this.nom = this.utilisateur.nom;
               this.mail = this.utilisateur.mail;
+              this.photo = this.utilisateur.photo;
             }
           },
           (error) => {
@@ -75,23 +76,25 @@ export class ProfilComponent {
     }
   }
 
-  OnSubmit(){
+  OnSubmit() {
     const formData = new FormData();
     formData.append('_id', this.id_utilisateur);
     formData.append('nom', this.nom);
-    formData.append('mail', this.mail); 
+    formData.append('mail', this.mail);
+  
     if (this.photo) {
       formData.append('photo', this.photo);
-    }else if (!this.photo && this.utilisateur && this.utilisateur.photo) {
-      formData.append('photo', this.utilisateur.photo);
+    } else if (this.utilisateur && this.utilisateur.photo){
+      formData.append('photo', this.utilisateur.photo); // Envoyer l'URL de la photo précédente
     }
-    this.updateUtilisateur(formData);
-    console.log('nom:' + this.nom);
-    console.log('mail:' + this.mail);
-    console.log('id:' + this.id_utilisateur);
-    console.log('photo:' + this.utilisateur?.photo);
-  }
+    
+    console.log(this.nom);
+    console.log(this.mail);
+    console.log(this.photo);
 
+    this.updateUtilisateur(formData);
+  }
+  
   updateUtilisateur(formData: FormData){
     this.utilisateursService.updateUtilisateur(formData).subscribe(
       (reponse) => {

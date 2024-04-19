@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../Shared/auth.service';
 import { Router } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,MatToolbarModule,MatMenuModule,MatIconModule,MatButtonModule, MatSidenavModule,SidebarComponent],
+  imports: [CommonModule,MatToolbarModule,MatMenuModule,MatIconModule,MatButtonModule, MatSidenavModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -24,12 +24,15 @@ export class HeaderComponent {
   ) { }
 
   utilisateur: Utilisateurs | null = null;
+  isDrawerOpen = true;
 
-  @Output() toggleDrawer = new EventEmitter<void>();
+  @Output() toggleDrawer = new EventEmitter<boolean>();
 
   onToggleDrawer(): void {
-    this.toggleDrawer.emit();
+    this.isDrawerOpen = !this.isDrawerOpen; // Inverser l'état actuel du tiroir
+    this.toggleDrawer.emit(this.isDrawerOpen); // Émettre l'événement avec l'état actuel du tiroir
   }
+  
 
   ngOnInit(): void {
     const utilisateurJSON = localStorage.getItem('utilisateur');
@@ -41,4 +44,6 @@ export class HeaderComponent {
   versProfile() {
     this.router.navigate(['/Profile']);
   }
+
+  
 }

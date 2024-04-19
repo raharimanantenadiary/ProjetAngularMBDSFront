@@ -1,0 +1,47 @@
+
+
+<div *ngIf="loading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!loading">
+    <h1 class="h1">Ma matière</h1>
+    @if(matiere){
+        <mat-card class="example-card">
+            <!-- <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            </mat-card-header> -->
+            <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière">
+            <mat-card-content>
+                <div class="matiere-container">
+                    <h3 class="matiere-nom">{{matiere.nom}}</h3>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="menu-button">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="['/Liste-Devoir-Matiere', matiere._id]">
+                        <mat-icon>format_list_bulleted</mat-icon>
+                        <span>Liste devoirs</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>edit</mat-icon>
+                      <span>Modifier</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>Supprimer</span>
+                    </button>
+                </mat-menu>
+            </mat-card-content>
+        </mat-card>
+    }
+    @else {
+        <p>Aucune matière disponnible !</p>
+    }
+    
+    
+    
+</div>

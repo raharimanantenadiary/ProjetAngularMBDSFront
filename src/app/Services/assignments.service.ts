@@ -16,7 +16,6 @@ export class AssignmentsService {
 
   uri = 'http://localhost:8010/api/assignments';
 
-  // retourne tous les assignments
   getAssignments():Observable<Assignment[]> {
     return this.http.get<Assignment[]>(this.uri);
   }
@@ -25,12 +24,15 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.uri + "?page=" + page + "&limit=" + limit);
   }
 
-  // renvoie un assignment par son id, renvoie undefined si pas trouvé
   getAssignment(id:number):Observable<Assignment|undefined> {
     return this.http.get<Assignment>(this.uri + "/" + id)
     .pipe(
            catchError(this.handleError<any>('### catchError: getAssignments by id avec id=' + id))
     );
+  }
+
+  getAssignmentByMatiereByProf(idm: string,idp:string):Observable<any> {
+    return this.http.get<any>(this.uri + "/byMatiere/" + idm + "/" + idp)
   }
 
   private handleError<T>(operation: any, result?: T) {

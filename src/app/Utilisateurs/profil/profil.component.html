@@ -1,23 +1,4 @@
-<!-- <div *ngIf="utilisateur">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ utilisateur.nom }}</mat-card-title>
-      <mat-card-subtitle>{{ utilisateur.mail }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="URL_IMAGE + '/' + utilisateur.photo" alt="Photo de l'utilisateur" width="100" height="150">
-    <mat-card-content>
-      <p>Rôle: {{ utilisateur.role }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="primary" (click)="modifierUtilisateurInformation()">Modifier</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
 
-<div *ngIf="!utilisateur">
-  <p>Aucun utilisateur trouvé</p>
-</div> -->
 
 <div *ngIf="utilisateur">
   <mat-card class="user-card">
@@ -28,7 +9,7 @@
         <p>{{utilisateur.mail}}</p>
       </div>
     </div>
-    <form class="user-form">
+    <form class="user-form" enctype="multipart/form-data">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Nom</mat-label>
         <input matInput [(ngModel)]="nom" name="nom" placeholder="Modifier le nom">

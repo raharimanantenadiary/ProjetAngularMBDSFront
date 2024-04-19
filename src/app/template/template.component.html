@@ -1,9 +1,50 @@
-<app-header (toggleDrawer)="sidebar.toggleDrawer()"></app-header>
+<app-header (toggleDrawer)="toggleDrawer($event)"></app-header>
 
-<mat-drawer-container class="example-container">
-    <app-sidebar #sidebar></app-sidebar>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer [opened]="isDrawerOpen" class="example-sidenav" mode="side">
+        <mat-nav-list *ngIf="role === 0">
+            <button mat-button (click)="versMatiereProf()" class="mat-button-spacing">
+                <mat-icon>books</mat-icon>
+                <span>Ma matière</span>
+            </button>
+            
+            <button mat-button [matMenuTriggerFor]="animalsMenu" class="mat-button-spacing">
+                <mat-icon>assignment</mat-icon>
+                <span>Les devoirs</span>
+            </button>
+            
+            <mat-menu #animalsMenu="matMenu" class="custom-menu">
+                <button mat-menu-item >Devoirs rendu</button>
+                <button mat-menu-item (click)="versNonRenduProf()">Devoirs non-rendu</button>
+            </mat-menu>
+        </mat-nav-list>
+
+        <mat-nav-list *ngIf="role === 1">
+            <button mat-button (click)="versMatiereEleve()">
+                <mat-icon>library_books</mat-icon>
+                <span>Mes matières</span>
+            </button>
+            
+            <button mat-button [matMenuTriggerFor]="animalsMenu">
+                <mat-icon>assignment</mat-icon>
+                <span>Mes devoirs</span>
+            </button>
+            
+            <mat-menu #animalsMenu="matMenu" class="custom-menu">
+                <button mat-menu-item >Devoirs rendu</button>
+                <button mat-menu-item >Devoirs non-rendu</button>
+            </mat-menu>
+              
+          </mat-nav-list>
+    </mat-drawer>
   
-    <router-outlet></router-outlet>
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
 </mat-drawer-container>
-  
+
 <app-footer></app-footer>
+
+
+
+

@@ -1,9 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignmentDetailsService {
 
-  constructor() { }
+  constructor(private http:HttpClient) {  }
+
+  uri = 'http://localhost:8010/api/assignmentsDetails';
+
+  getAssignmentRenduProf(idm: string):Observable<any> {
+    return this.http.get<any>(this.uri + "/RenduProf/" + idm );
+  }
+
+  getAssignmentNonRenduProf(idm: string):Observable<any> {
+    return this.http.get<any>(this.uri + "/NonRenduProf/" + idm );
+  }
+
 }

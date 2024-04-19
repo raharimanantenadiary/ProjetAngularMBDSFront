@@ -1,0 +1,45 @@
+
+<div *ngIf="loading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!loading">
+  <h1 class="h1">Liste des devoirs non-rendu</h1>
+  <div *ngIf="assignments && assignments.length > 0" class="card-container">
+    <div *ngFor="let assignment of assignments" class="example-card">
+      <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+                <img mat-card-image [src]="URL_IMAGE + '/' + assignment.auteur.photo" alt="Auteur" width="50" height="51">
+            </div>
+            <mat-card-title>{{ assignment.auteur.nom }}</mat-card-title>
+            <mat-card-subtitle>{{ assignment.auteur.mail}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="URL_IMAGE + '/' + assignment.assignment.matiere.photo" alt="Couverture de la matière">
+        <mat-card-content>
+          <div class="assignment-container">
+              <div class="assignment-header">
+                  <h3 class="titre-devoir">{{ assignment.assignment.nom }}</h3>
+                  <p class="date-rendu"><u>Date de rendu:</u> {{ assignment.assignment.dateDeRendu | date }}</p>
+              </div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="menu-button">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/Detail-Assignment', assignment._id]">
+              <mat-icon>format_list_bulleted</mat-icon>
+              <span>Détails du devoirs</span>
+            </button>
+            
+          </mat-menu>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  <div *ngIf="!assignments || assignments.length === 0">
+    <p>Aucun devoir disponible !</p>
+  </div>
+</div>
+

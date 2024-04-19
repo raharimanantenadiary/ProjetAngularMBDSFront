@@ -8,6 +8,9 @@ import { InscriptionComponent } from './Utilisateurs/Inscription/inscription.com
 import { LoginComponent } from './Utilisateurs/Login/login.component';
 import { TemplateComponent } from './template/template.component';
 import { ProfilComponent } from './Utilisateurs/profil/profil.component';
+import { MaMatiereComponent } from './Professeurs/ma-matiere/ma-matiere.component';
+import { ListeDevoirMatiereComponent } from './Professeurs/liste-devoir-matiere/liste-devoir-matiere.component';
+import { AssignmentNonRenduComponent } from './Professeurs/assignment-non-rendu/assignment-non-rendu.component';
 
 export const routes: Routes = [
   { path: '', component: TemplateComponent, 
@@ -20,7 +23,10 @@ export const routes: Routes = [
         component: EditAssignmentComponent,
         canActivate: [authGuard]
       },
-      { path: "Profile", component: ProfilComponent}
+      { path: "Profile", component: ProfilComponent},
+      { path: "Ma-matiere", component: MaMatiereComponent },
+      { path: "Liste-Devoir-Matiere/:id", component: ListeDevoirMatiereComponent },
+      { path: "Liste-Devoir-Non-Rendu", component: AssignmentNonRenduComponent }
     ]  
   },
   { path: "Inscription", component: InscriptionComponent },
