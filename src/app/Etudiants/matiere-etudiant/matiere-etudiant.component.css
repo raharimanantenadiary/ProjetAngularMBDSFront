@@ -1,0 +1,21 @@
+.example-card {
+  max-width: 250px;
+}
+
+.prof-avatar {
+  width: 50px; /* Largeur de l'avatar du professeur */
+  height: 50px; /* Hauteur de l'avatar du professeur */
+  border-radius: 50%; /* Pour rendre l'avatar rond */
+  overflow: hidden; /* Pour cacher les parties de l'image qui dépassent du cadre rond */
+}
+
+.matieres-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espacement entre les cartes */
+}
+
+.matiere-card {
+  flex: 1 0 200px; /* Pour que les cartes aient une largeur maximale de 200px */
+}

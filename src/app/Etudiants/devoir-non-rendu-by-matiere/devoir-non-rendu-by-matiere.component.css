@@ -1,0 +1,73 @@
+.custom-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: box-shadow 0.3s; /* Ajout d'une transition pour l'ombre */
+}
+
+.custom-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Effet de surbrillance au survol */
+}
+
+.custom-header-image {
+  background-image: url('https://via.placeholder.com/150');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  transition: transform 0.3s; /* Ajout d'une transition pour l'image */
+}
+
+.custom-header-image:hover {
+  transform: scale(1.1); /* Effet d'agrandissement au survol */
+}
+
+.mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333; /* Couleur du texte plus foncée */
+}
+
+.mat-card-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.mat-card-image {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  transition: transform 0.3s; /* Ajout d'une transition pour l'image */
+}
+
+.mat-card-image:hover {
+  transform: scale(1.1); /* Effet d'agrandissement au survol */
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espacement supplémentaire en haut */
+}
+
+button {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 25px;
+  background-color: #00889e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #006c7f;
+}

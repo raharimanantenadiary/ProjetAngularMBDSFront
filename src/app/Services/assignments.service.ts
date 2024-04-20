@@ -16,9 +16,11 @@ export class AssignmentsService {
 
   uri = 'http://localhost:8010/api/assignments';
 
+
   getAssignments():Observable<Assignment[]> {
     return this.http.get<Assignment[]>(this.uri);
   }
+
 
   getAssignmentsPagines(page:number, limit:number):Observable<any> {
     return this.http.get<Assignment[]>(this.uri + "?page=" + page + "&limit=" + limit);
@@ -58,5 +60,20 @@ export class AssignmentsService {
     this.logService.log(assignment.nom, "supprimé");
     return this.http.delete(this.uri + "/" + assignment._id);
   }
+
+
+  getAssignmentsRenduEleve(id: string): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(`${this.uri}/RenduEleve/${id}`);
+  }
+
+  getAssignmentsNonRenduEleve(id: string): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(`${this.uri}/NonRenduEleve/${id}`);
+  }
+
+  getAssignmentsByMatiereAndProf(matiereId: string, profId: string): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(`${this.uri}/byMatiere/${matiereId}/${profId}`);
+  }
+
+
 
 }

@@ -61,7 +61,7 @@ export class LoginComponent {
       if (roleUtilisateur === 0) {
         this.router.navigate(['/Ma-matiere']);
       } else if (roleUtilisateur === 1) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/liste-matiere-etudiant']);
       } else {
         console.error('Rôle utilisateur invalide :', roleUtilisateur);
       }

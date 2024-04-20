@@ -1,0 +1,17 @@
+<div class="matieres-container">
+  <div *ngFor="let matiere of matieres" class="matiere-card">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="prof-avatar">
+          <img [src]="URL_IMAGE + '/' + matiere.prof.photo" alt="Photo du professeur">
+        </div>
+        <mat-card-title>{{ matiere.nom }}</mat-card-title>
+        <mat-card-subtitle>Professeur: {{ matiere.prof.nom }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière" style="height: 100px;">
+      <mat-card-actions>
+        <button mat-button (click)="voirDetail(matiere._id,matiere.prof._id)">Voir devoir non rendu</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
