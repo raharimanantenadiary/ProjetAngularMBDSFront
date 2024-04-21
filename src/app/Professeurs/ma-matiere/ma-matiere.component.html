@@ -26,7 +26,7 @@
                         <mat-icon>format_list_bulleted</mat-icon>
                         <span>Liste devoirs</span>
                     </button>
-                    <button mat-menu-item>
+                    <button mat-menu-item [routerLink]="['/modifier-matiere', matiere._id]">
                       <mat-icon>edit</mat-icon>
                       <span>Modifier</span>
                     </button>

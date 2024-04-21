@@ -1,0 +1,33 @@
+
+<div *ngIf="matiere">
+  <mat-card class="user-card">
+    <div class="user-info">
+      <img class="user-photo" [src]="URL_IMAGE + '/' + matiere.photo" alt="Photo de l'utilisateur">
+      <div class="user-details">
+        <h2>{{matiere.nom}}</h2>
+      </div>
+    </div>
+    <form class="user-form" enctype="multipart/form-data">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nom</mat-label>
+        <input matInput [(ngModel)]="nom" name="nom" placeholder="Modifier le nom">
+      </mat-form-field>
+      <div class="file-upload">
+        <label for="photo-input" class="file-label">
+          <span>Choisir une photo</span>
+          <input id="photo-input" type="file" (change)="handleFileInput($event)" name="photo" class="file-input">
+        </label>
+        <span id="file-name"></span>
+      </div>
+      <button mat-flat-button color="primary" class="btn" (click)="OnSubmit()">
+        Modifier
+      </button>
+    </form>
+  </mat-card>
+  
+</div>
+<div *ngIf="!matiere">
+  <p>Aucune matière trouvée</p>
+</div>
+
+

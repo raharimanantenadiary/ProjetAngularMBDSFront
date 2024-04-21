@@ -70,10 +70,5 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(`${this.uri}/NonRenduEleve/${id}`);
   }
 
-  getAssignmentsByMatiereAndProf(matiereId: string, profId: string): Observable<Assignment[]> {
-    return this.http.get<Assignment[]>(`${this.uri}/byMatiere/${matiereId}/${profId}`);
-  }
-
-
 
 }

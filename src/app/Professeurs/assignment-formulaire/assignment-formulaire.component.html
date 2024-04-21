@@ -1,0 +1,22 @@
+<div class="popup-container">
+  <h2 class="popup-title">Formulaire de Soumission</h2>
+
+<form class="example-form" (ngSubmit)="submitForm()">
+<mat-form-field class="example-full-width">
+    <mat-label class="example-label">Auteur</mat-label>
+    <input matInput placeholder="Auteur" [formControl]="auteurFormControl" [disabled]="true">
+</mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label class="example-label">Note</mat-label>
+    <input matInput type="number" placeholder="Note" [formControl]="noteFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label class="example-label">Remarque</mat-label>
+    <textarea matInput placeholder="Remarque" [formControl]="remarqueFormControl"></textarea>
+  </mat-form-field>
+  <button mat-button type="submit">Soumettre</button>
+</form>
+
+
+</div>

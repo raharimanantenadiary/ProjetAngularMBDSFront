@@ -1,19 +1,32 @@
 import { Component } from '@angular/core';
 import { AssignmentsService } from '../../Services/assignments.service';
+import {AssignmentDetailsService} from '../../Services/assignment-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from '../../Models/assignment.model';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
+import { AssignmentDetails } from '../../Models/assignment-details.model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CdkDragDrop,moveItemInArray,transferArrayItem,CdkDrag,CdkDropList} from '@angular/cdk/drag-drop';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { AssignmentFormulaireComponent } from '../assignment-formulaire/assignment-formulaire.component';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-liste-devoir-matiere',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule,MatMenuModule,MatIconModule,RouterModule,CommonModule,MatProgressSpinnerModule],
+  imports: [CdkDropList, CdkDrag,CommonModule],
   templateUrl: './liste-devoir-matiere.component.html',
   styleUrl: './liste-devoir-matiere.component.css'
 })
@@ -22,36 +35,99 @@ export class ListeDevoirMatiereComponent {
   id_utilisateur = '';
   assignments: Assignment[] = []; 
   loading: boolean = false;
+  liste_devoir_rendu: AssignmentDetails[] = [];
+  liste_devoir_non_rendu: AssignmentDetails[] = [];
+  devoirSelectionne: AssignmentDetails | null = null;
 
 
-  constructor(private assignmentService: AssignmentsService, private route: ActivatedRoute) { }
+
+  constructor(private assignmentDetailService: AssignmentDetailsService, private route: ActivatedRoute,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAssignmentByMatiereByProf();
+    this.refreshList();
   }
 
-  getAssignmentByMatiereByProf(){
-    this.loading = true;
+  refreshList(): void {
+    this.getListeDevoirRendu();
+    console.log("rendu",this.getListeDevoirRendu());
+    this.getListeDevoirNonRendu();
+  }
+
+
+  getListeDevoirRendu(){
     const utilisateurData = localStorage.getItem('utilisateur');
-    const idMatiere = this.route.snapshot.paramMap.get('id');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
-      if (utilisateur && utilisateur._id && idMatiere) {
-        this.id_utilisateur = utilisateur._id;
-        
-        this.assignmentService.getAssignmentByMatiereByProf(idMatiere,this.id_utilisateur).subscribe(
+      if (utilisateur && utilisateur._id) { 
+        this.assignmentDetailService.getAssignmentRenduProf(utilisateur._id).subscribe(
           (response: any) => {
-            this.assignments = response;
-            console.log(this.assignments);
-            this.loading = false;
+            this.liste_devoir_rendu = response;
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
-            this.loading = false;
           }
-        );
+          );
       }
     }
   }
+
+  getListeDevoirNonRendu(){
+    const utilisateurData = localStorage.getItem('utilisateur');
+    if (utilisateurData) {
+      const utilisateur = JSON.parse(utilisateurData);
+      if (utilisateur && utilisateur._id) { 
+        this.assignmentDetailService.getAssignmentNonRenduProf(utilisateur._id).subscribe(
+          (response: any) => {
+            this.liste_devoir_non_rendu = response;
+          },
+          (error) => {
+            console.error('Une erreur est survenue lors de la récupération des données :', error);
+          }
+          );
+      }
+    }
+  }
+
+  async drop(event: CdkDragDrop<AssignmentDetails[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      const assignmentToMove = event.previousContainer.data[event.previousIndex];
+      const assignmentSubmitted = await this.openFormPopup(assignmentToMove);
+
+      if (assignmentSubmitted) {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+          );
+        this.getListeDevoirNonRendu();
+        this.getListeDevoirRendu();
+      }
+    }
+  }
+
+  openFormPopup(selectedAssignment: AssignmentDetails): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const dialogRef = this.dialog.open(AssignmentFormulaireComponent, {
+        width: '400px',
+        data: { assignment: selectedAssignment }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('Le formulaire a été fermé avec :', result);
+        if (result === 'refresh') {
+          this.refreshList(); 
+        }
+      });
+    });
+  }
+
+
+  noReturnPredicate () {
+   return  false ;
+ }
+
 
 }

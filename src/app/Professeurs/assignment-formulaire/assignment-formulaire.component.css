@@ -1,0 +1,46 @@
+.popup-container {
+  padding: 20px;
+}
+
+.popup-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.example-form {
+  min-width: 300px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.example-label {
+  color: #333;
+  font-size: 18px;
+}
+
+.example-input {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.example-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.example-input::placeholder {
+  color: #999;
+}
+
+.example-input:hover::placeholder {
+  color: #666;
+}

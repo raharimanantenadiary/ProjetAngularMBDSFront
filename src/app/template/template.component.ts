@@ -64,12 +64,14 @@ export class TemplateComponent {
   }
 
   versMatiereEleve() {
-    this.router.navigate(['/Mes-matieres']);
+    this.router.navigate(['/liste-matiere-etudiant']);
   }
 
   versNonRenduProf() {
     this.router.navigate(['/Liste-Devoir-Non-Rendu']);
   }
+
+  
 
 
 }

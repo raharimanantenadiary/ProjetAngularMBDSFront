@@ -15,6 +15,7 @@ import { MatiereEtudiantComponent } from './Etudiants/matiere-etudiant/matiere-e
 import { AssignmentNonRenduComponentEtudiant } from './Etudiants/assignment-non-rendu/assignment-non-rendu.component';
 import { AssignmentRenduComponentEleve } from './Etudiants/assignment-rendu/assignment-rendu.component';
 import { DevoirNonRenduByMatiereComponent } from './Etudiants/devoir-non-rendu-by-matiere/devoir-non-rendu-by-matiere.component';
+import { ModifierMatiereComponent } from './Professeurs/Matiere/modifier-matiere/modifier-matiere.component';
 
 export const routes: Routes = [
   { path: '', component: TemplateComponent, 
@@ -34,7 +35,8 @@ export const routes: Routes = [
       { path: "liste-matiere-etudiant", component: MatiereEtudiantComponent },
       { path: "liste-matiere-e-non-rendu", component: AssignmentNonRenduComponentEtudiant  },
       { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve  },
-      { path: "liste-matiere-e-rendu/:id_prof/:id_matiere", component: DevoirNonRenduByMatiereComponent  }
+      { path: "liste-matiere-e-rendu/:id_prof/:id_matiere", component: DevoirNonRenduByMatiereComponent  },
+      { path: "modifier-matiere/:id", component: ModifierMatiereComponent  }
     ]  
   },
   { path: "Inscription", component: InscriptionComponent },

@@ -24,8 +24,8 @@ export class MatieresService {
     return this.http.post<any>(`${this.baseUrl}/ajouter`, matiere);
   }
 
-  updateMatiere(matiere: Matieres): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/modifier/${matiere._id}`, matiere);
+  updateMatiere(matiere: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}`, matiere);
   }
 
   getAllMatiereEtudiant(): Observable<Matieres[]> {

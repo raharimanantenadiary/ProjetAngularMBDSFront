@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './assignment-rendu.component.css'
 })
 export class AssignmentRenduComponentEleve {
-liste_devoir_non_rendu: Assignment[] = [];
+liste_devoir_rendu: Assignment[] = [];
  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
  constructor(private assignementService: AssignmentsService,private router: Router) { }
 
@@ -28,8 +28,7 @@ liste_devoir_non_rendu: Assignment[] = [];
     if (utilisateur && utilisateur._id) { 
       this.assignementService.getAssignmentsRenduEleve(utilisateur._id).subscribe(
         (response: any) => {
-          this.liste_devoir_non_rendu = response;
-          console.log(this.liste_devoir_non_rendu);
+          this.liste_devoir_rendu = response;
         },
         (error) => {
           console.error('Une erreur est survenue lors de la récupération des données :', error);
