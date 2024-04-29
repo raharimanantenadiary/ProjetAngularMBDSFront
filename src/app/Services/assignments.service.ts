@@ -46,10 +46,11 @@ export class AssignmentsService {
     }
  };
 
-  addAssignment(assignment:Assignment):Observable<any> {
-    this.logService.log(assignment.nom, "ajouté");
-    return this.http.post<Assignment>(this.uri, assignment);
-  }
+ addAssignment(nom: string, dateDeRendu: string, matiere: string): Observable<any> {
+  const assignmentData = { nom, dateDeRendu, matiere };
+  return this.http.post(this.uri, assignmentData);
+}
+
 
   updateAssignment(assignment:Assignment):Observable<any> {
     this.logService.log(assignment.nom, "modifié");

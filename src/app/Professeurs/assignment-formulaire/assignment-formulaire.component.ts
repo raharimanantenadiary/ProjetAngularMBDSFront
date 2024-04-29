@@ -6,6 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { AssignmentDetails } from '../../Models/assignment-details.model';
 import {AssignmentDetailsService} from '../../Services/assignment-details.service';
+import {MatButtonModule} from '@angular/material/button';
 
 import {
   FormControl,
@@ -15,7 +16,7 @@ import {
 @Component({
   selector: 'app-assignment-formulaire',
   standalone: true,
-  imports: [FormsModule,ReactiveFormsModule, MatFormFieldModule, MatInputModule,CommonModule],
+  imports: [FormsModule,ReactiveFormsModule, MatFormFieldModule, MatInputModule,CommonModule,MatButtonModule],
   templateUrl: './assignment-formulaire.component.html',
   styleUrl: './assignment-formulaire.component.css'
 })

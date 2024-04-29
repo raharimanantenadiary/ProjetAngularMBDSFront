@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import { AssignmentsService } from '../../Services/assignments.service';
 import {AssignmentDetailsService} from '../../Services/assignment-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from '../../Models/assignment.model';
 import { AssignmentDetails } from '../../Models/assignment-details.model';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop,moveItemInArray,transferArrayItem,CdkDrag,CdkDropList} from '@angular/cdk/drag-drop';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { AssignmentFormulaireComponent } from '../assignment-formulaire/assignment-formulaire.component';
 import {
   MatDialog,
@@ -21,12 +17,14 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
+import { MatieresService } from '../../Services/matieres.service';
+import { Matieres } from '../../Models/matieres.model';
 
 
 @Component({
   selector: 'app-liste-devoir-matiere',
   standalone: true,
-  imports: [CdkDropList, CdkDrag,CommonModule],
+  imports: [CdkDropList, CdkDrag,CommonModule,MatCardModule,MatIconModule],
   templateUrl: './liste-devoir-matiere.component.html',
   styleUrl: './liste-devoir-matiere.component.css'
 })
@@ -38,10 +36,11 @@ export class ListeDevoirMatiereComponent {
   liste_devoir_rendu: AssignmentDetails[] = [];
   liste_devoir_non_rendu: AssignmentDetails[] = [];
   devoirSelectionne: AssignmentDetails | null = null;
+  matiere: Matieres | null = null;
 
 
 
-  constructor(private assignmentDetailService: AssignmentDetailsService, private route: ActivatedRoute,public dialog: MatDialog) { }
+  constructor(private assignmentDetailService: AssignmentDetailsService, private route: ActivatedRoute,public dialog: MatDialog,private matiereService: MatieresService) { }
 
   ngOnInit(): void {
     this.refreshList();
@@ -55,35 +54,89 @@ export class ListeDevoirMatiereComponent {
 
 
   getListeDevoirRendu(){
+    this.loading = true;
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
-      if (utilisateur && utilisateur._id) { 
-        this.assignmentDetailService.getAssignmentRenduProf(utilisateur._id).subscribe(
+      console.log(utilisateur);  
+      if (utilisateur && utilisateur._id) {
+        this.id_utilisateur = utilisateur._id;
+        console.log(this.id_utilisateur);  
+        this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
           (response: any) => {
-            this.liste_devoir_rendu = response;
+            this.matiere = response[0];
+            
+            if(this.matiere){
+              console.log(this.matiere);  
+              const idMatiere = this.matiere._id;
+              if(idMatiere){
+                console.log(idMatiere);
+                this.assignmentDetailService.getAssignmentRenduProf(idMatiere).subscribe(
+                  (response: any) => {
+                    this.liste_devoir_rendu = response;
+                    console.log(this.liste_devoir_rendu);
+                    this.loading = false;
+                  },
+                  (error) => {
+                    console.error('Une erreur est survenue lors de la récupération des données :', error);
+                    this.loading = false;
+                  }
+                );
+              }
+              
+            }
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
           }
-          );
+        ); 
+        
+        
+        
       }
     }
   }
 
   getListeDevoirNonRendu(){
+    this.loading = true;
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
-      if (utilisateur && utilisateur._id) { 
-        this.assignmentDetailService.getAssignmentNonRenduProf(utilisateur._id).subscribe(
+      console.log(utilisateur);  
+      if (utilisateur && utilisateur._id) {
+        this.id_utilisateur = utilisateur._id;
+        console.log(this.id_utilisateur);  
+        this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
           (response: any) => {
-            this.liste_devoir_non_rendu = response;
+            this.matiere = response[0];
+            
+            if(this.matiere){
+              console.log(this.matiere);  
+              const idMatiere = this.matiere._id;
+              if(idMatiere){
+                console.log(idMatiere);
+                this.assignmentDetailService.getAssignmentNonRenduProf(idMatiere).subscribe(
+                  (response: any) => {
+                    this.liste_devoir_non_rendu = response;
+                    console.log(this.liste_devoir_non_rendu);
+                    this.loading = false;
+                  },
+                  (error) => {
+                    console.error('Une erreur est survenue lors de la récupération des données :', error);
+                    this.loading = false;
+                  }
+                );
+              }
+              
+            }
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
           }
-          );
+        ); 
+        
+        
+        
       }
     }
   }

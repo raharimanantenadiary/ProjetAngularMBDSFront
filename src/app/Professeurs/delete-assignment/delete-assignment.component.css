@@ -1,0 +1,16 @@
+button {
+    margin-right: 8px;
+  }
+
+.btn {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 60px;
+}
+
+.actions{
+    margin-left: 15px;
+}

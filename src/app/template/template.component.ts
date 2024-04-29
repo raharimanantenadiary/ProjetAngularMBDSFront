@@ -71,6 +71,16 @@ export class TemplateComponent {
     this.router.navigate(['/Liste-Devoir-Non-Rendu']);
   }
 
+  versRenduProf() {
+    this.router.navigate(['/Liste-Devoir-Rendu']);
+  }
+
+  versNouveauDevoir() {
+    this.router.navigate(['/Nouveau-devoir']);
+  }
+  versMesDevoirs() {
+    this.router.navigate(['/Mes-devoirs']);
+  }
   
 
 

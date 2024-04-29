@@ -1,8 +1,4 @@
 import { Routes } from '@angular/router';
-import { AssignmentsComponent } from './assignments/assignments.component';
-import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
-import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
-import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { authGuard } from './Shared/auth.guard';
 import { InscriptionComponent } from './Utilisateurs/Inscription/inscription.component';
 import { LoginComponent } from './Utilisateurs/Login/login.component';
@@ -16,22 +12,20 @@ import { AssignmentNonRenduComponentEtudiant } from './Etudiants/assignment-non-
 import { AssignmentRenduComponentEleve } from './Etudiants/assignment-rendu/assignment-rendu.component';
 import { DevoirNonRenduByMatiereComponent } from './Etudiants/devoir-non-rendu-by-matiere/devoir-non-rendu-by-matiere.component';
 import { ModifierMatiereComponent } from './Professeurs/Matiere/modifier-matiere/modifier-matiere.component';
+import { AssignmentRenduComponent } from './Professeurs/assignment-rendu/assignment-rendu.component';
+import { AjoutAssignmentComponent } from './Professeurs/ajout-assignment/ajout-assignment.component';
+import { MesDevoirsComponent } from './Professeurs/mes-devoirs/mes-devoirs.component';
 
 export const routes: Routes = [
   { path: '', component: TemplateComponent, 
     children: [
-      { path: 'Accueil', component: AssignmentsComponent },
-      { path: "add", component: AddAssignmentComponent },
-      { path: "assignment/:id", component: AssignmentDetailComponent},
-      {
-        path: "assignment/:id/edit",
-        component: EditAssignmentComponent,
-        canActivate: [authGuard]
-      },
       { path: "Profile", component: ProfilComponent},
       { path: "Ma-matiere", component: MaMatiereComponent },
+      { path: "Mes-devoirs", component: MesDevoirsComponent },
+      { path: "Nouveau-devoir", component: AjoutAssignmentComponent },
       { path: "Liste-Devoir-Matiere/:id", component: ListeDevoirMatiereComponent },
       { path: "Liste-Devoir-Non-Rendu", component: AssignmentNonRenduComponent },
+      { path: "Liste-Devoir-Rendu", component: AssignmentRenduComponent },
       { path: "liste-matiere-etudiant", component: MatiereEtudiantComponent },
       { path: "liste-matiere-e-non-rendu", component: AssignmentNonRenduComponentEtudiant  },
       { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve  },

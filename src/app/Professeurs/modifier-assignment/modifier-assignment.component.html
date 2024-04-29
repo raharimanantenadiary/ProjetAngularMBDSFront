@@ -1,0 +1,22 @@
+<div class="popup-container">
+    <h2 class="popup-title">Formulaire de modification</h2>
+  
+  <form class="example-form" (ngSubmit)="submitForm()">
+    <mat-form-field class="example-full-width">
+        <mat-label class="example-label">Nom du devoir</mat-label>
+        <input matInput placeholder="Auteur" [formControl]="nomFormControl" [disabled]="true">
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+        <mat-label class="example-label">Date de rendu</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Date de rendu" [formControl]="dateFormControl">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+    <button mat-flat-button color="primary" class="btn" type="submit">Valider</button>
+  </form>
+  
+  
+  </div>
+  

@@ -1,0 +1,40 @@
+<h1 class="h1">Création d'un nouveau devoir</h1>
+ 
+<div class="steps">
+    <mat-stepper linear #stepper >
+        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+            <ng-template matStepLabel>Nom du devoir</ng-template>
+            <form [formGroup]="firstFormGroup">
+                <mat-form-field>
+                    <mat-label>Nom du devoir</mat-label>
+                    <input matInput formControlName="nom" placeholder="Nom du devoir" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Suivant</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+            <ng-template matStepLabel>Date de rendu</ng-template>
+            <form [formGroup]="secondFormGroup">
+                <mat-form-field>
+                    <mat-label>Date de rendu</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateDeRendu" placeholder="Date de rendu" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Retour</button>
+                    <button mat-button matStepperNext (click)="OnSubmit()">Suivant</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Terminé la création</ng-template>
+            <p>Création d'un nouveau devoir, terminé.</p>
+            <div>
+                <button mat-button (click)="stepper.reset()">Créer un nouveau</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</div>
