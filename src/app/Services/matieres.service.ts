@@ -19,10 +19,11 @@ export class MatieresService {
   getMatiereById(id: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
-
-  postMatiere(matiere: Matieres): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/ajouter`, matiere);
+  
+  postMatiere(formData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/ajouter`, formData);
   }
+
 
   updateMatiere(matiere: any): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}`, matiere);
@@ -31,4 +32,10 @@ export class MatieresService {
   getAllMatiereEtudiant(): Observable<Matieres[]> {
     return this.http.get<Matieres[]>(this.baseUrl);
   }
+
+  supprimerMatiere(matiereId: string): Observable<any> {
+    const url = `${this.baseUrl}/supprimer`;
+    return this.http.delete<any>(url, { body: { _id: matiereId } });
+  }
+  
 }

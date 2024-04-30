@@ -74,7 +74,13 @@ OnSubmit() {
   const idMatiere = this.route.snapshot.params['id'];
   const formData = new FormData();
   formData.append('_id', idMatiere);
-  formData.append('nom', this.nom);
+
+
+  if (this.nom) {
+    formData.append('nom', this.nom);
+  } else if (this.nom== "" && this.matiere && this.matiere.nom) {
+    formData.append('nom', this.matiere.nom);
+  }
 
   if (this.photo) {
     formData.append('photo', this.photo);

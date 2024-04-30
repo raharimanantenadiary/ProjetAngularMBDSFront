@@ -1,43 +1,59 @@
-
-
 <div *ngIf="loading" class="spinner-container">
-    <mat-spinner></mat-spinner>
+  <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="!loading">
-    <h1 class="h1">Ma matière</h1>
-    @if(matiere){
-        <mat-card class="example-card">
-            
-            <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière">
-            <mat-card-content>
-                <div class="matiere-container">
-                    <h3 class="matiere-nom">{{matiere.nom}}</h3>
-                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="menu-button">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                </div>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="['/Liste-Devoir-Matiere', matiere._id]">
-                        <mat-icon>format_list_bulleted</mat-icon>
-                        <span>Liste devoirs</span>
-                    </button>
-                    <button mat-menu-item [routerLink]="['/modifier-matiere', matiere._id]">
-                      <mat-icon>edit</mat-icon>
-                      <span>Modifier</span>
-                    </button>
-                    <button mat-menu-item>
-                      <mat-icon>delete</mat-icon>
-                      <span>Supprimer</span>
-                    </button>
-                </mat-menu>
-            </mat-card-content>
-        </mat-card>
-    }
-    @else {
-        <p>Aucune matière disponnible !</p>
-    }
-    
-    
-    
+<div *ngIf="!loading && matiere">
+  <h1 class="h1">Ma matière</h1>
+  <mat-card class="example-card">
+    <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière">
+    <mat-card-content>
+      <div class="matiere-container">
+        <h3 class="matiere-nom">{{matiere.nom}}</h3>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="menu-button">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/Liste-Devoir-Matiere', matiere._id]">
+          <mat-icon>format_list_bulleted</mat-icon>
+          <span>Liste devoirs</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/modifier-matiere', matiere._id]">
+          <mat-icon>edit</mat-icon>
+          <span>Modifier</span>
+        </button>
+        <button mat-menu-item (click)="supprimerMatiere(matiere._id)">
+          <mat-icon>delete</mat-icon>
+          <span>Supprimer</span>
+        </button>
+      </mat-menu>
+    </mat-card-content>
+  </mat-card>
 </div>
+
+<div *ngIf="!loading && !matiere">
+  <h1 class="h1">Crée une nouvelle matière</h1>
+  <mat-card class="user-card">
+    <div class="user-info">
+      <img class="user-photo" src="./assets/img/default_image_cours.jpg" width="150" height="150" alt="Photo de l'utilisateur">
+    </div>
+    <form class="user-form" enctype="multipart/form-data">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nom</mat-label>
+        <input matInput [(ngModel)]="nom" name="nom" placeholder="Modifier le nom">
+      </mat-form-field>
+      <div class="file-upload">
+        <label for="photo-input" class="file-label">
+          <span>Choisir une photo</span>
+          <input id="photo-input" type="file" (change)="handleFileInput($event)" name="photo" class="file-input">
+        </label>
+        <span id="file-name"></span>
+      </div>
+      <button mat-flat-button color="primary" class="btn" (click)="OnSubmit()">
+        Ajouter
+      </button>
+    </form>
+  </mat-card>
+</div>
+
+
