@@ -5,7 +5,7 @@
 <div *ngIf="!loading && matiere">
   <h1 class="h1">Ma matière</h1>
   <mat-card class="example-card">
-    <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière">
+    <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière" >
     <mat-card-content>
       <div class="matiere-container">
         <h3 class="matiere-nom">{{matiere.nom}}</h3>

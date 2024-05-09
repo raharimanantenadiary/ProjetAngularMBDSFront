@@ -35,9 +35,9 @@ URL_IMAGE: string = 'http://localhost:8010/api/uploads';
         );
   }
 
- voirDetail(matiereId: string | undefined, profId: string | undefined) {
-  if (matiereId && profId) {
-    this.router.navigate(['/liste-matiere-e-rendu', profId, matiereId]);
+ voirDetail(matiereId: string | undefined) {
+  if (matiereId) {
+    this.router.navigate(['/liste-matiere-e-rendu', matiereId]);
   } else {
     console.error('L\'ID de la matière ou de professeur est undefined.');
   }

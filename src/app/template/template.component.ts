@@ -75,6 +75,14 @@ export class TemplateComponent {
     this.router.navigate(['/Liste-Devoir-Rendu']);
   }
 
+  versRenduEleve() {
+    this.router.navigate(['/liste-matiere-e-rendu']);
+  }
+
+  versNonRenduEleve() {
+    this.router.navigate(['/liste-matiere-e-non-rendu']);
+  }
+
   versNouveauDevoir() {
     this.router.navigate(['/Nouveau-devoir']);
   }

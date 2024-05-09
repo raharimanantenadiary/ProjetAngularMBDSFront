@@ -26,7 +26,7 @@ export class AssignmentNonRenduComponent {
   id_utilisateur = '';
   assignments: AssignmentDetails[] = []; 
   matiere: Matieres | null = null;
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor(private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
 
@@ -36,7 +36,6 @@ export class AssignmentNonRenduComponent {
 
   
   getAssignmentNonRenduProf(){
-    this.loading = true;
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);

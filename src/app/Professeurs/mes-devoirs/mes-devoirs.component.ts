@@ -32,7 +32,7 @@ export class MesDevoirsComponent {
   id_utilisateur = '';
   assignments: Assignment[] = []; 
   matiere: Matieres | null = null;
-  loading: boolean = false;
+  loading: boolean = true;
   devoirSelectionne: Assignment | null = null;
 
   constructor(private assignmentService: AssignmentsService, private route: ActivatedRoute, private matiereService: MatieresService,public dialog: MatDialog) { }
@@ -72,7 +72,6 @@ export class MesDevoirsComponent {
   
 
   getAssignmentProf(){
-    this.loading = true;
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);

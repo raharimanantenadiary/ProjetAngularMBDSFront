@@ -33,8 +33,8 @@
             </button>
             
             <mat-menu #animalsMenu="matMenu" class="custom-menu">
-                <button mat-menu-item >Devoirs rendu</button>
-                <button mat-menu-item >Devoirs non-rendu</button>
+                <button mat-menu-item (click)="versRenduEleve()">Devoirs rendu</button>
+                <button mat-menu-item (click)="versNonRenduEleve()">Devoirs non-rendu</button>
             </mat-menu>
               
           </mat-nav-list>

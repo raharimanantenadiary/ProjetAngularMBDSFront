@@ -29,7 +29,7 @@ export const routes: Routes = [
       { path: "liste-matiere-etudiant", component: MatiereEtudiantComponent },
       { path: "liste-matiere-e-non-rendu", component: AssignmentNonRenduComponentEtudiant  },
       { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve  },
-      { path: "liste-matiere-e-rendu/:id_prof/:id_matiere", component: DevoirNonRenduByMatiereComponent  },
+      { path: "liste-matiere-e-rendu/:id_matiere", component: DevoirNonRenduByMatiereComponent  },
       { path: "modifier-matiere/:id", component: ModifierMatiereComponent  }
     ]  
   },

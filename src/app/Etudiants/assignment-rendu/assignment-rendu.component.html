@@ -1,1 +1,39 @@
-<p>assignment-rendu works!</p>
+<div *ngIf="!loading">
+  <h1 class="h1">Liste des devoirs rendus</h1>
+  
+  <div *ngIf="liste_devoir_rendu && liste_devoir_rendu.length > 0" class="card-container">
+    <ng-container *ngFor="let assignment of liste_devoir_rendu">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <img mat-card-image [src]="URL_IMAGE + '/' + assignment.matiere.prof.photo" alt="Auteur" width="45" height="45">
+          </div>
+          <mat-card-title>{{ assignment.matiere.prof.nom }}</mat-card-title>
+          <mat-card-subtitle>Professeur</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="URL_IMAGE + '/' + assignment.matiere.photo" alt="Couverture de la matière" width="355" height="280">
+        <mat-card-content>
+          <div class="assignment-container">
+            <div class="assignment-header">
+              <h3 class="titre-devoir">{{ assignment.nom }}</h3>
+              <p class="date-rendu"><u>Date de rendu:</u> {{ assignment.dateDeRendu | date }}</p>
+            </div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="menu-button">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/Detail-Assignment', assignment._id]">
+              <mat-icon>format_list_bulleted</mat-icon>
+              <span>Détails du devoir</span>
+            </button>
+          </mat-menu>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+  
+  <div *ngIf="!liste_devoir_rendu || liste_devoir_rendu.length === 0">
+    <p>Aucun devoir disponible !</p>
+  </div>
+</div>

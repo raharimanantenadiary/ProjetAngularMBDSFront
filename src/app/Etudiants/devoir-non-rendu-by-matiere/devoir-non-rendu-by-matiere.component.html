@@ -1,5 +1,5 @@
-<h2>{{titre_matiere}}</h2>
-<div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0 else noDevoirMessage" class="custom-card-container">
+<h2>{{ titre_matiere }}</h2>
+<div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0; else noDevoirMessage" class="custom-card-container">
   <mat-card *ngFor="let devoir of liste_devoir_non_rendu" class="custom-card">
     <mat-card-header>
       <div mat-card-avatar class="custom-header-image"></div>
@@ -8,11 +8,14 @@
     </mat-card-header>
     <img mat-card-image src="./assets/img/devoir.png" width="150" height="150" alt="Photo d'un Shiba Inu">
     <mat-card-actions>
-      <button mat-button color="primary" (click)="RendreDevoir(devoir._id)">Rendre le devoir</button>
+      <button mat-button [ngClass]="{'rendre': !isDevoirRendu(devoir), 'rendu': isDevoirRendu(devoir)}" [disabled]="isDevoirRendu(devoir)" (click)="devoir._id && RendreDevoir(devoir._id)">
+        {{ isDevoirRendu(devoir) ? 'Devoir rendu' : 'Rendre le devoir' }}
+        <mat-icon *ngIf="isDevoirRendu(devoir)">check</mat-icon>
+      </button>
+      
     </mat-card-actions>
   </mat-card>
 </div>
 <ng-template #noDevoirMessage>
   <p>Aucun devoir pour le moment.</p>
 </ng-template>
-

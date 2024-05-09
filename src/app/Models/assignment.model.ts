@@ -6,5 +6,5 @@ export class Assignment {
   nom!: string;
   dateDeRendu!: Date;
   matiere!: Matieres;
-  details!: AssignmentDetails;
+  details!: AssignmentDetails[];
 }

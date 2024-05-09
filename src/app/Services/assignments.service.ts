@@ -37,6 +37,10 @@ export class AssignmentsService {
     return this.http.get<any>(this.uri + "/byMatiere/" + idm + "/" + idp)
   }
 
+  getAssignmentsEleveByMatiere(idm: string,idp:string):Observable<any> {
+    return this.http.get<any>(this.uri + "/eleve/byMatiere/" + idm + "/" + idp)
+  }
+
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
       console.log(error); // pour afficher dans la console

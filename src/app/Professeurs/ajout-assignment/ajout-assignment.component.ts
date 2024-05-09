@@ -11,6 +11,8 @@ import { AssignmentsService } from '../../Services/assignments.service';
 import { Assignment } from '../../Models/assignment.model';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -24,7 +26,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CommonModule,
+    MatProgressSpinner
   ],
   templateUrl: './ajout-assignment.component.html',
   styleUrl: './ajout-assignment.component.css'
@@ -43,9 +47,41 @@ export class AjoutAssignmentComponent {
   assignment: Assignment | null = null;
   id_utilisateur = '';
   durationInSeconds = 3;
+  loading: boolean = true;
 
   constructor(private _formBuilder: FormBuilder,private _snackBar: MatSnackBar,private matiereService: MatieresService,private assignmentService: AssignmentsService) {}
 
+  ngOnInit(): void {
+    this.getMatiereProf();
+  }
+
+
+  getMatiereProf(){
+    const utilisateurData = localStorage.getItem('utilisateur');
+    if (utilisateurData) {
+      const utilisateur = JSON.parse(utilisateurData);
+      // console.log(utilisateur);
+      if (utilisateur && utilisateur._id) {
+          this.id_utilisateur = utilisateur._id;
+          // console.log(this.id_utilisateur);
+          this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
+            (response: any) => {
+              this.matiere = response[0];
+
+              if (this.matiere) {
+                console.log(this.matiere);
+              }
+              this.loading = false;
+            },
+            (error) => {
+              console.error('Une erreur est survenue lors de la récupération des données :', error);
+              this.loading = false;
+            }
+          );
+      }
+    }
+  }
+  
   OnSubmit() {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
