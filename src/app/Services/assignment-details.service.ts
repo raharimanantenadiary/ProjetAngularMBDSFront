@@ -21,12 +21,12 @@ export class AssignmentDetailsService {
     return this.http.post<any>(this.uri_new, data);
   }
 
-  getAssignmentRenduProf(idm: string):Observable<any> {
-    return this.http.get<any>(this.uri + "/RenduProf/" + idm );
+  getAssignmentRenduProf(id: string, idp: string):Observable<any> {
+    return this.http.get<any>(this.uri + "/RenduProf/" + id + "/" + idp);
   }
 
-  getAssignmentNonRenduProf(idm: string):Observable<any> {
-    return this.http.get<any>(this.uri + "/NonRenduProf/" + idm );
+  getAssignmentNonRenduProf(id: string, idp: string):Observable<any> {
+    return this.http.get<any>(this.uri + "/NonRenduProf/" + id + "/" + idp);
   }
 
 

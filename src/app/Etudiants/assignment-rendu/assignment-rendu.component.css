@@ -45,3 +45,10 @@
   color: grey;
   margin-top: 0px;
 }
+
+.spinner-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -82,7 +82,7 @@ export class MesDevoirsComponent {
         this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
           (response: any) => {
             this.matiere = response[0];
-            
+            this.loading = false;
             if(this.matiere){
               console.log(this.matiere);  
               const idMatiere = this.matiere._id;
@@ -105,6 +105,7 @@ export class MesDevoirsComponent {
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
+            this.loading = false;
           }
         ); 
         

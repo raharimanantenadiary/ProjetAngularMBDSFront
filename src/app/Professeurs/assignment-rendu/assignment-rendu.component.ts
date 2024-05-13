@@ -46,13 +46,13 @@ export class AssignmentRenduComponent {
         this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
           (response: any) => {
             this.matiere = response[0];
-            
+            this.loading = false;
             if(this.matiere){
               console.log(this.matiere);  
               const idMatiere = this.matiere._id;
               if(idMatiere){
                 console.log(idMatiere);
-                this.assignmentDetailsService.getAssignmentRenduProf(idMatiere).subscribe(
+                this.assignmentDetailsService.getAssignmentRenduProf(idMatiere,this.id_utilisateur).subscribe(
                   (response: any) => {
                     this.assignments = response;
                     console.log(this.assignments);
@@ -69,6 +69,7 @@ export class AssignmentRenduComponent {
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
+            this.loading = false;
           }
         ); 
         

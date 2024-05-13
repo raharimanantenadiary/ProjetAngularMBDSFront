@@ -71,7 +71,7 @@ export class ListeDevoirMatiereComponent {
               const idMatiere = this.matiere._id;
               if(idMatiere){
                 console.log(idMatiere);
-                this.assignmentDetailService.getAssignmentRenduProf(idMatiere).subscribe(
+                this.assignmentDetailService.getAssignmentRenduProf(idMatiere,this.id_utilisateur).subscribe(
                   (response: any) => {
                     this.liste_devoir_rendu = response;
                     console.log(this.liste_devoir_rendu);
@@ -115,7 +115,7 @@ export class ListeDevoirMatiereComponent {
               const idMatiere = this.matiere._id;
               if(idMatiere){
                 console.log(idMatiere);
-                this.assignmentDetailService.getAssignmentNonRenduProf(idMatiere).subscribe(
+                this.assignmentDetailService.getAssignmentNonRenduProf(idMatiere,this.id_utilisateur).subscribe(
                   (response: any) => {
                     this.liste_devoir_non_rendu = response;
                     console.log(this.liste_devoir_non_rendu);
