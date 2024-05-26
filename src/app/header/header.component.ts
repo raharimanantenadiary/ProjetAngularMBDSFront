@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Utilisateurs } from "../Models/utilisateurs.model";
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../Shared/auth.service';
+import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 

@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './Shared/auth.guard';
 import { InscriptionComponent } from './Utilisateurs/Inscription/inscription.component';
-import { LoginComponent } from './Utilisateurs/Login/login.component';
+import { LoginComponent } from './Utilisateurs/login/login.component';
 import { TemplateComponent } from './template/template.component';
 import { ProfilComponent } from './Utilisateurs/profil/profil.component';
 import { MaMatiereComponent } from './Professeurs/ma-matiere/ma-matiere.component';
