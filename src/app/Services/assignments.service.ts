@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Assignment } from '../Models/assignment.model';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { LoggingService } from '../Shared/logging.service';
+import { LoggingService } from '../shared/logging.service';
 import { HttpClient } from '@angular/common/http';
 
 
