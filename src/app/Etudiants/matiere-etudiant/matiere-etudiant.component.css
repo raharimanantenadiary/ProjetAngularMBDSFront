@@ -1,18 +1,80 @@
-
 .card-container {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: flex-start; /* Ajuster la justification */
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Ajustement pour l'espacement équitable */
+  gap: 20px; /* Espace entre les cartes */
 }
 
 .example-card {
-  flex-basis: calc(33.33% - 20px); 
-  margin-bottom: 20px; 
-  margin-right: 15px; 
+  flex: 1 1 calc(20% - 20px); /* calcule la largeur pour 5 cartes par ligne */
+  max-width: 300px; /* Taille maximale pour éviter que les cartes ne soient trop grandes */
 }
 
-.example-header-image{
-  border-radius: 50%; 
+mat-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
 }
 
-/* Ajoutez d'autres styles au besoin */
+mat-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+.prof-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.card-title-section {
+  flex-grow: 1;
+}
+
+.matiere-image {
+  width: 100%;
+  height: auto;
+}
+
+mat-card-actions {
+  justify-content: center;
+  padding: 20px;
+}
+
+button {
+  width: 100%;
+  background-color: #00889e;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .example-card {
+    flex: 1 1 calc(25% - 20px); /* 4 cartes par ligne */
+  }
+}
+
+@media (max-width: 768px) {
+  .example-card {
+    flex: 1 1 calc(33.33% - 20px); /* 3 cartes par ligne */
+  }
+}
+
+@media (max-width: 480px) {
+  .example-card {
+    flex: 1 1 calc(50% - 20px); /* 2 cartes par ligne */
+  }
+}
+
+/* Styles pour le paginateur */
+mat-paginator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title class="dialog-title">Devoir Rendu</h1>
+<div mat-dialog-content class="dialog-content">
+  <div *ngIf="note && remarque; else correctionInProgress">
+    <p><strong>Note :</strong> {{ note }}</p>
+    <p><strong>Remarque :</strong> {{ remarque }}</p>
+  </div>
+  <ng-template #correctionInProgress>
+    <p><strong>En attente de correction...</strong></p>
+  </ng-template>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button mat-dialog-close class="close-button" (click)="closeDialog()">Fermer</button>
+</div>
+
+
