@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prebuild": "npm install @angular/cdk@17.3.3 @angular/material@17.3.3"
-
   },
   "private": true,
   "dependencies": {
@@ -24,6 +23,7 @@
     "@angular/platform-browser-dynamic": "17.3.10",
     "@angular/router": "17.3.10",
     "@types/jwt-decode": "^3.1.0",
+    "express": "^4.19.2",
     "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
