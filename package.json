@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prebuild": "npm install @angular/cdk@17.3.3 @angular/material@17.3.3",
+    "postinstall": "npm install --legacy-peer-deps"
   },
   "private": true,
   "dependencies": {
