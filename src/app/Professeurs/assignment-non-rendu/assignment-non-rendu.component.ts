@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Assignment } from '../../Models/assignment.model';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,13 +20,19 @@ import { AssignmentDetails } from '../../Models/assignment-details.model';
   templateUrl: './assignment-non-rendu.component.html',
   styleUrl: './assignment-non-rendu.component.css'
 })
-export class AssignmentNonRenduComponent {
+export class AssignmentNonRenduComponent implements OnInit {
 
   URL_IMAGE: string = 'http://localhost:8010/api/uploads';
   id_utilisateur = '';
   assignments: AssignmentDetails[] = []; 
   matiere: Matieres | null = null;
   loading: boolean = true;
+
+  page: number = 1;
+  limit: number = 6;
+  totalAssignments: number = 0;
+  totalPages: number = 0;
+
 
   constructor(private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
 
@@ -35,28 +41,26 @@ export class AssignmentNonRenduComponent {
   }
 
   
-  getAssignmentNonRenduProf(){
+  getAssignmentNonRenduProf() {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
-      console.log(utilisateur);  
       if (utilisateur && utilisateur._id) {
         this.id_utilisateur = utilisateur._id;
-        console.log(this.id_utilisateur);  
         this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
           (response: any) => {
             this.matiere = response[0];
             this.loading = false;
-            if(this.matiere){
-              console.log(this.matiere);  
+            if (this.matiere) {
               const idMatiere = this.matiere._id;
-              if(idMatiere){
-                console.log(idMatiere);
-                this.assignmentDetailsService.getAssignmentNonRenduProf(idMatiere,this.id_utilisateur).subscribe(
+              if (idMatiere) {
+                this.assignmentDetailsService.getAssignmentNonRenduProf(idMatiere, this.id_utilisateur, this.page, this.limit).subscribe(
                   (response: any) => {
-                    this.assignments = response;
-                    console.log(this.assignments);
+                    this.assignments = response.assignments;
+                    this.totalAssignments = response.total;
+                    this.totalPages = response.pages;
                     this.loading = false;
+                    console.log(response);
                   },
                   (error) => {
                     console.error('Une erreur est survenue lors de la récupération des données :', error);
@@ -64,19 +68,19 @@ export class AssignmentNonRenduComponent {
                   }
                 );
               }
-              
             }
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
             this.loading = false;
           }
-        ); 
-        
-        
-        
+        );
       }
     }
   }
 
+  changePage(page: number): void {
+    this.page = page;
+    this.getAssignmentNonRenduProf();
+  }
 }

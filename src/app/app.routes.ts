@@ -5,7 +5,6 @@ import { LoginComponent } from './Utilisateurs/Login/login.component';
 import { TemplateComponent } from './template/template.component';
 import { ProfilComponent } from './Utilisateurs/profil/profil.component';
 import { MaMatiereComponent } from './Professeurs/ma-matiere/ma-matiere.component';
-import { ListeDevoirMatiereComponent } from './Professeurs/liste-devoir-matiere/liste-devoir-matiere.component';
 import { AssignmentNonRenduComponent } from './Professeurs/assignment-non-rendu/assignment-non-rendu.component';
 import { MatiereEtudiantComponent } from './Etudiants/matiere-etudiant/matiere-etudiant.component';
 import { AssignmentNonRenduComponentEtudiant } from './Etudiants/assignment-non-rendu/assignment-non-rendu.component';
@@ -24,7 +23,6 @@ export const routes: Routes = [
       { path: "Ma-matiere", component: MaMatiereComponent },
       { path: "Mes-devoirs", component: MesDevoirsComponent },
       { path: "Nouveau-devoir", component: AjoutAssignmentComponent },
-      { path: "Liste-Devoir-Matiere/:id", component: ListeDevoirMatiereComponent },
       { path: "Liste-Devoir-Non-Rendu", component: AssignmentNonRenduComponent },
       { path: "Liste-Devoir-Rendu", component: AssignmentRenduComponent },
       { path: "liste-matiere-etudiant", component: MatiereEtudiantComponent },

@@ -10,32 +10,46 @@ import { Assignment } from '../../Models/assignment.model';
 import { Matieres } from '../../Models/matieres.model';
 import { AssignmentsService } from '../../Services/assignments.service';
 import { MatieresService } from '../../Services/matieres.service';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent } from '@angular/material/dialog';
 import { ModifierAssignmentComponent } from '../modifier-assignment/modifier-assignment.component';
 import { DeleteAssignmentComponent } from '../delete-assignment/delete-assignment.component';
 
 @Component({
   selector: 'app-mes-devoirs',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule,MatMenuModule,MatIconModule,RouterModule,CommonModule,MatProgressSpinnerModule,MatDialogTitle, MatDialogContent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    RouterModule,
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatDialogTitle,
+    MatDialogContent
+  ],
   templateUrl: './mes-devoirs.component.html',
   styleUrl: './mes-devoirs.component.css'
 })
 export class MesDevoirsComponent {
-
   URL_IMAGE: string = 'http://localhost:8010/api/uploads';
   id_utilisateur = '';
-  assignments: Assignment[] = []; 
+  assignments: Assignment[] = [];
   matiere: Matieres | null = null;
   loading: boolean = true;
   devoirSelectionne: Assignment | null = null;
 
-  constructor(private assignmentService: AssignmentsService, private route: ActivatedRoute, private matiereService: MatieresService,public dialog: MatDialog) { }
+  page: number = 1;
+  limit: number = 8;
+  totalAssignments: number = 0;
+  totalPages: number = 0;
+
+  constructor(
+    private assignmentService: AssignmentsService,
+    private route: ActivatedRoute,
+    private matiereService: MatieresService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getAssignmentProf();
@@ -43,55 +57,56 @@ export class MesDevoirsComponent {
 
   openDialog(selectedAssignment: Assignment): void {
     const dialogRef = this.dialog.open(ModifierAssignmentComponent, {
-        width: '400px',
-        data: { assignment: selectedAssignment }
+      width: '400px',
+      data: { assignment: selectedAssignment }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        console.log('Le formulaire a été fermé avec :', result);
-        if (result === 'refresh') {
-            this.getAssignmentProf(); 
-        }
-    });
-}
-
-  openDialogSuppr(selectedAssignment: Assignment): void {
-    const dialogRef = this.dialog.open(DeleteAssignmentComponent, {
-        width: '400px',
-        data: { assignment: selectedAssignment }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-        console.log('Le formulaire a été fermé avec :', result);
-        if (result === 'refresh') {
-            this.getAssignmentProf(); 
-        }
+      console.log('Le formulaire a été fermé avec :', result);
+      if (result === 'refresh') {
+        this.getAssignmentProf();
+      }
     });
   }
 
-  
+  openDialogSuppr(selectedAssignment: Assignment): void {
+    const dialogRef = this.dialog.open(DeleteAssignmentComponent, {
+      width: '400px',
+      data: { assignment: selectedAssignment }
+    });
 
-  getAssignmentProf(){
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Le formulaire a été fermé avec :', result);
+      if (result === 'refresh') {
+        this.getAssignmentProf();
+      }
+    });
+  }
+
+  getAssignmentProf(): void {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
-      console.log(utilisateur);  
+      console.log(utilisateur);
       if (utilisateur && utilisateur._id) {
         this.id_utilisateur = utilisateur._id;
-        console.log(this.id_utilisateur);  
+        console.log(this.id_utilisateur);
         this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
           (response: any) => {
             this.matiere = response[0];
             this.loading = false;
-            if(this.matiere){
-              console.log(this.matiere);  
+            if (this.matiere) {
+              console.log(this.matiere);
               const idMatiere = this.matiere._id;
-              if(idMatiere){
+              if (idMatiere) {
                 console.log(idMatiere);
-                this.assignmentService.getAssignmentByMatiereByProf(idMatiere,this.id_utilisateur).subscribe(
+                this.assignmentService.getAssignmentByMatiereByProf(idMatiere, this.id_utilisateur, this.page, this.limit).subscribe(
                   (response: any) => {
-                    this.assignments = response;
+                    this.assignments = response.assignments;
+                    this.totalAssignments = response.total;
+                    this.totalPages = response.pages;
                     console.log(this.assignments);
+                    console.log(response);
                     this.loading = false;
                   },
                   (error) => {
@@ -100,19 +115,19 @@ export class MesDevoirsComponent {
                   }
                 );
               }
-              
             }
           },
           (error) => {
             console.error('Une erreur est survenue lors de la récupération des données :', error);
             this.loading = false;
           }
-        ); 
-        
-        
-        
+        );
       }
     }
   }
 
+  changePage(page: number): void {
+    this.page = page;
+    this.getAssignmentProf();
+  }
 }

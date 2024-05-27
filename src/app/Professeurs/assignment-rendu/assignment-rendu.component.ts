@@ -28,6 +28,10 @@ export class AssignmentRenduComponent {
   matiere: Matieres | null = null;
   loading: boolean = true;
 
+  total: number = 0;
+  limit: number = 6;
+  page: number = 1;
+
   constructor(private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
 
   ngOnInit(): void {
@@ -52,11 +56,12 @@ export class AssignmentRenduComponent {
               const idMatiere = this.matiere._id;
               if(idMatiere){
                 console.log(idMatiere);
-                this.assignmentDetailsService.getAssignmentRenduProf(idMatiere,this.id_utilisateur).subscribe(
+                this.assignmentDetailsService.getAssignmentRenduProf(idMatiere,this.id_utilisateur, this.page, this.limit).subscribe(
                   (response: any) => {
-                    this.assignments = response;
-                    console.log(this.assignments);
+                    this.assignments = response.assignments;
+                    this.total = response.total;
                     this.loading = false;
+                    console.log(this.assignments);
                   },
                   (error) => {
                     console.error('Une erreur est survenue lors de la récupération des données :', error);
@@ -79,5 +84,9 @@ export class AssignmentRenduComponent {
     }
   }
 
+  changePage(page: number): void {
+    this.page = page;
+    this.getAssignmentRenduProf();
+  }
 
 }

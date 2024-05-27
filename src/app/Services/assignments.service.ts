@@ -33,8 +33,8 @@ export class AssignmentsService {
     );
   }
 
-  getAssignmentByMatiereByProf(idm: string,idp:string):Observable<any> {
-    return this.http.get<any>(this.uri + "/byMatiere/" + idm + "/" + idp)
+  getAssignmentByMatiereByProf(idm: string, idp: string, page: number, limit: number): Observable<any> {
+    return this.http.get<any>(`${this.uri}/byMatiere/${idm}/${idp}?page=${page}&limit=${limit}`);
   }
 
   getAssignmentsEleveByMatiere(idm: string,idp:string):Observable<any> {

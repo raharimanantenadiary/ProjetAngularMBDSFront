@@ -3,7 +3,7 @@
     <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="!loading">
+<div *ngIf="!loading" class="main">
   <h1 class="h1">Liste des devoirs rendus par les élèves</h1>
   <div *ngIf="assignments && assignments.length > 0" class="card-container">
     <div *ngFor="let assignment of assignments" class="example-card">
@@ -36,6 +36,12 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+
+  <div class="pagination-controls">
+    <button mat-raised-button color="primary" (click)="changePage(page - 1)" [disabled]="page <= 1">Précédent</button>
+    <span>Page {{ page }} sur {{ total }}</span>
+    <button mat-raised-button color="primary" (click)="changePage(page + 1)" [disabled]="page >= total">Suivant</button>
   </div>
   
   <div *ngIf="!assignments || assignments.length === 0">
