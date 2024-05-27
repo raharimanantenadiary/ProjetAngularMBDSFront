@@ -7,7 +7,7 @@
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <span>{{ utilisateur?.nom }}</span>
+    <span class="utilisateur">{{ utilisateur?.nom }}</span>
     <mat-menu #menu="matMenu">
       <span *ngIf="utilisateur?.role !== 0" mat-menu-item>
         <mat-icon>school</mat-icon> Élève

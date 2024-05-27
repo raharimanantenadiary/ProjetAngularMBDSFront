@@ -1,8 +1,21 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .header{
-    background: #00889E;
-    color: white;
-  }
+.header {
+  background: #00889E;
+  color: white;
+  /* Assurez-vous que les marges sont bien réinitialisées ici aussi */
+  margin-top: -8px;
+  /* margin-left: -8px; */
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.utilisateur{
+  padding-right: 15px;
+}

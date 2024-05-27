@@ -8,13 +8,7 @@
   <div *ngIf="assignments && assignments.length > 0" class="card-container">
     <div *ngFor="let assignment of assignments" class="example-card">
       <mat-card>
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image">
-                <img mat-card-image [src]="URL_IMAGE + '/' + assignment.matiere.prof.photo" alt="Prof" width="45" height="45">
-            </div>
-            <mat-card-title>{{ assignment.matiere.prof.nom }}</mat-card-title>
-            <mat-card-subtitle>{{ assignment.matiere.prof.mail}}</mat-card-subtitle>
-        </mat-card-header>
+        
         <img mat-card-image [src]="URL_IMAGE + '/' + assignment.matiere.photo" alt="Couverture de la matière">
         <mat-card-content>
           <div class="assignment-container">
@@ -27,7 +21,7 @@
             </button>
           </div>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/Detail-Assignment', assignment._id]">
+            <button mat-menu-item [routerLink]="['/details-devoir', assignment._id]">
               <mat-icon>format_list_bulleted</mat-icon>
               <span>Détails du devoirs</span>
             </button>
@@ -48,5 +42,6 @@
   <div *ngIf="!assignments || assignments.length === 0">
     <p>Aucun devoir disponible !</p>
   </div>
+  
 </div>
 

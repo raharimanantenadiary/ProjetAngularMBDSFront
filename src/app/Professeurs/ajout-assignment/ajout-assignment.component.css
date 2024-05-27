@@ -6,7 +6,14 @@
   margin-top: 16px;
 }
 .steps{
-    width: 100%;
+    width: 900px;
+    height: 300px;
+}
+
+.contenu{
+  width: 850px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+  margin-top: 10px;
 }
 
 
@@ -15,4 +22,37 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.check{
+  color: rgb(9, 255, 0);
+  font-size: 30px;
+}
+
+.new_create{
+  margin-top: 25px;
+  background-color: rgb(9, 255, 0);
+  padding: 20px;
+  border-radius: 3px;
+  width: 180px;
+  color: white;
+}
+
+.next{
+  background-color: rgb(9, 255, 0);
+  padding: 20px;
+  border-radius: 3px;
+  width: 100px;
+  color: white;
+}
+
+/* ajout-assignment.component.css */
+.toast-success {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.toast-error {
+  background-color: #f44336; /* Red */
+  color: white;
 }

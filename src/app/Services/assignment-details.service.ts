@@ -29,5 +29,13 @@ export class AssignmentDetailsService {
     return this.http.get<any>(this.uri + "/NonRenduProf/" + id + "/" + idp);
   }
 
+  getAssignmentsRenduParDevoirProf(id: string, idp: string):Observable<any> {
+    return this.http.get<any>(this.uri + "/DevoirRenduProf/" + id + "/" + idp);
+  }
+
+  getAssignmentsNonRenduParDevoirProf(id: string, idp: string):Observable<any> {
+    return this.http.get<any>(this.uri + "/DevoirNonRenduProf/" + id + "/" + idp);
+  }
+
 
 }

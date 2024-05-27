@@ -48,7 +48,7 @@ export class InscriptionComponent {
     const email = this.emailFormControl.value ?? '';
     const motDePasse = this.motDePasseFormControl.value ?? '';
     const nom = this.nomFormControl.value ?? '';
-    this.utilisateursService.sInscrire(nom, email, motDePasse, "","0").subscribe(
+    this.utilisateursService.sInscrire(nom, email, motDePasse, "","1").subscribe(
       (response: any) => {
         this.isLoading = false;
         this.errorMessage = 'Utilisateur inscrit avec succès';

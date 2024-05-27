@@ -15,6 +15,7 @@ import { ModifierMatiereComponent } from './Professeurs/Matiere/modifier-matiere
 import { AssignmentRenduComponent } from './Professeurs/assignment-rendu/assignment-rendu.component';
 import { AjoutAssignmentComponent } from './Professeurs/ajout-assignment/ajout-assignment.component';
 import { MesDevoirsComponent } from './Professeurs/mes-devoirs/mes-devoirs.component';
+import { DetailAssignmentComponent } from './Professeurs/detail-assignment/detail-assignment.component';
 
 export const routes: Routes = [
   { path: '', component: TemplateComponent, 
@@ -30,7 +31,8 @@ export const routes: Routes = [
       { path: "liste-matiere-e-non-rendu", component: AssignmentNonRenduComponentEtudiant  },
       { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve  },
       { path: "liste-matiere-e-rendu/:id_matiere", component: DevoirNonRenduByMatiereComponent  },
-      { path: "modifier-matiere/:id", component: ModifierMatiereComponent  }
+      { path: "modifier-matiere/:id", component: ModifierMatiereComponent  },
+      { path: "details-devoir/:id", component: DetailAssignmentComponent  }
     ]  
   },
   { path: "Inscription", component: InscriptionComponent },

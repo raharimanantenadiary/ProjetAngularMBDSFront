@@ -6,8 +6,8 @@
 <div *ngIf="!loading">
 <h1 class="h1">Création d'un nouveau devoir</h1>
 
-<div *ngIf="matiere">
-    <div class="steps" style="width: 900px;">
+<div *ngIf="matiere" class="steps">
+    <div class="contenu">
         <mat-stepper linear #stepper >
             <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
                 <ng-template matStepLabel>Nom du devoir</ng-template>
@@ -17,7 +17,7 @@
                         <input matInput formControlName="nom" placeholder="Nom du devoir" required>
                     </mat-form-field>
                     <div>
-                        <button mat-button matStepperNext>Suivant</button>
+                        <button mat-button matStepperNext  class="next">Suivant</button>
                     </div>
                 </form>
             </mat-step>
@@ -38,9 +38,9 @@
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Terminé la création</ng-template>
-                <p>Création d'un nouveau devoir, terminé.</p>
+                <p>Création d'un nouveau devoir, terminé. <mat-icon class="check">check</mat-icon></p>
                 <div>
-                    <button mat-button (click)="stepper.reset()">Créer un nouveau</button>
+                    <button mat-button (click)="stepper.reset()" class="new_create">Créer un nouveau</button>
                 </div>
             </mat-step>
         </mat-stepper>
