@@ -35,7 +35,7 @@ export const routes: Routes = [
       { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve  },
       { path: "liste-matiere-e-rendu/:id_matiere", component: DevoirNonRenduByMatiereComponent  },
       { path: "modifier-matiere/:id", component: ModifierMatiereComponent  },
-      { path: "details-devoir/:id", component: DetailAssignmentComponent  }
+      { path: "details-devoir/:id", component: DetailAssignmentComponent  },
       { path: "modifier-matiere/:id", component: ModifierMatiereComponent},
       { path: "detail-note", component: DialogueRenduComponent}
     ]  
