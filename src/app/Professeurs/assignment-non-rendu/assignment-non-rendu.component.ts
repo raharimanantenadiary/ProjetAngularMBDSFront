@@ -12,6 +12,8 @@ import { Matieres } from '../../Models/matieres.model';
 import { AssignmentDetailsService } from '../../Services/assignment-details.service';
 import { MatieresService } from '../../Services/matieres.service';
 import { AssignmentDetails } from '../../Models/assignment-details.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailDevoirComponent } from '../detail-devoir/detail-devoir.component';
 
 @Component({
   selector: 'app-assignment-non-rendu',
@@ -34,13 +36,26 @@ export class AssignmentNonRenduComponent implements OnInit {
   totalPages: number = 0;
 
 
-  constructor(private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
+  constructor(public dialog: MatDialog,private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
 
   ngOnInit(): void {
     this.getAssignmentNonRenduProf();
   }
 
   
+  openDialog(selectedAssignment: AssignmentDetails): void {
+    const dialogRef = this.dialog.open(DetailDevoirComponent, {
+      data: { assignment: selectedAssignment }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Le formulaire a été fermé avec :', result);
+      if (result === 'refresh') {
+        this.getAssignmentNonRenduProf();
+      }
+    });
+  }
+
   getAssignmentNonRenduProf() {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {

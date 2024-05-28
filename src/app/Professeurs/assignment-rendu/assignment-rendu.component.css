@@ -1,5 +1,6 @@
 .example-card {
   max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
   flex-grow: 1; /* Permet aux cartes de s'étendre pour remplir l'espace disponible */
   margin-bottom: 20px;
 }

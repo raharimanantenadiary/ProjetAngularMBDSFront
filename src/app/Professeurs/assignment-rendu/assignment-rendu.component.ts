@@ -41,9 +41,8 @@ export class AssignmentRenduComponent {
     this.getAssignmentRenduProf();
   }
 
-  openDialog(selectedAssignment: Assignment): void {
+  openDialog(selectedAssignment: AssignmentDetails): void {
     const dialogRef = this.dialog.open(DetailDevoirComponent, {
-      width: '400px',
       data: { assignment: selectedAssignment }
     });
 

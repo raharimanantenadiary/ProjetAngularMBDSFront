@@ -1,4 +1,11 @@
-<div class="popup-container">
+
+<div class="popup-container" *ngIf="selectedAssignment">
     <h2 class="popup-title">Détails du devoir</h2>
+    <ng-container *ngIf="selectedAssignment.note && selectedAssignment.remarque; else notGraded">
+        <p class="popup-content"><strong>Note de l'élève:</strong> {{selectedAssignment.note}}/20</p>
+        <p class="popup-content"><strong>Remarque du professeur:</strong> {{selectedAssignment.remarque}}</p>
+    </ng-container>
+    <ng-template #notGraded>
+        <p class="popup-content">Le devoir n'est pas encore corrigé.</p>
+    </ng-template>
 </div>
-  

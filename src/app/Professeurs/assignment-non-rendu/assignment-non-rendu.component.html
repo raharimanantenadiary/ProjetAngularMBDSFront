@@ -26,7 +26,7 @@
             </button>
           </div>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/Detail-Assignment', assignment._id]">
+            <button mat-menu-item (click)="openDialog(assignment)">
               <mat-icon>format_list_bulleted</mat-icon>
               <span>Détails du devoir</span>
             </button>

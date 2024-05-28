@@ -1,11 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { AssignmentDetailsService } from '../../Services/assignment-details.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-detail-devoir',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './detail-devoir.component.html',
   styleUrl: './detail-devoir.component.css'
 })
@@ -21,12 +22,5 @@ export class DetailDevoirComponent {
     console.log(this.selectedAssignment);
   }
 
-  ngOnInit(): void {
-    this.getDetails();
-  }
-
-  getDetails(): void {
-    
-  }
-
+  
 }

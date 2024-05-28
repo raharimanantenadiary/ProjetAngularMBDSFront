@@ -1,8 +1,29 @@
 .popup-container {
-    padding: 20px;
-  }
-  
-  .popup-title {
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.popup-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #4A90E2; /* Coloré pour donner un accent */
+  font-weight: bold;
+  border-bottom: 2px solid #4A90E2; /* Ligne en dessous du titre */
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.popup-content {
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.popup-container p:last-child {
+  margin-bottom: 0; /* Enlève la marge basse pour le dernier paragraphe */
+}
