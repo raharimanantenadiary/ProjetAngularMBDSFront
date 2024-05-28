@@ -15,12 +15,16 @@ import { AssignmentRenduComponent } from './Professeurs/assignment-rendu/assignm
 import { AjoutAssignmentComponent } from './Professeurs/ajout-assignment/ajout-assignment.component';
 import { MesDevoirsComponent } from './Professeurs/mes-devoirs/mes-devoirs.component';
 import { DetailAssignmentComponent } from './Professeurs/detail-assignment/detail-assignment.component';
+import { AjoutProfComponent } from './Professeurs/ajout-prof/ajout-prof.component';
+import { ListePofComponent } from './Professeurs/liste-pof/liste-pof.component';
 
 export const routes: Routes = [
   { path: '', component: TemplateComponent, 
     children: [
       { path: "Profile", component: ProfilComponent},
       { path: "Ma-matiere", component: MaMatiereComponent },
+      { path: "Ajout-prof", component: AjoutProfComponent },
+      { path: "List-prof", component: ListePofComponent },
       { path: "Mes-devoirs", component: MesDevoirsComponent },
       { path: "Nouveau-devoir", component: AjoutAssignmentComponent },
       { path: "Liste-Devoir-Non-Rendu", component: AssignmentNonRenduComponent },

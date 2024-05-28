@@ -1,0 +1,54 @@
+<h1 class="h1">Ajout d'un nouveau professeur</h1>
+
+<div class="steps">
+    <div class="contenu">
+        <mat-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+                <ng-template matStepLabel>Nom du professeur</ng-template>
+                <form [formGroup]="firstFormGroup">
+                    <mat-form-field class="wide-input">
+                        <mat-label>Nom du professeur</mat-label>
+                        <input matInput formControlName="nom" placeholder="Nom du professeur" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperNext class="next">Suivant</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+                <ng-template matStepLabel>Adresse mail du professeur</ng-template>
+                <form [formGroup]="secondFormGroup">
+                    <mat-form-field class="wide-input">
+                        <mat-label>Adresse mail du professeur</mat-label>
+                        <input matInput formControlName="mail" placeholder="Adresse mail du professeur" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious class="prev">Retour</button>
+                        <button mat-button matStepperNext class="next">Suivant</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+                <ng-template matStepLabel>Mot de passe du professeur</ng-template>
+                <form [formGroup]="thirdFormGroup">
+                    <mat-form-field class="wide-input">
+                        <mat-label>Mot de passe du professeur</mat-label>
+                        <input matInput formControlName="mdp" placeholder="Mot de passe du professeur" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious class="prev">Retour</button>
+                        <button mat-button matStepperNext class="next" (click)="OnSubmit()">Suivant</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Terminé l'ajout</ng-template>
+                <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+                <p *ngIf="!errorMessage">Ajout d'un nouveau professeur, terminé. <mat-icon class="check">check</mat-icon></p>
+                <div>
+                    <button mat-button (click)="stepper.reset()" class="new_create">Ajouter un nouveau</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>

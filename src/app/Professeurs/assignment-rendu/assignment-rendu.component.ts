@@ -11,6 +11,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DetailDevoirComponent } from '../detail-devoir/detail-devoir.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Assignment } from '../../Models/assignment.model';
 
 
 @Component({
@@ -32,10 +35,24 @@ export class AssignmentRenduComponent {
   limit: number = 6;
   page: number = 1;
 
-  constructor(private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
+  constructor(public dialog: MatDialog,private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
 
   ngOnInit(): void {
     this.getAssignmentRenduProf();
+  }
+
+  openDialog(selectedAssignment: Assignment): void {
+    const dialogRef = this.dialog.open(DetailDevoirComponent, {
+      width: '400px',
+      data: { assignment: selectedAssignment }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Le formulaire a été fermé avec :', result);
+      if (result === 'refresh') {
+        this.getAssignmentRenduProf();
+      }
+    });
   }
 
   

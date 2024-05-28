@@ -38,7 +38,7 @@
     align-items: flex-start;
     gap: 20px; /* espace entre les colonnes */
     margin-top: 20px;
-    height: 360px;
+    height: 400px;
 }
 
 .col-left,
@@ -59,7 +59,7 @@
 }
 
 .col-left {
-    height: 350px;
+    height: 400px;
     width: 125px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
 }

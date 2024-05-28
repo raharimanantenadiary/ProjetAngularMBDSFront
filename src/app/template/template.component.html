@@ -19,6 +19,16 @@
                 <button mat-menu-item (click)="versRenduProf()">Devoirs rendu par les élèves</button>
                 <button mat-menu-item (click)="versNonRenduProf()">Devoirs non-rendu par les élèves</button>
             </mat-menu>
+
+            <button mat-button [matMenuTriggerFor]="prof" class="mat-button-spacing">
+                <mat-icon>person</mat-icon>
+                <span>Professeurs</span>
+            </button>
+            
+            <mat-menu #prof="matMenu" class="custom-menu">
+                <button mat-menu-item (click)="versAjout()">Ajouter un nouveau professeur</button>
+                <button mat-menu-item (click)="versLesProf()">Listes des professeurs</button>
+            </mat-menu>
         </mat-nav-list>
 
         <mat-nav-list *ngIf="role === 1">
@@ -38,6 +48,7 @@
             </mat-menu>
               
           </mat-nav-list>
+          
     </mat-drawer>
   
     <div class="example-sidenav-content">

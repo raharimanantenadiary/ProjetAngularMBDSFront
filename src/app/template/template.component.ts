@@ -89,6 +89,12 @@ export class TemplateComponent {
   versMesDevoirs() {
     this.router.navigate(['/Mes-devoirs']);
   }
+  versAjout() {
+    this.router.navigate(['/Ajout-prof']);
+  }
+  versLesProf() {
+    this.router.navigate(['/List-prof']);
+  }
   
 
 

@@ -62,7 +62,6 @@ export class MesDevoirsComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Le formulaire a été fermé avec :', result);
       if (result === 'refresh') {
         this.getAssignmentProf();
       }
