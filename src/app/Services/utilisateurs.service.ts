@@ -25,6 +25,10 @@ private baseUrl = 'http://localhost:8010/api/utilisateurs';
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
+  getListeProf(page: number, limit: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/listeprof?page=${page}&limit=${limit}`);
+  }
+
   updateUtilisateur(utilisateur: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/modifierUtilisateur`, utilisateur);
   }

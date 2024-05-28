@@ -1,1 +1,33 @@
-<p>liste-pof works!</p>
+<div *ngIf="loading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  
+  <div *ngIf="!loading" class="main">
+    <h1 class="h1">Liste des professeurs</h1>
+    <div *ngIf="prof && prof.length > 0" class="card-container">
+      <div *ngFor="let prof of prof" class="example-card">
+        <mat-card style="height: 100%;">
+          <img mat-card-image [src]="URL_IMAGE + '/' + prof.photo" alt="Couverture de la matière">
+          <mat-card-content>
+            <div class="assignment-container">
+              <div class="assignment-header">
+                <h3 class="titre-devoir">{{ prof.nom }}</h3>
+                <p class="date-rendu"><u>Adresse mail:</u> {{ prof.mail }}</p>
+              </div>
+              
+            </div>
+            
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div *ngIf="!prof || prof.length === 0">
+      <p>Aucun professeur disponible !</p>
+    </div>
+
+    <div *ngIf="prof && prof.length > 0" class="pagination-controls">
+    <button mat-raised-button color="primary" (click)="changePage(page - 1)" [disabled]="page <= 1">Précédent</button>
+    <span>Page {{ page }} sur {{ totalPages }}</span>
+    <button mat-raised-button color="primary" (click)="changePage(page + 1)" [disabled]="page >= totalPages">Suivant</button>
+  </div>
+</div>

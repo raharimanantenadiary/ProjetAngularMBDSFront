@@ -1,0 +1,55 @@
+.example-card {
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+  
+  .assignment-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .titre-devoir {
+    margin-right: 10px;
+  }
+  
+  .menu-button {
+    margin-left: auto;
+    margin-top: -35px;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Aligne les cartes au début du conteneur */
+    gap: 20px; /* Ajoute un espace entre les cartes */
+  }
+  
+  .assignment-header {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .date-rendu {
+    font-size: small;
+    color: grey;
+    margin-top: 0px;
+  }
+  
+  .spinner-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .example-header-image {
+    border-radius: 50%;
+  }
+  
+  .main {
+    height: 1000px;
+  }
+  
