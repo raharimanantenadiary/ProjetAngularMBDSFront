@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Matieres } from '../../../Models/matieres.model';
 import { MatieresService } from '../../../Services/matieres.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -8,10 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 import {

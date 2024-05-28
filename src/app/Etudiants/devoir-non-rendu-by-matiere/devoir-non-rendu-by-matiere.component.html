@@ -1,20 +1,35 @@
 <h2>{{ titre_matiere }}</h2>
-<div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0; else noDevoirMessage" class="custom-card-container">
-  <mat-card *ngFor="let devoir of liste_devoir_non_rendu" class="custom-card">
-    <mat-card-header>
-      <div mat-card-avatar class="custom-header-image"></div>
-      <mat-card-title>{{ devoir.nom }}</mat-card-title>
-      <mat-card-subtitle>Date rendu : {{ devoir.dateDeRendu | date: 'dd MMMM yyyy' }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="./assets/img/devoir.png" width="150" height="150" alt="Photo d'un Shiba Inu">
-    <mat-card-actions>
-      <button mat-button [ngClass]="{'rendre': !isDevoirRendu(devoir), 'rendu': isDevoirRendu(devoir)}" [disabled]="isDevoirRendu(devoir)" (click)="devoir._id && RendreDevoir(devoir._id)">
-        {{ isDevoirRendu(devoir) ? 'Devoir rendu' : 'Rendre le devoir' }}
-        <mat-icon *ngIf="isDevoirRendu(devoir)">check</mat-icon>
-      </button>
-      
-    </mat-card-actions>
-  </mat-card>
+<div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0; else noDevoirMessage">
+  <div class="custom-card-container">
+    <mat-card *ngFor="let devoir of liste_devoir_non_rendu" class="custom-card">
+      <mat-card-header>
+       <img class="user-photo" [src]="URL_IMAGE + '/' + photo_matiere" alt="Photo de l'utilisateur" style="background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  transition: transform 0.3s;">
+        <mat-card-title>{{ devoir.nom }}</mat-card-title>
+        <mat-card-subtitle>Date rendu : {{ devoir.dateDeRendu | date: 'dd MMMM yyyy' }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="./assets/img/devoir.png" width="150" height="150" alt="Photo d'un Shiba Inu">
+      <mat-card-actions>
+      <button mat-button 
+        [ngClass]="{'rendre': !isDevoirRendu(devoir), 'rendu': isDevoirRendu(devoir)}" 
+        (click)="handleClick(devoir)">
+    {{ isDevoirRendu(devoir) ? 'Devoir rendu' : 'Rendre le devoir' }}
+    <mat-icon *ngIf="isDevoirRendu(devoir)">check</mat-icon>
+</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div class="paginator-container">
+    <mat-paginator [length]="total"
+    [pageSize]="limit"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="handlePageEvent($event)"
+    aria-label="Select page"></mat-paginator>
+  </div>
 </div>
 <ng-template #noDevoirMessage>
   <p>Aucun devoir pour le moment.</p>

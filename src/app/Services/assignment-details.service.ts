@@ -36,5 +36,9 @@ export class AssignmentDetailsService {
     return this.http.get<any>(this.uri + "/DevoirNonRenduProf/" + id + "/" + idp);
   }
 
+  getAssignmentsRenduEleveDetail(idu: string,ida: string): Observable<any> {
+    return this.http.get<any>(`${this.uri}/information/${idu}/${ida}`);
+  }
+
 
 }

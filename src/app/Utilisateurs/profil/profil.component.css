@@ -1,88 +1,89 @@
-.identity{
-    width: 50px;
-    height: 50px;
-    font-size: 50px;
+.user-card {
+  width: 600px; /* Limite la largeur pour la lisibilité */
+  margin: 50px auto; /* Centrage vertical et horizontal */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #ffffff; /* Fond blanc pour la carte */
+  transition: box-shadow 0.3s;
 }
 
-
-.user-card {
-  width: 500px; /* ajuste la largeur de la carte selon tes besoins */
-  margin: 30px auto; /* centre la carte horizontalement avec un espacement en haut et en bas */
+.user-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  margin: 15px; /* ajoute un espacement autour de la zone utilisateur */
+  margin-bottom: 20px; /* Espacement avant le formulaire */
 }
 
 .user-photo {
-  width: 150px; /* ajuste la largeur de la photo selon tes besoins */
-  height: 150px; /* ajuste la hauteur de la photo selon tes besoins */
-  border-radius: 50%; /* arrondit les coins pour créer un effet de cercle */
-  margin-right: 20px; /* ajoute un espacement à droite de la photo */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px; /* Espacement entre la photo et les détails */
 }
 
-.user-details {
-  flex: 1; /* permet au contenu de prendre autant d'espace que possible */
+.user-details h2 {
+  margin: 0;
+  color: #333; /* Gris foncé pour le texte */
+}
+
+.user-details p {
+  color: #666; /* Gris plus clair pour l'email */
+  margin: 5px 0 0; /* Espacement au-dessus de l'email */
 }
 
 .user-form {
   display: flex;
   flex-direction: column;
-  margin: 15px; /* ajoute un espacement autour du formulaire */
 }
 
 .form-field {
-  width: 100%; /* prend toute la largeur disponible */
-  margin-bottom: 15px; /* espace entre les champs */
-}
-
-.btn {
-  align-self: center; /* aligne le bouton au centre horizontalement */
-  margin-top: 20px; /* ajoute un espacement en haut du bouton */
-}
-
-mat-form-field {
-  margin-right: 12px;
-}
-
-/* Style du toast de succès */
-.toast-success {
-  background-color: #4caf50; /* Couleur de fond verte */
-  color: white; /* Couleur du texte en blanc */
-}
-
-/* Style du toast d'erreur */
-.toast-error {
-  background-color: #f44336; /* Couleur de fond rouge */
-  color: white; /* Couleur du texte en blanc */
+  margin-bottom: 20px; /* Espacement entre les champs de formulaire */
 }
 
 .file-upload {
-  position: relative;
-  display: inline-block;
-}
-
-.file-input {
-  position: absolute;
-  font-size: 100px;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .file-label {
-  background-color: green;
+  background-color: #00889e; /* Bleu pour le bouton de chargement de fichier */
   color: white;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
-  display: inline-block;
+  transition: background-color 0.3s;
 }
-
 
 .file-label:hover {
-  background-color: #0056b3;
+  background-color: #006c7f; /* Assombrir le bouton au survol */
 }
+
+.file-input {
+  display: none; /* Cache l'input type file */
+}
+
+#file-name {
+  margin-left: 10px;
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  background-color: #00889e;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #006c7f; /* Changement de couleur au survol */
+}
+
+

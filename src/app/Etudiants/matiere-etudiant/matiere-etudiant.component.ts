@@ -5,11 +5,12 @@ import { MatieresService } from '../../Services/matieres.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { Router } from '@angular/router';
+import {MatPaginatorModule,PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-matiere-etudiant',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule,CommonModule],
+  imports: [MatCardModule, MatButtonModule,CommonModule,MatPaginatorModule],
   templateUrl: './matiere-etudiant.component.html',
   styleUrl: './matiere-etudiant.component.css'
 })
@@ -17,23 +18,36 @@ export class MatiereEtudiantComponent {
 
 matieres: Matieres[] = [];
 URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+page: number = 0;
+limit: number = 10;
+total: number = 0;
+
   constructor(private matiereService: MatieresService,private router: Router) { }
 
   ngOnInit(): void {
-      this.getMatiere();    
-  }
+    this.getMatiere(this.page, this.limit);    
+}
 
-  getMatiere(){
-        this.matiereService.getAllMatiereEtudiant().subscribe(
-          (response: Matieres[]) => {
-            this.matieres = response;
-            console.log(this.matieres);
-          },
-          (error) => {
-            console.error('Une erreur est survenue lors de la récupération des données matiere :', error);
-          }
-        );
-  }
+getMatiere(page: number, limit: number) {
+    this.matiereService.getAllMatiereEtudiant(page, limit).subscribe(
+        (response: any) => { // Supposons que le backend renvoie un objet avec total et matieres
+            console.log("Données reçues:", response);
+            this.matieres = response.matieres;
+            this.total = response.total; // Mettre à jour total avec la valeur retournée par le backend
+        },
+        (error) => {
+            console.error('Erreur lors de la récupération des données matière :', error);
+        }
+    );
+}
+
+handlePageEvent(event: PageEvent) {
+    this.limit = event.pageSize;
+    this.page = event.pageIndex; // Assurez-vous de commencer à 0 si le backend commence à 1
+    this.getMatiere(this.page + 1, this.limit); // Ajoutez 1 pour correspondre à la pagination backend
+}
+
+  
 
  voirDetail(matiereId: string | undefined) {
   if (matiereId) {

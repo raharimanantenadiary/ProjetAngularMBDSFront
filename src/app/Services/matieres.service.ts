@@ -12,6 +12,10 @@ export class MatieresService {
 
   private baseUrl = 'http://localhost:8010/api/matieres';
 
+  getAllMatiereEtudiant(page: number, limit: number): Observable<Matieres[]> {
+    return this.http.get<Matieres[]>(`${this.baseUrl}?page=${page}&limit=${limit}`);
+  }
+
   getMatiereByProf(id: string): Observable<any> {
     return this.http.get<any>(this.baseUrl+ "/byProf/" +id);
   }
@@ -29,9 +33,8 @@ export class MatieresService {
     return this.http.put<any>(`${this.baseUrl}`, matiere);
   }
 
-  getAllMatiereEtudiant(): Observable<Matieres[]> {
-    return this.http.get<Matieres[]>(this.baseUrl);
-  }
+  
+  
 
   supprimerMatiere(matiereId: string): Observable<any> {
     const url = `${this.baseUrl}/supprimer`;

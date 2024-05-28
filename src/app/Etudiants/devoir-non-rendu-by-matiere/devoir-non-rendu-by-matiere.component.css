@@ -1,26 +1,26 @@
 .custom-card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Alignement horizontal */
+  justify-content: space-between; /* Ajustement pour bien répartir les cartes */
   gap: 20px;
 }
 
 .custom-card {
-  width: 300px; 
+  flex: 0 1 calc(20% - 20px); /* calcule la largeur pour 5 cartes par ligne, en soustrayant le gap */
   height: 400px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   padding: 20px;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .custom-card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Légère élévation au survol */
 }
 
 .custom-header-image {
-  background-image: url('https://via.placeholder.com/150');
   background-size: cover;
   background-position: center;
   border-radius: 50%;
@@ -30,33 +30,9 @@
   transition: transform 0.3s;
 }
 
-.custom-header-image:hover {
-  transform: scale(1.1);
-}
 
-.mat-card-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.mat-card-subtitle {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.mat-card-image {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 20px;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-
-.mat-card-image:hover {
-  transform: scale(1.1);
+.mat-card-title, .mat-card-subtitle {
+  text-align: center; /* Centrage du texte pour les titres */
 }
 
 .mat-card-actions {
@@ -66,29 +42,106 @@
 }
 
 button {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  padding: 12px 24px;
-  border-radius: 25px;
   background-color: #00889e;
-  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .custom-card {
+    flex: 0 1 calc(25% - 20px); /* 4 cartes par ligne sur les écrans moyens */
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    flex: 0 1 calc(33.33% - 20px); /* 3 cartes par ligne sur les écrans plus petits */
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-card {
+    flex: 0 1 calc(50% - 20px); /* 2 cartes par ligne sur les très petits écrans */
+  }
+}
+
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style global du dialogue */
+.mat-dialog-container {
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Animation de glissement */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Titre du dialogue */
+mat-dialog-title {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Contenu du dialogue */
+mat-dialog-content {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Boutons d'action dans le dialogue */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.rendre {
+  background-color: #1d48e2; 
+  color: white;
+}
+
+.rendu {
+  background-color: #4CAF50; 
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #006c7f;
+  opacity: 0.9; /* Effet léger au survol pour tous les boutons */
 }
 
-.rendre{
-  background-color: rgba(0, 166, 0, 0.807);
-  color: white;
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
-.rendu{
-  background-color: rgb(112, 158, 112);
-  color: white;
-  padding-left: 10px;
-  padding-right: 20px;
+
+.custom-dialog-container .mat-dialog-container {
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }

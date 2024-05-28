@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Assignment } from '../Models/assignment.model';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { LoggingService } from '../Shared/logging.service';
+import { LoggingService } from '../shared/logging.service';
 import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +37,10 @@ export class AssignmentsService {
   getAssignmentByMatiereByProf(idm: string, idp: string, page: number, limit: number): Observable<any> {
     return this.http.get<any>(`${this.uri}/byMatiere/${idm}/${idp}?page=${page}&limit=${limit}`);
   }
+  getAssignmentsEleveByMatiere(idm: string, idp: string, page: number = 1, limit: number = 10): Observable<any> {
+    return this.http.get<any>(`${this.uri}/eleve/byMatiere/${idm}/${idp}?page=${page}&limit=${limit}`);
+}
 
-  getAssignmentsEleveByMatiere(idm: string,idp:string):Observable<any> {
-    return this.http.get<any>(this.uri + "/eleve/byMatiere/" + idm + "/" + idp)
-  }
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
@@ -74,6 +75,8 @@ export class AssignmentsService {
   getAssignmentsNonRenduEleve(id: string): Observable<Assignment[]> {
     return this.http.get<Assignment[]>(`${this.uri}/NonRenduEleve/${id}`);
   }
+
+ 
 
 
 }

@@ -1,88 +1,73 @@
-.identity{
-    width: 50px;
-    height: 50px;
-    font-size: 50px;
+.matiere-details {
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-
 .user-card {
-  width: 500px; /* ajuste la largeur de la carte selon tes besoins */
-  margin: 30px auto; /* centre la carte horizontalement avec un espacement en haut et en bas */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  margin: 15px; /* ajoute un espacement autour de la zone utilisateur */
+  margin-bottom: 20px;
 }
 
 .user-photo {
-  width: 150px; /* ajuste la largeur de la photo selon tes besoins */
-  height: 150px; /* ajuste la hauteur de la photo selon tes besoins */
-  border-radius: 50%; /* arrondit les coins pour créer un effet de cercle */
-  margin-right: 20px; /* ajoute un espacement à droite de la photo */
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
 }
 
-.user-details {
-  flex: 1; /* permet au contenu de prendre autant d'espace que possible */
+.user-details h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
 }
 
 .user-form {
-  display: flex;
-  flex-direction: column;
-  margin: 15px; /* ajoute un espacement autour du formulaire */
+  width: 100%;
 }
 
 .form-field {
-  width: 100%; /* prend toute la largeur disponible */
-  margin-bottom: 15px; /* espace entre les champs */
-}
-
-.btn {
-  align-self: center; /* aligne le bouton au centre horizontalement */
-  margin-top: 20px; /* ajoute un espacement en haut du bouton */
-}
-
-mat-form-field {
-  margin-right: 12px;
-}
-
-/* Style du toast de succès */
-.toast-success {
-  background-color: #4caf50; /* Couleur de fond verte */
-  color: white; /* Couleur du texte en blanc */
-}
-
-/* Style du toast d'erreur */
-.toast-error {
-  background-color: #f44336; /* Couleur de fond rouge */
-  color: white; /* Couleur du texte en blanc */
+  width: 100%;
 }
 
 .file-upload {
-  position: relative;
-  display: inline-block;
-}
-
-.file-input {
-  position: absolute;
-  font-size: 100px;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .file-label {
-  background-color: green;
+  background-color: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  display: inline-block;
+  margin-right: 10px;
 }
 
+.file-input {
+  display: none;
+}
 
-.file-label:hover {
-  background-color: #0056b3;
+#file-name {
+  flex-grow: 1;
+}
+
+.btn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.no-matiere-message {
+  text-align: center;
+  color: #666;
+  font-size: 1.2rem;
+  margin-top: 50px;
 }
