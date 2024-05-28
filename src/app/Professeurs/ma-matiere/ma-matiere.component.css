@@ -1,85 +1,53 @@
 
-.h1 {
-  margin-top: 20px;
-  text-align: center;
-  color: #333;
-}
-
 .example-card {
-  max-width: 500px; /* Ajusté pour une meilleure visibilité */
-  margin: 20px auto; /* Centrer la carte */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ajout d'une légère ombre pour la profondeur */
+  max-width: 250px;
+  /* margin: 0 auto; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
 }
 
-.matiere-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-}
+  
+  .matiere-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .titre-devoir {
+    margin-right: 10px;
+  }
+  
+  .menu-button {
+    margin-left: auto;
+    margin-top: 0px;
+  }
+  
 
-.matiere-nom {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.menu-button {
-  margin-left: auto;
-}
+  .card-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+  }
+  
+  .example-card {
+    flex-basis: calc(33.33% - 20px); 
+    margin-bottom: 20px; 
+    margin-right: 20px; 
+  }
+  
+  .matiere-header {
+    display: flex;
+    flex-direction: column;
+  }
 
 .spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.user-card {
-  max-width: 300px;
-  margin: 20px auto; /* Centrer la carte pour la création */
-  padding: 20px;
+.example-header-image{
+    border-radius: 50%; 
 }
 
-.user-info {
-  display: flex;
-  justify-content: center; /* Centrer l'image de l'utilisateur */
-}
-
-.user-photo {
-  width: 150px;
-  height: 150px; /* Fixer les dimensions pour la consistance */
-  border-radius: 50%; /* Rendre l'image circulaire */
-}
-
-.user-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-field {
-  margin: 10px 0;
-}
-
-.file-upload {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.file-label {
-  background-color: #007bff;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.file-input {
-  display: none;
-}
-
-.btn {
-  margin-top: 20px;
-  width: 100%;
-}
 
