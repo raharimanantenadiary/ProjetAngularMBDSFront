@@ -9,15 +9,16 @@
 
     <mat-form-field class="example-full-width">
       <mat-label class="example-label">Note</mat-label>
-      <input matInput type="number" placeholder="Note" [formControl]="noteFormControl">
+      <input matInput type="number" placeholder="Note" [formControl]="noteFormControl" min="1">
     </mat-form-field>
+    
     <mat-form-field class="example-full-width">
       <mat-label class="example-label">Remarque</mat-label>
       <textarea matInput placeholder="Remarque" [formControl]="remarqueFormControl"></textarea>
     </mat-form-field>
     
+    <div *ngIf="errorMessage" class="error-message" style="padding-bottom: 15px; margin-top: -10px; color: red;">{{ errorMessage }}</div>
+    
     <button mat-flat-button color="primary" class="btn" type="submit">Soumettre</button>
   </form>
-
-
 </div>

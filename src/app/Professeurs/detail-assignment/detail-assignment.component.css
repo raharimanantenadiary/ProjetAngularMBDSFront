@@ -1,181 +1,150 @@
-.example-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px; /* Espace entre les cartes */
+.h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
 }
-
-.example-list-2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px; /* Espace entre les cartes */
-}
-
-.example-list mat-card {
-    flex: 1 1 calc(50% - 16px); /* 50% de largeur moins l'espace entre les cartes */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 16px; /* Ajoute un espace sous les cartes */
-    box-sizing: border-box;
-}
-
-.example-list-2 mat-card {
-    flex: 1 1 calc(50% - 16px); /* 50% de largeur moins l'espace entre les cartes */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 16px; /* Ajoute un espace sous les cartes */
-    box-sizing: border-box;
-}
-
-.spinner-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
+  
 .details-container {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 20px; /* espace entre les colonnes */
-    margin-top: 20px;
-    height: 400px;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
-
+  
 .col-left,
 .col-right {
     flex: 1;
 }
-
+  
 .col-right {
-    width: 750px;
-    margin-right: 20px;
     padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
 }
-
-.col-right p{
-    font-size: 20px;
+  
+.col-right p {
+    font-size: 18px;
+    color: #555;
 }
-
-.col-left {
-    height: 400px;
-    width: 125px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+  
+.col-left img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.img {
-    width: 100%;
-    height: 100%;
+  
+.section-title {
+    text-decoration: underline;
+    color: #333;
+    margin-bottom: 20px;
 }
-
-h3 {
-    margin-top: 0;
+  
+.sub-section-title {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 10px;
 }
-
-.example-container {
-    width: 620px;
-    max-width: 100%;
-    margin: 0 25px 25px 0;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.example-container-r {
-    width: 620px;
-    max-width: 100%;
-    margin-top: 2px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.example-box {
-    padding: 20px 10px;
-    border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
+  
+.example-containers {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
-    cursor: move;
-    background: white;
-    font-size: 14px;
+    align-items: flex-start;
+    gap: 20px;
+    width: 1100px;
+}
+  
+.example-container,
+.example-container-r {
+    flex: 1;
+    margin-bottom: 20px;
 }
 
-.cdk-drag-preview {
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.cdk-drag-placeholder {
-    opacity: 0;
-}
-
-.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-box:last-child {
-    border: 2px dashed #ccc; /* Bordure en pointillés pour indiquer la zone de dépôt */
+.example-viewport-l {
+    height: 750px;
+    width: 505px;
+    background-color: #fafafa;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    overflow-y: auto;
 }
+  
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+.example-viewport {
+    height: 500px;
+    width: 505px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    overflow-y: auto;
 }
-
+  
+.example-list,
+.example-list-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+  
+.example-list mat-card,
+.example-list-2 mat-card {
+    flex: 1 1 calc(48% - 16px);
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+  
+.example-list mat-card:hover,
+.example-list-2 mat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+  
+.example-header-image img {
+    border-radius: 50%;
+}
+  
 .empty-box {
-    width: 100%;
-    height: 200px; /* Ajustez la hauteur selon vos besoins */
-    border: 2px dashed #ccc; /* Bordure en pointillés pour indiquer la zone de dépôt */
-    border-radius: 8px;
-    background-color: #f9f9f9; /* Couleur de fond pour distinguer la zone vide */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
     text-align: center;
 }
-
+  
 .large-icon {
     font-size: 56px;
     color: #ccc;
 }
-
-.huhu {
-    margin-top: 0px;
-    width: 50px;
-}
-
+  
 .empty-text {
     font-size: 16px;
     color: #999;
-    margin-top: 10px; /* Espace entre l'icône et le texte */
+    margin-top: 10px;
 }
-
-.card-left{
-    width: 50px;
+  
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-
+  
+.card-left {
+    width: 100%;
+}
+  
 .bordered-right {
-    border-left: 1px dashed #ccc; /* Bordure pointillée sur le côté droit */
-    padding-left: 20px; /* Espace entre la bordure et le contenu */
-    height: 100%; /* Hauteur égale à 100% de la hauteur du conteneur parent */
-}
-
-
-.example-viewport {
-  height: 450px;
-  width: 620px;
-  border: 1px solid black;
-  background-color: #f0f0f0; 
-  transition: background-color 0.3s; 
-}
-
-.example-viewport:hover {
-  background-color: #ccc; 
+    border-left: 1px dashed #ccc;
+    padding-left: 20px;
 }
