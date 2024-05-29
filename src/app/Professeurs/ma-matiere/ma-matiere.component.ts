@@ -4,7 +4,7 @@ import { Matieres } from '../../Models/matieres.model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
+import {AssignmentDetailsService} from '../../Services/assignment-details.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { FormControl, Validators } from '@angular/forms';
 
@@ -34,6 +35,7 @@ import { FormControl, Validators } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    MatDividerModule
   ],
   templateUrl: './ma-matiere.component.html',
   styleUrl: './ma-matiere.component.css',
@@ -41,21 +43,29 @@ import { FormControl, Validators } from '@angular/forms';
 export class MaMatiereComponent {
   URL_IMAGE: string = 'http://localhost:8010/api/uploads';
   id_utilisateur = '';
+  total_devoir_rendu: number = 0;
+  total_non_rendu: number = 0;
+  total_devoir: number = 0;
   matiere: Matieres | null = null;
   loading: boolean = true;
   nom: string = '';
   photo: File | null = null;
   durationInSeconds = 3;
+  statistique: any;
 
   constructor(
     private router: Router,
     private matiereService: MatieresService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private assignmentDetailService: AssignmentDetailsService
   ) {}
 
   ngOnInit(): void {
     this.getMatiereByProf();
+    this.getStatistique();
   }
+
+ 
 
   getMatiereByProf() {
     const utilisateurData = localStorage.getItem('utilisateur');
@@ -81,12 +91,16 @@ export class MaMatiereComponent {
     }
   }
 
+
+
+
   supprimerMatiere(matiereId: string | undefined): void {
     if (matiereId) {
       this.matiereService.supprimerMatiere(matiereId).subscribe(
         () => {
           console.log('Matière supprimée avec succès');
           this.getMatiereByProf();
+          this.getStatistique();
         },
         (error) => {
           console.error('Erreur lors de la suppression de la matière :', error);
@@ -99,6 +113,14 @@ export class MaMatiereComponent {
   }
 
   OnSubmit() {
+    if (!this.nom || !this.photo) {
+    this._snackBar.open('Veuillez remplir tous les champs et sélectionner une photo.', 'Fermer', {
+      duration: 3000,  // Temps en millisecondes avant que le snackbar ne disparaisse
+      panelClass: ['snackbar-error']  // Classe CSS pour le style d'erreur
+    });
+    return;  // Stop l'exécution si les conditions ne sont pas remplies
+  }
+  
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
@@ -153,4 +175,48 @@ export class MaMatiereComponent {
       }
     }
   }
+
+
+  getStatistique(){
+    const utilisateurData = localStorage.getItem('utilisateur');
+    if (utilisateurData) {
+      const utilisateur = JSON.parse(utilisateurData);
+      console.log(utilisateur);  
+      if (utilisateur && utilisateur._id) {
+        this.id_utilisateur = utilisateur._id;
+        console.log(this.id_utilisateur);  
+        this.matiereService.getMatiereByProf(this.id_utilisateur).subscribe(
+          (response: any) => {
+            this.matiere = response[0];
+            if(this.matiere){
+              console.log(this.matiere);  
+              const idMatiere = this.matiere._id;
+              if(idMatiere){
+                console.log(idMatiere);
+                this.assignmentDetailService.getStatistique(idMatiere,this.id_utilisateur).subscribe(
+                  (response: any) => {
+                    console.log(response)
+                    this.total_devoir = response.totalCount;
+                    this.total_non_rendu = response.nonRenduCount;
+                    this.total_devoir_rendu = response.renduCount;
+                  },
+                  (error) => {
+                    console.error('Une erreur est survenue lors de la récupération des données :', error);
+                  }
+                );
+              }
+            }
+          },
+          (error) => {
+            console.error('Une erreur est survenue lors de la récupération des données :', error);
+          }
+        ); 
+      }
+    }
+  }
+
+
+
+
+
 }

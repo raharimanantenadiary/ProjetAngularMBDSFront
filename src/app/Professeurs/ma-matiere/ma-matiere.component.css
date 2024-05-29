@@ -51,3 +51,157 @@
 }
 
 
+.h1 {
+  color: #2C3E50; /* Dark blue for better visibility */
+  margin: 10px;
+}
+
+.example-card, .user-card {
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.example-card:hover, .user-card:hover {
+  transform: translateY(-5px);
+}
+
+.matiere-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.matiere-nom {
+  color: #34495E; /* A darker shade for text */
+}
+
+.menu-button {
+  color: #2980B9; /* Blue for the icon */
+}
+
+.spinner-container {
+  flex: 1 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.new-matiere, .devoir-info {
+  flex: 1 100%;
+}
+
+.user-photo {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.file-label {
+  background-color: #3498DB; /* Brighter blue */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: #E74C3C; /* Red for buttons */
+  color: white;
+}
+
+
+.new-matiere {
+  width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  border-radius: 8px;
+}
+
+.h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.user-photo {
+  display: block;
+  margin: 10px auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover; /* Assure que l'image est bien proportionnée */
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-top: 10px;
+}
+
+.file-upload {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-label {
+  background-color: #1E88E5;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.file-label:hover {
+  background-color: #1565C0; /* Un peu plus foncé lors du survol */
+}
+
+.btn {
+  margin-top: 20px;
+  background-color: #00889e; /* Vert material */
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.snackbar-error {
+  background-color: #D32F2F;
+  color: white;
+}
+
+.toast-success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+.devoir-card {
+  width: 300px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Specific background colors for each type of card */
+.devoir-card.total {
+  background-color: #E3F2FD; /* Light blue for Total */
+}
+
+.devoir-card.total-rendu {
+  background-color: #C8E6C9; /* Light green for Total rendu */
+}
+
+.devoir-card.total-non-rendu {
+  background-color: #FFCDD2; /* Light red for Total non rendu */
+}

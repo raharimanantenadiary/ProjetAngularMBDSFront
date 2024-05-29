@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import { Assignment } from '../../Models/assignment.model';
 import { AssignmentsService } from '../../Services/assignments.service';
 import { AssignmentDetailsService } from '../../Services/assignment-details.service';
@@ -13,11 +13,12 @@ import { AssignmentDetails } from '../../Models/assignment-details.model';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AssignmentFormulaireComponent } from '../assignment-formulaire/assignment-formulaire.component';
 import { MatDialog } from '@angular/material/dialog';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-detail-assignment',
   standalone: true,
-  imports: [MatButtonModule,MatIconModule,MatCardModule,MatProgressSpinnerModule,CommonModule,RouterModule,CdkDropList, CdkDrag],
+  imports: [MatButtonModule,MatIconModule,MatCardModule,MatProgressSpinnerModule,CommonModule,RouterModule,CdkDropList, CdkDrag,ScrollingModule],
   templateUrl: './detail-assignment.component.html',
   styleUrl: './detail-assignment.component.css'
 })
@@ -31,7 +32,7 @@ export class DetailAssignmentComponent {
   liste_devoir_rendu: AssignmentDetails[] = [];
   liste_devoir_non_rendu: AssignmentDetails[] = [];
   prof: Utilisateurs | null = null;
-
+  
   constructor(public dialog: MatDialog,private assignmentService: AssignmentsService, private assignmentDetailService: AssignmentDetailsService, private route:ActivatedRoute){}
 
   ngOnInit(): void {

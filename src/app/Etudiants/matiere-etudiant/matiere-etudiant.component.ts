@@ -31,7 +31,7 @@ total: number = 0;
 getMatiere(page: number, limit: number) {
     this.matiereService.getAllMatiereEtudiant(page, limit).subscribe(
         (response: any) => { // Supposons que le backend renvoie un objet avec total et matieres
-            console.log("Données reçues:", response);
+            console.log(response);
             this.matieres = response.matieres;
             this.total = response.total; // Mettre à jour total avec la valeur retournée par le backend
         },

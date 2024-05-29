@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="dialog-title">Devoir Rendu</h1>
 <div mat-dialog-content class="dialog-content">
   <div *ngIf="note && remarque; else correctionInProgress">
-    <p><strong>Note :</strong> {{ note }}</p>
+    <p><strong>Note :</strong> {{ note }} /20 </p>
     <p><strong>Remarque :</strong> {{ remarque }}</p>
   </div>
   <ng-template #correctionInProgress>

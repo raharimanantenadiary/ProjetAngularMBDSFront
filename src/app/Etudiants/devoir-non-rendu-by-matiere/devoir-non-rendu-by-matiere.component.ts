@@ -32,7 +32,7 @@ export class DevoirNonRenduByMatiereComponent {
   durationInSeconds = 3;
   page: number = 0;
   limit: number = 10;
-  total: number = 0;
+  tot: number = 0;
 
   constructor(private dialog: MatDialog,private _snackBar: MatSnackBar,private assignementDetailService: AssignmentDetailsService,private assignementService: AssignmentsService,private router: Router,private route:ActivatedRoute,private matiereService: MatieresService) { }
   ngOnInit(): void {
@@ -53,8 +53,9 @@ export class DevoirNonRenduByMatiereComponent {
       );
       this.assignementService.getAssignmentsEleveByMatiere(idMatiere, this.id_utilisateur, page, limit).subscribe(
         (response: any) => {
-          this.liste_devoir_non_rendu = response.results;
-          this.total = response.totalCount;
+          console.log("ato",response)
+          this.liste_devoir_non_rendu = response.assignments;
+          this.tot = response.totalCount;
         },
         (error) => {
           console.error('Erreur lors de la récupération des devoirs :', error);

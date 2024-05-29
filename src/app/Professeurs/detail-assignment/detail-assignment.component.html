@@ -21,39 +21,45 @@
 
     <div class="example-container">
       <h3>Devoirs pas encore notés</h3>
-      <div
-        cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="liste_devoir_non_rendu"
-        [cdkDropListConnectedTo]="[doneList]"
-        [cdkDropListEnterPredicate]="noReturnPredicate" 
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <mat-card *ngFor="let devoir of liste_devoir_non_rendu" cdkDrag class="card-left">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image">
-                <img mat-card-image [src]="URL_IMAGE + '/' + devoir.auteur.photo" alt="Auteur" width="45" height="45">
-            </div>
-            <mat-card-title>{{ devoir.auteur.nom }}</mat-card-title>
-            <mat-card-subtitle>{{ devoir.auteur.mail}}</mat-card-subtitle>
-          </mat-card-header>  
-          <img mat-card-image [src]="URL_IMAGE + '/' + devoir.assignment.matiere.photo" alt="Couverture de la matière" height="250">
-          <mat-card-content>
-            <div class="assignment-container">
-              <div class="assignment-header">
-                <h3 class="titre-devoir">{{ devoir.assignment.nom }}</h3>
-                <p class="date-rendu"><u>Date de rendu:</u> {{ devoir.assignment.dateDeRendu | date }}</p>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+      <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="liste_devoir_non_rendu"
+    [cdkDropListConnectedTo]="[doneList]"
+    [cdkDropListEnterPredicate]="noReturnPredicate"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    
+    <mat-card *cdkVirtualFor="let devoir of liste_devoir_non_rendu; templateCacheSize: 0" cdkDrag class="card-left">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+            <img mat-card-image [src]="URL_IMAGE + '/' + devoir.auteur.photo" alt="Auteur" width="45" height="45">
+        </div>
+        <mat-card-title>{{ devoir.auteur.nom }}</mat-card-title>
+        <mat-card-subtitle>{{ devoir.auteur.mail }}</mat-card-subtitle>
+      </mat-card-header>  
+      <img mat-card-image [src]="URL_IMAGE + '/' + devoir.assignment.matiere.photo" alt="Couverture de la matière" height="250">
+      <mat-card-content>
+        <div class="assignment-container">
+          <div class="assignment-header">
+            <h3 class="titre-devoir">{{ devoir.assignment.nom }}</h3>
+            <p class="date-rendu"><u>Date de rendu:</u> {{ devoir.assignment.dateDeRendu | date }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</cdk-virtual-scroll-viewport>
+
     </div>
   
 
   <div class="example-container bordered-right"> <!-- Ajoutez la classe bordered-right ici -->
+  
   <div class="example-container-r">
     <h3>Devoirs notés (rendu)</h3>
+    <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
     <div
       cdkDropList
       #doneList="cdkDropList"
@@ -85,6 +91,11 @@
         </mat-card-content>
       </mat-card>
     </div>
+</cdk-virtual-scroll-viewport>
   </div>
+
+
+
+
 </div>
 

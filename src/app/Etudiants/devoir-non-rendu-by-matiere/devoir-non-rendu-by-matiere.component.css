@@ -1,13 +1,13 @@
 .custom-card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Ajustement pour bien répartir les cartes */
-  gap: 20px;
+  justify-content: flex-start; /* Ajustement pour l'espacement équitable */
+  gap: 10px; /* Espace entre les cartes */
 }
 
 .custom-card {
   flex: 0 1 calc(20% - 20px); /* calcule la largeur pour 5 cartes par ligne, en soustrayant le gap */
-  height: 400px;
+  height: 375px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -15,20 +15,12 @@
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
+
 .custom-card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px); /* Légère élévation au survol */
 }
 
-.custom-header-image {
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 20px;
-  transition: transform 0.3s;
-}
 
 
 .mat-card-title, .mat-card-subtitle {
@@ -113,7 +105,7 @@ mat-dialog-actions {
 
 
 .rendre {
-  background-color: #1d48e2; 
+  background-color: #00889e; 
   color: white;
 }
 
