@@ -17,7 +17,7 @@ import {MatPaginatorModule,PageEvent } from '@angular/material/paginator';
 export class MatiereEtudiantComponent {
 
 matieres: Matieres[] = [];
-URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
 page: number = 0;
 limit: number = 10;
 total: number = 0;

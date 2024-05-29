@@ -8,7 +8,7 @@ import { Utilisateurs } from '../Models/utilisateurs.model';
 })
 export class UtilisateursService {
 
-private baseUrl = 'http://localhost:8010/api/utilisateurs';
+private baseUrl = 'https://projetangularmbdsback.onrender.com/api/utilisateurs';
 
 
   constructor(private http: HttpClient) { }

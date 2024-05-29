@@ -19,7 +19,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class AssignmentNonRenduComponentEtudiant {
 
  liste_devoir_non_rendu: Assignment[] = [];
- URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+ URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
  loading: boolean = true;
 
   page: number = 1;

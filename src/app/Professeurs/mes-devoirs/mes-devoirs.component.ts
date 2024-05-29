@@ -32,7 +32,7 @@ import { DeleteAssignmentComponent } from '../delete-assignment/delete-assignmen
   styleUrl: './mes-devoirs.component.css'
 })
 export class MesDevoirsComponent {
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   id_utilisateur = '';
   assignments: Assignment[] = [];
   matiere: Matieres | null = null;

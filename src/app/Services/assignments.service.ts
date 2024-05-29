@@ -15,7 +15,7 @@ export class AssignmentsService {
   constructor(private logService:LoggingService,
               private http:HttpClient) { }
 
-  uri = 'http://localhost:8010/api/assignments';
+  uri = 'https://projetangularmbdsback.onrender.com/api/assignments';
 
 
   getAssignments():Observable<Assignment[]> {

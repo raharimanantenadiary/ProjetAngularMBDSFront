@@ -24,7 +24,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 })
 export class DetailAssignmentComponent {
 
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   id_utilisateur = '';
   idAssignment = '';
   assignment: Assignment | null = null;
