@@ -25,7 +25,7 @@
       <p>Aucun professeur disponible !</p>
     </div>
 
-    <div *ngIf="prof && prof.length > 0" class="pagination-controls">
+  <div *ngIf="prof && prof.length > 0" class="pagination-controls">
     <button mat-raised-button color="primary" (click)="changePage(page - 1)" [disabled]="page <= 1">Précédent</button>
     <span>Page {{ page }} sur {{ totalPages }}</span>
     <button mat-raised-button color="primary" (click)="changePage(page + 1)" [disabled]="page >= totalPages">Suivant</button>

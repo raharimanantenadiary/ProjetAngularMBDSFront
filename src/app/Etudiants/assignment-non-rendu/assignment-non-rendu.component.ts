@@ -22,6 +22,10 @@ export class AssignmentNonRenduComponentEtudiant {
  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
  loading: boolean = true;
 
+  page: number = 1;
+  limit: number = 6;
+  totalPages: number = 1;
+
  constructor(private assignementService: AssignmentsService,private router: Router) { }
 
  ngOnInit(): void {
@@ -33,22 +37,28 @@ export class AssignmentNonRenduComponentEtudiant {
   const utilisateurData = localStorage.getItem('utilisateur');
   if (utilisateurData) {
     const utilisateur = JSON.parse(utilisateurData);
-    if (utilisateur && utilisateur._id) { 
-      this.assignementService.getAssignmentsNonRenduEleve(utilisateur._id).subscribe(
+    if (utilisateur && utilisateur._id) {
+      this.assignementService.getAssignmentsNonRenduEleve(utilisateur._id, this.page, this.limit).subscribe(
         (response: any) => {
-          this.liste_devoir_non_rendu = response;
-          console.log(this.liste_devoir_non_rendu);
+          this.liste_devoir_non_rendu = response.assignments;
+          this.totalPages = response.totalPages;
           this.loading = false;
         },
         (error) => {
           console.error('Une erreur est survenue lors de la récupération des données :', error);
           this.loading = false;
         }
-        );
+      );
     }
   }
 }
 
+changePage(newPage: number) {
+  if (newPage >= 1 && newPage <= this.totalPages) {
+    this.page = newPage;
+    this.getListeDevoirNonRendu();
+  }
+}
 
 
 

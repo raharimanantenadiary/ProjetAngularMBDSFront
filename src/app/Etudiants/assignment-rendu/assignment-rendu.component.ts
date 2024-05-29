@@ -18,11 +18,13 @@ import { AssignmentDetails } from '../../Models/assignment-details.model';
   styleUrl: './assignment-rendu.component.css'
 })
 export class AssignmentRenduComponentEleve {
-liste_devoir_rendu: Assignment[] = [];
-liste_details: AssignmentDetails[] = [];
- URL_IMAGE: string = 'http://localhost:8010/api/uploads';
- loading: boolean = true;
-
+  liste_devoir_rendu: Assignment[] = [];
+  liste_details: AssignmentDetails[] = [];
+  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  loading: boolean = true;
+  page: number = 1;
+  limit: number = 6;
+  totalPages: number = 1;
 
  constructor(private assignementService: AssignmentsService,private router: Router) { }
 
@@ -36,9 +38,11 @@ liste_details: AssignmentDetails[] = [];
   if (utilisateurData) {
     const utilisateur = JSON.parse(utilisateurData);
     if (utilisateur && utilisateur._id) { 
-      this.assignementService.getAssignmentsRenduEleve(utilisateur._id).subscribe(
+      this.assignementService.getAssignmentsRenduEleve(utilisateur._id, this.page, this.limit).subscribe(
         (response: any) => {
-          this.liste_devoir_rendu = response;
+          this.liste_devoir_rendu = response.assignments;
+          this.totalPages = response.totalPages;
+          this.loading = false;
           console.log("huhu: ",response);
           this.loading = false;
         },
@@ -48,6 +52,13 @@ liste_details: AssignmentDetails[] = [];
         }
         );
     }
+  }
+}
+
+changePage(newPage: number) {
+  if (newPage >= 1 && newPage <= this.totalPages) {
+    this.page = newPage;
+    this.getListeDevoirRendu();
   }
 }
 

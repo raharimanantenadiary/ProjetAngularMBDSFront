@@ -2,7 +2,7 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="!loading">
+<div *ngIf="!loading" class="huh">
     <h1 class="h1">Liste des devoirs non-rendus</h1>
     
     <div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0" class="card-container">
@@ -39,6 +39,12 @@
     
     <div *ngIf="!liste_devoir_non_rendu || liste_devoir_non_rendu.length === 0">
       <p>Aucun devoir disponible !</p>
+    </div>
+
+    <div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0" class="pagination-controls">
+      <button mat-raised-button color="primary" (click)="changePage(page - 1)" [disabled]="page <= 1">Précédent</button>
+      <span>Page {{ page }} sur {{ totalPages }}</span>
+      <button mat-raised-button color="primary" (click)="changePage(page + 1)" [disabled]="page >= totalPages">Suivant</button>
     </div>
   </div>
   

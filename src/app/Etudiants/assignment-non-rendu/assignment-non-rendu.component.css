@@ -4,11 +4,16 @@
     flex-wrap: wrap; 
     justify-content: flex-start; /* Ajuster la justification */
   }
+
+  .huh{
+    height: 1100px;
+  }
   
   .example-card {
     flex-basis: calc(33.33% - 20px); 
     margin-bottom: 20px; 
     margin-right: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .example-header-image{
