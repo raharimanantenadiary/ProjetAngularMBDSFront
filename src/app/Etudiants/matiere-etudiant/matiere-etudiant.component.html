@@ -5,7 +5,7 @@
   <div *ngFor="let matiere of matieres" class="example-card">
     <mat-card>
       <div class="card-header">
-        <img class="prof-avatar" [src]="URL_IMAGE + '/' + matiere.photo" alt="Photo du professeur">
+        <img class="prof-avatar" [src]="URL_IMAGE + '/' + matiere.photo" alt="Photo du professeur" width="400" height="400">
         <div class="card-title-section">
           <mat-card-title>{{ matiere.nom }}</mat-card-title>
           <mat-card-subtitle>Professeur: {{ matiere.prof.nom }}</mat-card-subtitle>

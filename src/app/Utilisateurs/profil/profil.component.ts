@@ -77,6 +77,14 @@ export class ProfilComponent {
 
 
 OnSubmit() {
+  if (!this.nom || this.nom.trim() === '') {
+    this._snackBar.open('Veuillez entrer un nom', 'Fermer', {
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['toast-error']
+    });
+    return; // Arrêter l'exécution si le nom n'est pas fourni
+  }
+  
   const formData = new FormData();
   formData.append('_id', this.id_utilisateur);
   formData.append('nom', this.nom);

@@ -25,6 +25,11 @@ export class AssignmentDetailsService {
     return this.http.get<any>(`${this.uri}/RenduProf/${id}/${idp}?page=${page}&limit=${limit}`);
   }
 
+
+  getStatistique(id: string, idp: string): Observable<any> {
+    return this.http.get<any>(`${this.uri}/statistique/${id}/${idp}`);
+  }
+
   getAssignmentNonRenduProf(id: string, idp: string, page: number, limit: number): Observable<any> {
     return this.http.get<any>(`${this.uri}/NonRenduProf/${id}/${idp}?page=${page}&limit=${limit}`);
   }

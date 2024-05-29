@@ -74,7 +74,7 @@ h3 {
 }
 
 .example-container {
-    width: 520px;
+    width: 620px;
     max-width: 100%;
     margin: 0 25px 25px 0;
     display: inline-block;
@@ -82,7 +82,7 @@ h3 {
 }
 
 .example-container-r {
-    width: 520px;
+    width: 620px;
     max-width: 100%;
     margin-top: 2px;
     display: inline-block;
@@ -165,4 +165,17 @@ h3 {
     border-left: 1px dashed #ccc; /* Bordure pointillée sur le côté droit */
     padding-left: 20px; /* Espace entre la bordure et le contenu */
     height: 100%; /* Hauteur égale à 100% de la hauteur du conteneur parent */
+}
+
+
+.example-viewport {
+  height: 450px;
+  width: 620px;
+  border: 1px solid black;
+  background-color: #f0f0f0; 
+  transition: background-color 0.3s; 
+}
+
+.example-viewport:hover {
+  background-color: #ccc; 
 }
