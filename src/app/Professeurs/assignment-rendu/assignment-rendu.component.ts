@@ -25,7 +25,7 @@ import { Assignment } from '../../Models/assignment.model';
 })
 export class AssignmentRenduComponent {
 
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   id_utilisateur = '';
   assignments: AssignmentDetails[] = []; 
   matiere: Matieres | null = null;

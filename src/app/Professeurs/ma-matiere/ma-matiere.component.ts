@@ -41,7 +41,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrl: './ma-matiere.component.css',
 })
 export class MaMatiereComponent {
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   id_utilisateur = '';
   total_devoir_rendu: number = 0;
   total_non_rendu: number = 0;

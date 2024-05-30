@@ -35,7 +35,7 @@ import {
 export class ProfilComponent {
   id_utilisateur = '';
   utilisateur: Utilisateurs | null = null;
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   message: string = ''; 
   nomFormControl = new FormControl('');
   mailFormControl = new FormControl('');

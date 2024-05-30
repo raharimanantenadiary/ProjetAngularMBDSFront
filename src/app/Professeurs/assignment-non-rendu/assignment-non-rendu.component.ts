@@ -24,7 +24,7 @@ import { DetailDevoirComponent } from '../detail-devoir/detail-devoir.component'
 })
 export class AssignmentNonRenduComponent implements OnInit {
 
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   id_utilisateur = '';
   assignments: AssignmentDetails[] = []; 
   matiere: Matieres | null = null;

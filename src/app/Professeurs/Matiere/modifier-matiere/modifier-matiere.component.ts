@@ -32,7 +32,7 @@ import {
   styleUrl: './modifier-matiere.component.css'
 })
 export class ModifierMatiereComponent {
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   matiere: any;
   nom: string = "";
   photo: File | null = null;

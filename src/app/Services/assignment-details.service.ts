@@ -9,9 +9,9 @@ export class AssignmentDetailsService {
 
   constructor(private http:HttpClient) {  }
 
-  uri = 'http://localhost:8010/api/assignmentsDetails';
-  uri_post = 'http://localhost:8010/api/assignmentDetails';
-  uri_new = 'http://localhost:8010/api/assignmentsDetails/new';
+  uri = 'https://projetangularmbdsback.onrender.com/api/assignmentsDetails';
+  uri_post = 'https://projetangularmbdsback.onrender.com/api/assignmentDetails';
+  uri_new = 'https://projetangularmbdsback.onrender.com/api/assignmentsDetails/new';
 
   postAssignementDetails(data: any): Observable<any> {
     return this.http.post<any>(this.uri_post, data);

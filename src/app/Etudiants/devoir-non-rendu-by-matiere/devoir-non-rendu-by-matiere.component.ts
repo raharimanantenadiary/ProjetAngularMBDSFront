@@ -23,7 +23,7 @@ import { DialogueRenduComponent } from '../../Etudiants/dialogue-rendu/dialogue-
   styleUrl: './devoir-non-rendu-by-matiere.component.css'
 })
 export class DevoirNonRenduByMatiereComponent {
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   liste_devoir_non_rendu: Assignment[] = [];
   titre_matiere: any;
   photo_matiere: any;

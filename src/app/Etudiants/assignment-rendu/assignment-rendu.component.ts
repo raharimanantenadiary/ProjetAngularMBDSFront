@@ -20,7 +20,7 @@ import { AssignmentDetails } from '../../Models/assignment-details.model';
 export class AssignmentRenduComponentEleve {
   liste_devoir_rendu: Assignment[] = [];
   liste_details: AssignmentDetails[] = [];
-  URL_IMAGE: string = 'http://localhost:8010/api/uploads';
+  URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   loading: boolean = true;
   page: number = 1;
   limit: number = 6;
