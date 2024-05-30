@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { Utilisateurs } from '../../Models/utilisateurs.model';
 import { UtilisateursService } from '../../Services/utilisateurs.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-assignment-formulaire',
@@ -32,7 +33,8 @@ export class AssignmentFormulaireComponent {
     private assignmentDetailService: AssignmentDetailsService,
     private utilisateurService: UtilisateursService,
     public dialogRef: MatDialogRef<AssignmentFormulaireComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar
   ) {
     this.selectedAssignment = data.assignment;
     this.auteurFormControl = new FormControl(this.selectedAssignment?.auteur?.nom || '');
@@ -46,7 +48,7 @@ export class AssignmentFormulaireComponent {
       return;
     }
     this.errorMessage = null;
-
+  
     const note = this.noteFormControl.value;
     const remarque = this.remarqueFormControl.value;
     const rendu = true;
@@ -54,7 +56,7 @@ export class AssignmentFormulaireComponent {
       this.selectedAssignment.note = note;
       this.selectedAssignment.remarque = remarque;
       this.selectedAssignment.rendu = rendu;
-
+  
       const emailPayload = {
         _id: this.selectedAssignment._id,
         auteur: this.selectedAssignment.auteur.mail,
@@ -72,18 +74,25 @@ export class AssignmentFormulaireComponent {
           <p>Professeur ${this.selectedAssignment.assignment.matiere.prof.mail}</p>
         `
       };
-
+  
       console.log("Détails mis à jour :", this.selectedAssignment);
       this.assignmentDetailService.postAssignementDetails(emailPayload).subscribe(
         (response) => {
           console.log('Détails d\'affectation mis à jour avec succès :', response);
-          this.dialogRef.close();
+          this.snackBar.open('Le devoir à été rendu avec succès', 'Fermer', {
+            duration: 3000,
+          });
+          this.dialogRef.close('refresh');
         },
         (error) => {
           console.error('Erreur lors de la mise à jour des détails de l\'affectation :', error);
+          this.snackBar.open('Erreur lors de la soumission du formulaire', 'Fermer', {
+            duration: 3000,
+          });
+          this.dialogRef.close('error');
         }
       );
     }
-    this.dialogRef.close('refresh');
   }
+  
 }

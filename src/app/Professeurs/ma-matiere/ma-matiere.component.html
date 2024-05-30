@@ -1,7 +1,5 @@
+
 <div style="display: flex; flex-wrap: nowrap; justify-content: space-between;">
-  <div *ngIf="loading" class="spinner-container">
-    <mat-spinner></mat-spinner>
-  </div>
 
   <div *ngIf="!loading && matiere; else newMatiere" class="matiere-info">
     <div class="new-matiere">

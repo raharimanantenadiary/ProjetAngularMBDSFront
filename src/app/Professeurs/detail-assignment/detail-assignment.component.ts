@@ -137,36 +137,36 @@ export class DetailAssignmentComponent {
     } else {
       const assignmentToMove = event.previousContainer.data[event.previousIndex];
       const assignmentSubmitted = await this.openFormPopup(assignmentToMove);
-
+  
       if (assignmentSubmitted) {
         transferArrayItem(
           event.previousContainer.data,
           event.container.data,
           event.previousIndex,
           event.currentIndex,
-          );
-        this.getAssignmentsNonRendu();
-        this.getAssignmentsRendu();
+        );
+        this.refreshList(); // Ajoutez ceci pour forcer le rafraîchissement des listes après la soumission
       }
     }
   }
-
+  
   openFormPopup(selectedAssignment: AssignmentDetails): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const dialogRef = this.dialog.open(AssignmentFormulaireComponent, {
         width: '400px',
         data: { assignment: selectedAssignment }
       });
-
+  
       dialogRef.afterClosed().subscribe(result => {
         console.log('Le formulaire a été fermé avec :', result);
         if (result === 'refresh') {
           this.refreshList(); 
         }
+        resolve(result === 'refresh');
       });
     });
   }
-
+  
 
   noReturnPredicate () {
    return  false ;

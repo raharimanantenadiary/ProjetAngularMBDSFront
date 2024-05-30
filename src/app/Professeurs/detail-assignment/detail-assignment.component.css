@@ -17,23 +17,34 @@
     margin-bottom: 20px;
 }
   
-.col-left,
+/* .col-left,
 .col-right {
     flex: 1;
-}
+} */
   
 .col-right {
     padding: 20px;
+    width: 750px;
 }
   
 .col-right p {
     font-size: 18px;
     color: #555;
 }
+
+.col-left{
+    height: 300px;
+}
   
 .col-left img {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: 100%;
+}
+
+.card-img{
+    width: 100%;
 }
   
 .section-title {
@@ -63,7 +74,7 @@
 }
 
 .example-viewport-l {
-    height: 750px;
+    height: 540px;
     width: 505px;
     background-color: #fafafa;
     border-radius: 8px;
@@ -74,7 +85,7 @@
   
 
 .example-viewport {
-    height: 500px;
+    height: 320px;
     width: 505px;
     background-color: #fafafa;
     border-radius: 8px;
