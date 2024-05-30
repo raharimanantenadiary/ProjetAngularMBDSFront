@@ -5,13 +5,19 @@
   <div *ngFor="let matiere of matieres" class="example-card">
     <mat-card>
       <div class="card-header">
-        <img class="prof-avatar" [src]="URL_IMAGE + '/' + matiere.photo" alt="Photo du professeur" width="400" height="400">
+        <img 
+          class="prof-avatar" 
+          [src]="matiere.prof.photo ? URL_IMAGE + '/' + matiere.prof.photo : './assets/img/professeur.webp'" 
+          alt="Photo du professeur" 
+          width="400" 
+          height="400"
+        >
         <div class="card-title-section">
           <mat-card-title>{{ matiere.nom }}</mat-card-title>
           <mat-card-subtitle>Professeur: {{ matiere.prof.nom }}</mat-card-subtitle>
         </div>
       </div>
-      <img class="matiere-image" [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière">
+      <img class="matiere-image" [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière" >
       <mat-card-actions>
         <button mat-button  (click)="voirDetail(matiere._id)">Voir détails</button>
       </mat-card-actions>

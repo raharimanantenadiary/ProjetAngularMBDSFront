@@ -55,7 +55,7 @@ export class DevoirNonRenduByMatiereComponent {
         (response: any) => {
           console.log("ato",response)
           this.liste_devoir_non_rendu = response.assignments;
-          this.tot = response.totalCount;
+          this.tot = response.total;
         },
         (error) => {
           console.error('Erreur lors de la récupération des devoirs :', error);

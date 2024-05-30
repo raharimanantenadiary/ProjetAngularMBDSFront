@@ -40,7 +40,7 @@ mat-card:hover {
 
 .matiere-image {
   width: 100%;
-  height: auto;
+  height: 175px;
 }
 
 mat-card-actions {
