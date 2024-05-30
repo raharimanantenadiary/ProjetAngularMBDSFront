@@ -10,7 +10,8 @@ export class MatieresService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'https://projetangularmbdsback.onrender.com/api/matieres';
+  // private baseUrl = 'https://projetangularmbdsback.onrender.com/api/matieres';
+  private baseUrl = 'http://localhost:8010/api/matieres';
 
   getAllMatiereEtudiant(page: number, limit: number): Observable<Matieres[]> {
     return this.http.get<Matieres[]>(`${this.baseUrl}?page=${page}&limit=${limit}`);

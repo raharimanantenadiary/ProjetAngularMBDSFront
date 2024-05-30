@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -14,6 +14,16 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+
+export function dateValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Pour comparer uniquement les dates, pas les heures
+
+    return selectedDate >= today ? null : { invalidDate: true };
+  };
+}
 
 @Component({
   selector: 'app-ajout-assignment',
@@ -39,7 +49,7 @@ export class AjoutAssignmentComponent {
     nom: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
-    dateDeRendu: ['', Validators.required],
+    dateDeRendu: ['', [Validators.required, dateValidator()]],
   });
   isEditable = true;
 

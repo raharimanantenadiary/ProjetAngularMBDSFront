@@ -42,7 +42,7 @@ export class AssignmentFormulaireComponent {
 
   submitForm() {
     if (this.noteFormControl.invalid) {
-      this.errorMessage = 'La note doit être supérieure à zéro.';
+      this.errorMessage = 'La note doit être supérieure ou égale à 1.';
       return;
     }
     this.errorMessage = null;
