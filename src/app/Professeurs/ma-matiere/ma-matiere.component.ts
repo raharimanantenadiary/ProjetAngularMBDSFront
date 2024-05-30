@@ -115,10 +115,10 @@ export class MaMatiereComponent {
   OnSubmit() {
     if (!this.nom || !this.photo) {
     this._snackBar.open('Veuillez remplir tous les champs et sélectionner une photo.', 'Fermer', {
-      duration: 3000,  // Temps en millisecondes avant que le snackbar ne disparaisse
-      panelClass: ['snackbar-error']  // Classe CSS pour le style d'erreur
+      duration: 3000, 
+      panelClass: ['snackbar-error']  
     });
-    return;  // Stop l'exécution si les conditions ne sont pas remplies
+    return;  
   }
   
     const utilisateurData = localStorage.getItem('utilisateur');
@@ -139,7 +139,7 @@ export class MaMatiereComponent {
 
         this.matiereService.postMatiere(formData).subscribe(
           (reponse: any) => {
-            this._snackBar.open('Mise à jour réussie', 'Fermer', {
+            this._snackBar.open('Ajout réussie', 'Fermer', {
               duration: this.durationInSeconds * 1000,
               panelClass: ['toast-success'],
             });
@@ -147,7 +147,7 @@ export class MaMatiereComponent {
           },
           (error: any) => {
             this._snackBar.open(
-              'Une erreur est survenue lors de la mise à jour',
+              'Une erreur est survenue lors de l ajout',
               'Fermer',
               {
                 duration: this.durationInSeconds * 1000,

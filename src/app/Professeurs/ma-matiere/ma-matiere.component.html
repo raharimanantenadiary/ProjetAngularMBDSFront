@@ -4,8 +4,9 @@
   </div>
 
   <div *ngIf="!loading && matiere; else newMatiere" class="matiere-info">
+    <div class="new-matiere">
     <h2 class="h1">Ma matière</h2>
-    <mat-card class="example-card">
+    <mat-card class="">
       <img mat-card-image [src]="URL_IMAGE + '/' + matiere.photo" alt="Couverture de la matière" width="420px">
       <mat-card-content>
         <div class="matiere-container">
@@ -26,6 +27,7 @@
         </mat-menu>
       </mat-card-content>
     </mat-card>
+  </div>
   </div>
   
   <ng-template #newMatiere>
