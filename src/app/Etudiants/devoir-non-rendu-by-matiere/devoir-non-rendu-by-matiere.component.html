@@ -26,7 +26,7 @@
   <div class="paginator-container">
      <mat-paginator [length]="tot"
                  [pageSize]="limit"
-                 [pageSizeOptions]="[1,2,5, 10, 25, 100]"
+                 [pageSizeOptions]="[20,50,100,500,1000,2000]"
                  (page)="handlePageEvent($event)"
                  aria-label="Select page">
   </mat-paginator>
