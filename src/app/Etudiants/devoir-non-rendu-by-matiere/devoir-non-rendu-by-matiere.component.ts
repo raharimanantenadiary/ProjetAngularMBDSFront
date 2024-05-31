@@ -14,17 +14,22 @@ import {MatPaginatorModule,PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogueRenduComponent } from '../../Etudiants/dialogue-rendu/dialogue-rendu.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-devoir-non-rendu-by-matiere',
   standalone: true,
-  imports: [CommonModule,MatCardModule, MatButtonModule,MatIcon,MatPaginatorModule,MatDialogModule],
+  imports: [CommonModule,MatCardModule, MatButtonModule,MatIcon,MatPaginatorModule,MatDialogModule,FormsModule],
   templateUrl: './devoir-non-rendu-by-matiere.component.html',
   styleUrl: './devoir-non-rendu-by-matiere.component.css'
 })
 export class DevoirNonRenduByMatiereComponent {
   URL_IMAGE: string = 'https://projetangularmbdsback.onrender.com/api/uploads';
   liste_devoir_non_rendu: Assignment[] = [];
+  resultat_filtre: any = [];
+  searchText: string = '';
+  startDate: string = '';
+  endDate: string = '';
   titre_matiere: any;
   photo_matiere: any;
   id_utilisateur = '';
@@ -38,24 +43,42 @@ export class DevoirNonRenduByMatiereComponent {
   ngOnInit(): void {
     this.getListeDevoirNonRenduByMatiere(this.page, this.limit);
   }
+
+  filtreDevoir() {
+    const endDate = new Date(this.endDate);
+    endDate.setDate(endDate.getDate() + 1); 
   
-  getListeDevoirNonRenduByMatiere(page: number, limit: number){
+    this.resultat_filtre = this.liste_devoir_non_rendu.filter(devoir => {
+      const filtre_nom = devoir.nom.toLowerCase().includes(this.searchText.toLowerCase());
+      const filtre_date = (!this.startDate || new Date(devoir.dateDeRendu) >= new Date(this.startDate)) &&
+                          (!this.endDate || new Date(devoir.dateDeRendu) <= endDate);
+      return filtre_nom && filtre_date;
+    });
+  }
+  
+  
+
+  getListeDevoirNonRenduByMatiere(page: number, limit: number) {
     const idMatiere = this.route.snapshot.params['id_matiere'];
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
       const utilisateur = JSON.parse(utilisateurData);
       this.id_utilisateur = utilisateur._id;
       this.matiereService.getMatiereById(idMatiere).subscribe(
-        (matiere: any) => { this.titre_matiere = matiere.nom;this.photo_matiere = matiere.photo},
-      (error) => {
-        console.error('Une erreur est survenue lors de la récupération de la matière :', error);
-      }
+        (matiere: any) => {
+          this.titre_matiere = matiere.nom;
+          this.photo_matiere = matiere.photo;
+        },
+        (error) => {
+          console.error('Une erreur est survenue lors de la récupération de la matière :', error);
+        }
       );
       this.assignementService.getAssignmentsEleveByMatiere(idMatiere, this.id_utilisateur, page, limit).subscribe(
         (response: any) => {
-          console.log("ato",response)
           this.liste_devoir_non_rendu = response.assignments;
+          this.resultat_filtre = response.assignments;
           this.tot = response.total;
+          this.filtreDevoir(); 
         },
         (error) => {
           console.error('Erreur lors de la récupération des devoirs :', error);
@@ -64,9 +87,10 @@ export class DevoirNonRenduByMatiereComponent {
     }
   }
   
+  
   handlePageEvent(event: PageEvent) {
     this.limit = event.pageSize;
-    this.page = event.pageIndex ; // Le backend s'attend à une base 1
+    this.page = event.pageIndex ; 
     this.getListeDevoirNonRenduByMatiere(this.page + 1, this.limit);
   }
   
@@ -84,17 +108,16 @@ export class DevoirNonRenduByMatiereComponent {
         };
         this.assignementDetailService.newAssignementDetails(payload).subscribe(
           (response) => {
-            console.log('Vous avez rendu le devoir :', response);
-            this.getListeDevoirNonRenduByMatiere(this.page, this.limit); // Actualiser la liste
+            this.getListeDevoirNonRenduByMatiere(this.page, this.limit); 
             this._snackBar.open('Vous avez rendu le devoir', 'Fermer', {
-              duration: 3000, // exemple de durée en millisecondes
+              duration: 3000, 
               panelClass: ['toast-success']
             });
           },
           (error) => {
             console.error('Erreur lors de la rendu du devoir :', error);
             this._snackBar.open('Une erreur est survenue lors de la rendu du devoir', 'Fermer', {
-              duration: 3000, // exemple de durée en millisecondes
+              duration: 3000, 
               panelClass: ['toast-error']
             });
           }
@@ -131,7 +154,7 @@ openDialog(devoirId: string): void {
   this.dialog.open(DialogueRenduComponent, {
     width: '250px',
     panelClass: 'custom-dialog-container',
-    data: { devoirId: devoirId }  // Passer devoirId au composant de dialogue
+    data: { devoirId: devoirId }  
   });
 }
 

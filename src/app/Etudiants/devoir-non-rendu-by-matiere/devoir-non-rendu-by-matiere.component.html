@@ -1,7 +1,15 @@
 <h2>{{ titre_matiere }}</h2>
-<div *ngIf="liste_devoir_non_rendu && liste_devoir_non_rendu.length > 0; else noDevoirMessage">
+
+
+<div style="display: flex; justify-content: flex-start; align-items: center;">
+  <input type="text" placeholder="Rechercher un devoir" [(ngModel)]="searchText" (input)="filtreDevoir()">
+  <input type="date" [(ngModel)]="startDate" (change)="filtreDevoir()" placeholder="Date de début">
+  <input type="date" [(ngModel)]="endDate" (change)="filtreDevoir()" placeholder="Date de fin">
+</div>
+
+<div *ngIf="resultat_filtre && resultat_filtre.length > 0; else noDevoirMessage">
   <div class="custom-card-container">
-    <mat-card *ngFor="let devoir of liste_devoir_non_rendu" class="custom-card">
+    <mat-card *ngFor="let devoir of resultat_filtre" class="custom-card">
       <mat-card-header>
        <img class="user-photo" [src]="URL_IMAGE + '/' + photo_matiere" alt="Photo de l'utilisateur" style="background-size: cover;
   background-position: center;
@@ -32,6 +40,7 @@
   </mat-paginator>
   </div>
 </div>
+
 <ng-template #noDevoirMessage>
   <p>Aucun devoir pour le moment.</p>
 </ng-template>
