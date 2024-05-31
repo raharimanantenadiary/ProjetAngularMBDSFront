@@ -4,8 +4,13 @@
 
 <div *ngIf="!loading" class="main">
   <h1 class="h1">Liste des devoirs que j'ai créés</h1>
-  <div *ngIf="assignments && assignments.length > 0" class="card-container">
-    <div *ngFor="let assignment of assignments" class="example-card">
+  <div class="search-container">
+    <input class="search-input" type="text" placeholder="Rechercher un devoir" [(ngModel)]="searchText" (input)="filtreDevoir()">
+    <input class="search-input" type="date" [(ngModel)]="startDate" (change)="filtreDevoir()" placeholder="Date de début">
+    <input class="search-input" type="date" [(ngModel)]="endDate" (change)="filtreDevoir()" placeholder="Date de fin">
+  </div>
+  <div *ngIf="resultat_filtre && resultat_filtre.length > 0" class="card-container">
+    <div *ngFor="let assignment of resultat_filtre" class="example-card">
       <mat-card style="height: 100%;">
         <img mat-card-image [src]="URL_IMAGE + '/' + assignment.matiere.photo" alt="Couverture de la matière">
         <mat-card-content>
@@ -36,7 +41,7 @@
       </mat-card>
     </div>
   </div>
-  <div *ngIf="!assignments || assignments.length === 0">
+  <div *ngIf="!resultat_filtre || resultat_filtre.length === 0">
     <p>Aucun devoir disponible !</p>
   </div>
 

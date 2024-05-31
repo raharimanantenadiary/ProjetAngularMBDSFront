@@ -40,8 +40,8 @@
 
   <div *ngIf="assignments && assignments.length > 0" class="pagination-controls">
     <button mat-raised-button color="primary" (click)="changePage(page - 1)" [disabled]="page <= 1">Précédent</button>
-    <span>Page {{ page }} sur {{ total }}</span>
-    <button mat-raised-button color="primary" (click)="changePage(page + 1)" [disabled]="page >= total">Suivant</button>
+    <span>Page {{ page }} sur {{ totalPages }}</span>
+    <button mat-raised-button color="primary" (click)="changePage(page + 1)" [disabled]="page >= totalPages">Suivant</button>
   </div>
   
   <div *ngIf="!assignments || assignments.length === 0">

@@ -31,9 +31,10 @@ export class AssignmentRenduComponent {
   matiere: Matieres | null = null;
   loading: boolean = true;
 
-  total: number = 0;
-  limit: number = 6;
   page: number = 1;
+  limit: number = 6;
+  totalAssignments: number = 0;
+  totalPages: number = 0;
 
   constructor(public dialog: MatDialog,private assignmentDetailsService: AssignmentDetailsService, private route: ActivatedRoute, private matiereService: MatieresService) { }
 
@@ -75,7 +76,8 @@ export class AssignmentRenduComponent {
                 this.assignmentDetailsService.getAssignmentRenduProf(idMatiere,this.id_utilisateur, this.page, this.limit).subscribe(
                   (response: any) => {
                     this.assignments = response.assignments;
-                    this.total = response.total;
+                    this.totalAssignments = response.total;
+                    this.totalPages = response.pages;
                     this.loading = false;
                     console.log(this.assignments);
                   },

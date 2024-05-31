@@ -1,12 +1,32 @@
+.search-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  border: 2px solid #00889e;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #4CAF50;
+}
+
 .custom-card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Ajustement pour l'espacement équitable */
-  gap: 10px; /* Espace entre les cartes */
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .custom-card {
-  flex: 0 1 calc(20% - 20px); /* calcule la largeur pour 5 cartes par ligne, en soustrayant le gap */
+  flex: 0 1 calc(20% - 20px);
   height: 375px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -15,16 +35,13 @@
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
-
 .custom-card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px); /* Légère élévation au survol */
+  transform: translateY(-5px);
 }
 
-
-
 .mat-card-title, .mat-card-subtitle {
-  text-align: center; /* Centrage du texte pour les titres */
+  text-align: center;
 }
 
 .mat-card-actions {
@@ -35,26 +52,40 @@
 
 button {
   background-color: #00889e;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 @media (max-width: 1200px) {
   .custom-card {
-    flex: 0 1 calc(25% - 20px); /* 4 cartes par ligne sur les écrans moyens */
+    flex: 0 1 calc(25% - 20px);
   }
 }
 
 @media (max-width: 768px) {
   .custom-card {
-    flex: 0 1 calc(33.33% - 20px); /* 3 cartes par ligne sur les écrans plus petits */
+    flex: 0 1 calc(33.33% - 20px);
   }
 }
 
 @media (max-width: 480px) {
   .custom-card {
-    flex: 0 1 calc(50% - 20px); /* 2 cartes par ligne sur les très petits écrans */
+    flex: 0 1 calc(50% - 20px);
   }
 }
-
 
 .paginator-container {
   display: flex;
@@ -62,7 +93,6 @@ button {
   margin-top: 20px;
 }
 
-/* Style global du dialogue */
 .mat-dialog-container {
   border-radius: 8px;
   padding: 20px;
@@ -70,7 +100,6 @@ button {
   animation: slideIn 0.3s ease-out forwards;
 }
 
-/* Animation de glissement */
 @keyframes slideIn {
   0% {
     transform: translateY(-100px);
@@ -82,7 +111,6 @@ button {
   }
 }
 
-/* Titre du dialogue */
 mat-dialog-title {
   color: #333;
   font-size: 24px;
@@ -90,48 +118,26 @@ mat-dialog-title {
   margin-bottom: 10px;
 }
 
-/* Contenu du dialogue */
 mat-dialog-content {
   font-size: 16px;
   color: #666;
   margin-bottom: 20px;
 }
 
-/* Boutons d'action dans le dialogue */
 mat-dialog-actions {
   display: flex;
   justify-content: flex-end;
 }
 
-
 .rendre {
-  background-color: #00889e; 
+  background-color: #00889e;
   color: white;
 }
 
 .rendu {
-  background-color: #4CAF50; 
+  background-color: #4CAF50;
   color: white;
 }
-
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  opacity: 0.9; /* Effet léger au survol pour tous les boutons */
-}
-
-button:disabled {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
-}
-
 
 .custom-dialog-container .mat-dialog-container {
   border-radius: 8px;

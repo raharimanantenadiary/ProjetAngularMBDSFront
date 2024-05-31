@@ -1,13 +1,11 @@
 <h2>{{ titre_matiere }}</h2>
 
-
-<div style="display: flex; justify-content: flex-start; align-items: center;">
-  <input type="text" placeholder="Rechercher un devoir" [(ngModel)]="searchText" (input)="filtreDevoir()">
-  <input type="date" [(ngModel)]="startDate" (change)="filtreDevoir()" placeholder="Date de début">
-  <input type="date" [(ngModel)]="endDate" (change)="filtreDevoir()" placeholder="Date de fin">
-</div>
-
 <div *ngIf="resultat_filtre && resultat_filtre.length > 0; else noDevoirMessage">
+  <div class="search-container">
+    <input class="search-input" type="text" placeholder="Rechercher un devoir" [(ngModel)]="searchText" (input)="filtreDevoir()">
+    <input class="search-input" type="date" [(ngModel)]="startDate" (change)="filtreDevoir()" placeholder="Date de début">
+    <input class="search-input" type="date" [(ngModel)]="endDate" (change)="filtreDevoir()" placeholder="Date de fin">
+  </div>
   <div class="custom-card-container">
     <mat-card *ngFor="let devoir of resultat_filtre" class="custom-card">
       <mat-card-header>
