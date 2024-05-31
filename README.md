@@ -1,5 +1,5 @@
 # ProjetAngularMBDSBack
-#15- RAHARIMANANTENA NY ONY Diary et 25- RAKOTOMANGA Hasindranto
+# 15- RAHARIMANANTENA NY ONY Diary et 25- RAKOTOMANGA Hasindranto
 ## Fonctionnalités de l'étudiant
 - **Interface de connexion :** Une interface de connexion pour se connecter.
 - **Interface d'inscription :** Une interface d'inscription où l'étudiant peut créer manuellement son compte.
