@@ -43,7 +43,6 @@ export class AssignmentRenduComponentEleve {
           this.liste_devoir_rendu = response.assignments;
           this.totalPages = response.totalPages;
           this.loading = false;
-          console.log("huhu: ",response);
           this.loading = false;
         },
         (error) => {

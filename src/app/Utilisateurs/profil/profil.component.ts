@@ -51,7 +51,7 @@ export class ProfilComponent {
   }
 
   
-
+  //récupéré information Utilisateur actif
   getUtilisateur(){
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
@@ -75,14 +75,14 @@ export class ProfilComponent {
     }
   }
 
-
+//modification profil utilisateur
 OnSubmit() {
   if (!this.nom || this.nom.trim() === '') {
     this._snackBar.open('Veuillez entrer un nom', 'Fermer', {
       duration: this.durationInSeconds * 1000,
       panelClass: ['toast-error']
     });
-    return; // Arrêter l'exécution si le nom n'est pas fourni
+    return; 
   }
   
   const formData = new FormData();
@@ -113,7 +113,7 @@ OnSubmit() {
 }
 
 
-
+//partie upload du fichier
 handleFileInput(event: any) {
   const fileInput = event.target;
   if (fileInput.files && fileInput.files[0]) {

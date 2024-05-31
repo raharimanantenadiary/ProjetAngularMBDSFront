@@ -29,8 +29,8 @@ export class HeaderComponent {
   @Output() toggleDrawer = new EventEmitter<boolean>();
 
   onToggleDrawer(): void {
-    this.isDrawerOpen = !this.isDrawerOpen; // Inverser l'état actuel du tiroir
-    this.toggleDrawer.emit(this.isDrawerOpen); // Émettre l'événement avec l'état actuel du tiroir
+    this.isDrawerOpen = !this.isDrawerOpen; 
+    this.toggleDrawer.emit(this.isDrawerOpen); 
   }
   
 

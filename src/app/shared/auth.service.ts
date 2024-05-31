@@ -9,12 +9,13 @@ export class AuthService {
 
   constructor() { }
 
+
+//code  généré mais suis la logique selon nos propres conditions
 isTokenExpired(): boolean {
   const token = localStorage.getItem('token');
   if (!token) {
-    // Efface également l'utilisateur du localStorage s'il n'y a pas de token
     localStorage.removeItem('utilisateur');
-    return true; // Le token n'est pas présent, donc considéré comme expiré
+    return true; 
   }
 
   try {
@@ -51,36 +52,29 @@ getTokenExpiration(): string {
   return '';
 }
 
-  // méthode pour connecter l'utilisateur
-  // Typiquement, il faudrait qu'elle accepte en paramètres
-  // un nom d'utilisateur et un mot de passe, que l'on vérifierait
-  // auprès d'un serveur...
-  logIn() {
-    this.loggedIn = true;
+
+  getUtilisateur() {
+    const utilisateurData = localStorage.getItem('utilisateur');
+    if (utilisateurData) {
+      const utilisateur = JSON.parse(utilisateurData);
+      return utilisateur;
+    }
+    return null;
   }
 
-  // méthode pour déconnecter l'utilisateur
-  logOut() {
-    this.loggedIn = false;
+  isLoggedIn(): boolean {
+    const utilisateur = this.getUtilisateur();
+    return utilisateur && utilisateur._id ? true : false;
   }
 
-  // methode qui indique si on est connecté en tant qu'admin ou pas
-  // pour le moment, on est admin simplement si on est connecté
-  // En fait cette méthode ne renvoie pas directement un booleén
-  // mais une Promise qui va renvoyer un booléen (c'est imposé par
-  // le système de securisation des routes de Angular)
-  //
-  // si on l'utilisait à la main dans un composant, on ferait:
-  // this.authService.isAdmin().then(....) ou
-  // admin = await this.authService.isAdmin()
-  isAdmin() {
-    const promesse = new Promise((resolve, reject) => {
-      // ici accès BD? Web Service ? etc...
-      resolve(this.loggedIn);
-      // pas de cas d'erreur ici, donc pas de reject
-    });
+  isAdmin(): boolean {
+    const utilisateur = this.getUtilisateur();
+    return utilisateur && utilisateur.role === 0;
+  }
 
-    return promesse;
+  isEleve(): boolean {
+    const utilisateur = this.getUtilisateur();
+    return utilisateur && utilisateur.role === 1;
   }
 
 
