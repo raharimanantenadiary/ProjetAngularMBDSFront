@@ -44,6 +44,7 @@ export class DevoirNonRenduByMatiereComponent {
     this.getListeDevoirNonRenduByMatiere(this.page, this.limit);
   }
 
+  // filtre par nom du devoir et une recherche d'un assignment dans un intervalle de date
   filtreDevoir() {
     const endDate = new Date(this.endDate);
     endDate.setDate(endDate.getDate() + 1); 
@@ -57,7 +58,7 @@ export class DevoirNonRenduByMatiereComponent {
   }
   
   
-
+  // liste des devoirs non rendu
   getListeDevoirNonRenduByMatiere(page: number, limit: number) {
     const idMatiere = this.route.snapshot.params['id_matiere'];
     const utilisateurData = localStorage.getItem('utilisateur');
@@ -87,13 +88,14 @@ export class DevoirNonRenduByMatiereComponent {
     }
   }
   
-  
+  // utilisé pour la pagination
   handlePageEvent(event: PageEvent) {
     this.limit = event.pageSize;
     this.page = event.pageIndex ; 
     this.getListeDevoirNonRenduByMatiere(this.page + 1, this.limit);
   }
   
+  // utilisé pour renvoyé le devoir une fois le boutton cliqué
   RendreDevoir(idAssignment: string) {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
@@ -126,7 +128,7 @@ export class DevoirNonRenduByMatiereComponent {
     }
   }
  
-
+  // sert à différencié un devoir rendu et non rendu 
   isDevoirRendu(devoir: any): boolean {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {
@@ -140,8 +142,8 @@ export class DevoirNonRenduByMatiereComponent {
   }
   
   
-
-  handleClick(devoir: any): void {
+// sert à différencié l'action qui doit suivre une fois cliqué soit: on affiche le détail soit on rend le devoir
+handleClick(devoir: any): void {
   if (this.isDevoirRendu(devoir)) {
     this.openDialog(devoir._id);
   } else {

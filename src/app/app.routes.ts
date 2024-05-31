@@ -17,27 +17,26 @@ import { DetailAssignmentComponent } from './Professeurs/detail-assignment/detai
 import { AjoutProfComponent } from './Professeurs/ajout-prof/ajout-prof.component';
 import { ListePofComponent } from './Professeurs/liste-pof/liste-pof.component';
 import { DialogueRenduComponent } from './Etudiants/dialogue-rendu/dialogue-rendu.component';
-
+import { AuthGuard } from './shared/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: TemplateComponent, 
+  { path: '', component: TemplateComponent,
     children: [
-      { path: "Profile", component: ProfilComponent},
-      { path: "Ma-matiere", component: MaMatiereComponent },
-      { path: "Ajout-prof", component: AjoutProfComponent },
-      { path: "List-prof", component: ListePofComponent },
-      { path: "Mes-devoirs", component: MesDevoirsComponent },
-      { path: "Nouveau-devoir", component: AjoutAssignmentComponent },
-      { path: "Liste-Devoir-Non-Rendu", component: AssignmentNonRenduComponent },
-      { path: "Liste-Devoir-Rendu", component: AssignmentRenduComponent },
-      { path: "liste-matiere-etudiant", component: MatiereEtudiantComponent },
-      { path: "liste-matiere-e-non-rendu", component: AssignmentNonRenduComponentEtudiant  },
-      { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve  },
-      { path: "liste-matiere-e-rendu/:id_matiere", component: DevoirNonRenduByMatiereComponent  },
-      { path: "modifier-matiere/:id", component: ModifierMatiereComponent  },
-      { path: "details-devoir/:id", component: DetailAssignmentComponent  },
-      { path: "modifier-matiere/:id", component: ModifierMatiereComponent},
-      { path: "detail-note", component: DialogueRenduComponent}
+      { path: "Profile", component: ProfilComponent}, //Accessible à tous
+      { path: "Ma-matiere", component: MaMatiereComponent ,canActivate: [AuthGuard], data: { requiredRole: 0 } }, 
+      { path: "Ajout-prof", component: AjoutProfComponent ,canActivate: [AuthGuard], data: { requiredRole: 0 }}, 
+      { path: "List-prof", component: ListePofComponent,canActivate: [AuthGuard], data: { requiredRole: 0 } }, 
+      { path: "Mes-devoirs", component: MesDevoirsComponent,canActivate: [AuthGuard], data: { requiredRole: 0 } }, 
+      { path: "Nouveau-devoir", component: AjoutAssignmentComponent,canActivate: [AuthGuard], data: { requiredRole: 0 } },
+      { path: "Liste-Devoir-Non-Rendu", component: AssignmentNonRenduComponent,canActivate: [AuthGuard], data: { requiredRole: 0 } },
+      { path: "Liste-Devoir-Rendu", component: AssignmentRenduComponent,canActivate: [AuthGuard], data: { requiredRole: 0 } }, 
+      { path: "liste-matiere-etudiant", component: MatiereEtudiantComponent,canActivate: [AuthGuard], data: { requiredRole: 1 }}, 
+      { path: "liste-matiere-e-non-rendu", component: AssignmentNonRenduComponentEtudiant,canActivate: [AuthGuard], data: { requiredRole: 1 }  },
+      { path: "liste-matiere-e-rendu", component: AssignmentRenduComponentEleve ,canActivate: [AuthGuard], data: { requiredRole: 1 } }, 
+      { path: "liste-matiere-e-rendu/:id_matiere", component: DevoirNonRenduByMatiereComponent,canActivate: [AuthGuard], data: { requiredRole: 1 } }, 
+      { path: "modifier-matiere/:id", component: ModifierMatiereComponent,canActivate: [AuthGuard], data: { requiredRole: 0 }  },  
+      { path: "details-devoir/:id", component: DetailAssignmentComponent,canActivate: [AuthGuard], data: { requiredRole: 0 }  },
+      { path: "modifier-matiere/:id", component: ModifierMatiereComponent,canActivate: [AuthGuard], data: { requiredRole: 0 }} 
     ]  
   },
   { path: "Inscription", component: InscriptionComponent },

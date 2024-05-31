@@ -56,7 +56,7 @@ export class TemplateComponent {
   }
 
   toggleDrawer(isDrawerOpen: boolean): void {
-    this.isDrawerOpen = isDrawerOpen; // Met à jour l'état du drawer
+    this.isDrawerOpen = isDrawerOpen; 
   }
   
   versMatiereProf() {

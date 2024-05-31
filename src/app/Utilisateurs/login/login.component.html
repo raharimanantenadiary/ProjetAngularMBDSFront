@@ -39,12 +39,11 @@
       <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
     </span>
   </button>
-  <span class="divider"></span> <!-- Utilisez une classe divider pour l'espace entre les boutons -->
+  <span class="divider"></span> 
   <a mat-button color="primary" (click)="seRedirigerVersInscription()" class="bottom-button">S'inscrire?</a>
 </div>
             </form>
             <div *ngIf="errorMessage" class="resultat-message red-text">{{ errorMessage }}</div>
-    <!-- <div *ngIf="resultat" class="resultat-message red-text">{{ resultat }}</div> -->
 
         </mat-card-content>
     </mat-card>

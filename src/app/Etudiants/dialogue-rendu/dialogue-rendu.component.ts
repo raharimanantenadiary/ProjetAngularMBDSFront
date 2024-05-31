@@ -16,6 +16,7 @@ export class DialogueRenduComponent implements OnInit {
   remarque: any = "";
   id_devoir: any = "";
 
+  //l id du devoir est contenu dans le data 
   constructor(
     public dialogRef: MatDialogRef<DialogueRenduComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,6 +27,7 @@ export class DialogueRenduComponent implements OnInit {
     this.getInformationNote();
   }
 
+  //récupère l'information du note à partir de l'utilisateur id et du devoir id
   getInformationNote() {
     const utilisateurData = localStorage.getItem('utilisateur');
     if (utilisateurData) {

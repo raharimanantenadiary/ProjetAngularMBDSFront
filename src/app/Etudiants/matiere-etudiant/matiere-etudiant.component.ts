@@ -24,16 +24,17 @@ total: number = 0;
 
   constructor(private matiereService: MatieresService,private router: Router) { }
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.getMatiere(this.page, this.limit);    
 }
 
+//récupère la liste des matieres
 getMatiere(page: number, limit: number) {
     this.matiereService.getAllMatiereEtudiant(page, limit).subscribe(
-        (response: any) => { // Supposons que le backend renvoie un objet avec total et matieres
+        (response: any) => {
             console.log(response);
             this.matieres = response.matieres;
-            this.total = response.total; // Mettre à jour total avec la valeur retournée par le backend
+            this.total = response.total; 
         },
         (error) => {
             console.error('Erreur lors de la récupération des données matière :', error);
@@ -41,14 +42,15 @@ getMatiere(page: number, limit: number) {
     );
 }
 
+//sert pour la pagination
 handlePageEvent(event: PageEvent) {
     this.limit = event.pageSize;
-    this.page = event.pageIndex; // Assurez-vous de commencer à 0 si le backend commence à 1
-    this.getMatiere(this.page + 1, this.limit); // Ajoutez 1 pour correspondre à la pagination backend
+    this.page = event.pageIndex; 
+    this.getMatiere(this.page + 1, this.limit); 
 }
 
   
-
+// redirige vers les assignments reliés à la matieres
  voirDetail(matiereId: string | undefined) {
   if (matiereId) {
     this.router.navigate(['/liste-matiere-e-rendu', matiereId]);
